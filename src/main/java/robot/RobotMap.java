@@ -63,7 +63,8 @@ public class RobotMap {
     // ******************************************
     // Pneumatics Ports
     // ******************************************
-    public static final int                     SHIFTER_PNEUMATIC_PORT = 0;
+    public static final int                     HATCH_GRABBER_PORT = 0;
+    public static final int                     HATCH_DEPLOYER_PORT = 0;
 
     // Initializers if this code will be deployed to more than one
     // robot with different mappings

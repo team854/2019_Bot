@@ -34,13 +34,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class OI extends TOi {
 
-    private TGameController driverController = new TGameController_PS(0);
-    private TRumbleManager  driverRumble     = new TRumbleManager("Driver", driverController);
+    private TGameController driverController    = new TGameController_PS(0);
+    private TRumbleManager  driverRumble        = new TRumbleManager("Driver", driverController);
 
-    private TToggle         compressorToggle = new TToggle(driverController, TStick.LEFT);
-    private TToggle         speedPidToggle   = new TToggle(driverController, TStick.RIGHT);
+    private TToggle         compressorToggle    = new TToggle(driverController, TStick.LEFT);
+    private TToggle         speedPidToggle      = new TToggle(driverController, TStick.RIGHT);
+    private TToggle         hatchGrabberToggle  = new TToggle(driverController, TButton.TRIANGLE);
+    private TToggle         hatchDeployerToggle = new TToggle(driverController, TButton.CIRCLE);
 
-    private DriveSelector   driveSelector    = new DriveSelector();
+    private DriveSelector   driveSelector       = new DriveSelector();
 
     @Override
     public boolean getCancelCommand() {
@@ -59,6 +61,14 @@ public class OI extends TOi {
     @Override
     public boolean getReset() {
         return driverController.getButton(TButton.START);
+    }
+
+    public boolean getGrabberState() {
+        return hatchGrabberToggle.get();
+    }
+
+    public boolean getDeployerState() {
+        return hatchDeployerToggle.get();
     }
 
     @Override
@@ -98,6 +108,10 @@ public class OI extends TOi {
     public void init() {
         compressorToggle.set(true);
         speedPidToggle.set(false);
+        //Subject to possible future modifications, as it's yet to be decided how the grabber
+        //should start out.
+        hatchGrabberToggle.set(false);
+        hatchDeployerToggle.set(false);
     }
 
     public void setSpeedPidEnabled(boolean state) {
@@ -111,6 +125,8 @@ public class OI extends TOi {
         compressorToggle.updatePeriodic();
         speedPidToggle.updatePeriodic();
         driverRumble.updatePeriodic();
+        hatchGrabberToggle.updatePeriodic();
+        hatchDeployerToggle.updatePeriodic();
 
         // Update all SmartDashboard values
         SmartDashboard.putBoolean("Speed PID Toggle", getSpeedPidEnabled());
