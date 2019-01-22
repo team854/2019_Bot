@@ -29,6 +29,15 @@ public class RobotConst {
     public static final double  ULTRASONIC_VOLTAGE_40IN       = 0.383;
     public static final double  ULTRASONIC_VOLTAGE_80IN       = 0.764;
 
+    // For CargoSubsystem
+    public static final double  CARGO_GATE_ENCODER_COUNTS_PER_INCH;  // Unused
+    public static final double  CARGO_GATE_SPEED_PID_KP;
+    public static final double  CARGO_GATE_SPEED_PID_KI;
+    public static final double  CARGO_GATE_MAX_LOW_GEAR_SPEED;
+    public static final double  CARGO_GATE_MOTOR_SPEED;
+    // Encoder distance for the motors to turn enough to open/close the gate
+    public static final double  CARGO_GATE_TOGGLE_ENCODER_DISTANCE;
+    
     public static enum Direction {
         FORWARD, BACKWARD
     };
@@ -60,6 +69,14 @@ public class RobotConst {
             DRIVE_SPEED_PID_KI = DRIVE_SPEED_PID_KP / 20.0;
  
             ENCODER_COUNTS_PER_INCH = 28.52;
+
+            // CargoSubsystem
+            CARGO_GATE_ENCODER_COUNTS_PER_INCH = 0;  // Unused
+            CARGO_GATE_SPEED_PID_KP = 0;
+            CARGO_GATE_SPEED_PID_KI = 0;
+            CARGO_GATE_MAX_LOW_GEAR_SPEED = 0;  // XXX: Needs to be set
+            CARGO_GATE_MOTOR_SPEED = 0;
+            CARGO_GATE_TOGGLE_ENCODER_DISTANCE = 0;
 
             break;
         }
