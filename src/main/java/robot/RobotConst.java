@@ -34,6 +34,7 @@ public class RobotConst {
     public static final double  CARGO_GATE_SPEED_PID_KP;
     public static final double  CARGO_GATE_SPEED_PID_KI;
     public static final double  CARGO_GATE_MAX_LOW_GEAR_SPEED;
+    // Speed to turn the motors when opening the gate
     public static final double  CARGO_GATE_MOTOR_SPEED;
     // Encoder distance for the motors to turn enough to open/close the gate
     public static final double  CARGO_GATE_TOGGLE_ENCODER_DISTANCE;

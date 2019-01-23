@@ -72,8 +72,8 @@ public class CargoSubsystem extends TSubsystem {
     // Encoders should reset after that
     public void setGateState(boolean state) {
         if (state) {  // True is open, motors turn in one direction to open the gates
-            gate.setSpeed(100, 100);  // Dummy numbers
-            while (gate.getEncoderDistance() != 1000) // Dummy distance
+            gate.setSpeed(RobotConst.CARGO_GATE_MOTOR_SPEED, RobotConst.CARGO_GATE_MOTOR_SPEED);  // Dummy numbers
+            while (gate.getEncoderDistance() != RobotConst.CARGO_GATE_TOGGLE_ENCODER_DISTANCE) // Dummy distance
         } else {
             // Motors turn in opposite direction to close the gates
         }
