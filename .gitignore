@@ -159,5 +159,6 @@ bin/
 # # IntelliJ Settings
 .idea
 .idea/
+src/main/main.iml
 
 # End of https://www.gitignore.io/api/c++,java,linux,macos,gradle,windows,visualstudiocode
