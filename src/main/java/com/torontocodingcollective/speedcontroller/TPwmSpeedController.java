@@ -1,18 +1,9 @@
 package com.torontocodingcollective.speedcontroller;
 
+import edu.wpi.first.wpilibj.*;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import edu.wpi.first.wpilibj.DMC60;
-import edu.wpi.first.wpilibj.Jaguar;
-import edu.wpi.first.wpilibj.PWMSpeedController;
-import edu.wpi.first.wpilibj.PWMTalonSRX;
-import edu.wpi.first.wpilibj.PWMVictorSPX;
-import edu.wpi.first.wpilibj.SD540;
-import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.Victor;
-import edu.wpi.first.wpilibj.VictorSP;
 
 /**
  * TPwmSpeedController controls one or more speed controllers of the same type

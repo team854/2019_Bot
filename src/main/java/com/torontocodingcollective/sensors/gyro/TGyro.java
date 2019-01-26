@@ -1,7 +1,6 @@
 package com.torontocodingcollective.sensors.gyro;
 
 import com.torontocodingcollective.TUtil;
-
 import edu.wpi.first.wpilibj.GyroBase;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 

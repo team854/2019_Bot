@@ -1,7 +1,6 @@
 package robot.subsystems;
 
 import com.torontocodingcollective.subsystem.TSubsystem;
-
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 

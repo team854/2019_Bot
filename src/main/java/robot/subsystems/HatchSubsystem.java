@@ -1,10 +1,8 @@
 package robot.subsystems;
 
 import com.torontocodingcollective.subsystem.TSubsystem;
-
 import edu.wpi.first.wpilibj.Solenoid;
 import robot.RobotMap;
-
 import robot.commands.hatch.DefaultHatchCommand;
 
 /**

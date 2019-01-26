@@ -1,16 +1,6 @@
 package robot.oi;
 
-import com.torontocodingcollective.oi.TButton;
-import com.torontocodingcollective.oi.TGameController;
-import com.torontocodingcollective.oi.TGameController_Logitech;
-import com.torontocodingcollective.oi.TGameController_PS;
-import com.torontocodingcollective.oi.TGameController_Xbox;
-import com.torontocodingcollective.oi.TOi;
-import com.torontocodingcollective.oi.TRumbleManager;
-import com.torontocodingcollective.oi.TStick;
-import com.torontocodingcollective.oi.TStickPosition;
-import com.torontocodingcollective.oi.TToggle;
-
+import com.torontocodingcollective.oi.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**

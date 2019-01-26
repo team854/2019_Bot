@@ -3,7 +3,6 @@ package com.torontocodingcollective.speedcontroller;
 import com.torontocodingcollective.TConst;
 import com.torontocodingcollective.pid.TSpeedPID;
 import com.torontocodingcollective.sensors.encoder.TEncoder;
-
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SpeedController;
 

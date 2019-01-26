@@ -3,7 +3,6 @@ package robot.commands.cargo;
 import com.torontocodingcollective.TConst;
 import com.torontocodingcollective.commands.TSafeCommand;
 import robot.Robot;
-import robot.subsystems.HatchSubsystem;
 
 /**
  * 

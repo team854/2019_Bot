@@ -1,7 +1,6 @@
 package com.torontocodingcollective.sensors.gyro;
 
 import com.kauailabs.navx.frc.AHRS;
-
 import edu.wpi.first.wpilibj.SPI;
 
 public class TNavXGyro extends TGyro {

@@ -1,7 +1,6 @@
 package robot.oi;
 
 import com.torontocodingcollective.oi.TStick;
-
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
