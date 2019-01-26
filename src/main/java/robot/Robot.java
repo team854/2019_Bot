@@ -13,9 +13,6 @@ import robot.commands.AutonomousCommand;
 import robot.oi.AutoSelector;
 import robot.oi.OI;
 import robot.subsystems.CameraSubsystem;
-import robot.subsystems.CanDriveSubsystem;
-import robot.subsystems.PneumaticsSubsystem;
-import robot.subsystems.PowerSubsystem;
 import robot.subsystems.PwmDriveSubsystem;
 import robot.subsystems.HatchSubsystem;
 

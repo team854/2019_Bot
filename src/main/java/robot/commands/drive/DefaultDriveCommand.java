@@ -8,7 +8,6 @@ import com.torontocodingcollective.speedcontroller.TSpeeds;
 
 import robot.Robot;
 import robot.oi.OI;
-import robot.subsystems.CanDriveSubsystem;
 import robot.subsystems.PwmDriveSubsystem;
 
 /**

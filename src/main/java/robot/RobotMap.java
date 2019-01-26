@@ -1,7 +1,6 @@
 package robot;
 
 import com.torontocodingcollective.TConst;
-import com.torontocodingcollective.speedcontroller.TCanSpeedController.TCanSpeedControllerType;
 import com.torontocodingcollective.speedcontroller.TPwmSpeedController.TPwmSpeedControllerType;
 
 /**
@@ -17,24 +16,6 @@ public class RobotMap {
 
     // ******************************************
     // Speed Controllers and encoders
-    // CAN addresses
-    // ******************************************
-    public static final int                     LEFT_DRIVE_CAN_SPEED_CONTROLLER_ADDRESS;
-    public static final TCanSpeedControllerType LEFT_DRIVE_CAN_SPEED_CONTROLLER_TYPE;
-    public static final int                     LEFT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_ADDRESS;
-    public static final TCanSpeedControllerType LEFT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_TYPE;
-    public static final boolean                 LEFT_DRIVE_CAN_MOTOR_ISINVERTED;
-
-    public static final int                     RIGHT_DRIVE_CAN_SPEED_CONTROLLER_ADDRESS;
-    public static final TCanSpeedControllerType RIGHT_DRIVE_CAN_SPEED_CONTROLLER_TYPE;
-    public static final int                     RIGHT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_ADDRESS;
-    public static final TCanSpeedControllerType RIGHT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_TYPE;
-    public static final boolean                 RIGHT_DRIVE_CAN_MOTOR_ISINVERTED;
-
-    public static final boolean                 LEFT_DRIVE_CAN_ENCODER_ISINVERTED;
-    public static final boolean                 RIGHT_DRIVE_CAN_ENCODER_ISINVERTED;
-
-    // ******************************************
     // PWM addresses
     // ******************************************
     public static final int                     LEFT_DRIVE_PWM_SPEED_CONTROLLER_ADDRESS;
@@ -68,23 +49,6 @@ public class RobotMap {
 
     public static final int                     CARGO_HEIGHT_CHANGER;
 
-    public static final int                     CARGO_GATE_LEFT_PWM_SPEED_CONTROLLER_ADDRESS;
-    public static final TPwmSpeedControllerType CARGO_GATE_LEFT_PWM_SPEED_CONTROLLER_TYPE;
-    public static final int                     CARGO_GATE_LEFT_PWM_FOLLOWER_SPEED_CONTROLLER_ADDRESS;
-    public static final TPwmSpeedControllerType CARGO_GATE_LEFT_PWM_FOLLOWER_SPEED_CONTROLLER_TYPE;
-    public static final boolean                 CARGO_GATE_LEFT_PWM_MOTOR_ISINVERTED;
-
-    public static final int                     CARGO_GATE_RIGHT_PWM_SPEED_CONTROLLER_ADDRESS;
-    public static final TPwmSpeedControllerType CARGO_GATE_RIGHT_PWM_SPEED_CONTROLLER_TYPE;
-    public static final int                     CARGO_GATE_RIGHT_PWM_FOLLOWER_SPEED_CONTROLLER_ADDRESS;
-    public static final TPwmSpeedControllerType CARGO_GATE_RIGHT_PWM_FOLLOWER_SPEED_CONTROLLER_TYPE;
-    public static final boolean                 CARGO_GATE_RIGHT_PWM_MOTOR_ISINVERTED;
-
-    public static final int                     CARGO_GATE_LEFT_DIO_ENCODER_PORT1;
-    public static final boolean                 CARGO_GATE_LEFT_DIO_ENCODER_ISINVERTED;
-    public static final int                     CARGO_GATE_RIGHT_DIO_ENCODER_PORT1;
-    public static final boolean                 CARGO_GATE_RIGHT_DIO_ENCODER_ISINVERTED;
-
     // Initializers if this code will be deployed to more than one
     // robot with different mappings
     static {
@@ -93,22 +57,6 @@ public class RobotMap {
 
         case RobotConst.TEST_ROBOT:
         default:
-            // CAN Constants
-            // Talon and Victor connected through the CAN Bus
-            LEFT_DRIVE_CAN_SPEED_CONTROLLER_ADDRESS           = 3;
-            LEFT_DRIVE_CAN_SPEED_CONTROLLER_TYPE              = TCanSpeedControllerType.TALON_SRX;
-            LEFT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_ADDRESS  = 4;
-            LEFT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_TYPE     = TCanSpeedControllerType.VICTOR_SPX;
-            LEFT_DRIVE_CAN_MOTOR_ISINVERTED                   = TConst.INVERTED;
-            LEFT_DRIVE_CAN_ENCODER_ISINVERTED                 = TConst.INVERTED;
-
-            RIGHT_DRIVE_CAN_SPEED_CONTROLLER_ADDRESS          = 1;
-            RIGHT_DRIVE_CAN_SPEED_CONTROLLER_TYPE             = TCanSpeedControllerType.TALON_SRX;
-            RIGHT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_ADDRESS = 2;
-            RIGHT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_TYPE    = TCanSpeedControllerType.TALON_SRX;
-            RIGHT_DRIVE_CAN_MOTOR_ISINVERTED                  = TConst.NOT_INVERTED;
-            RIGHT_DRIVE_CAN_ENCODER_ISINVERTED                = TConst.NOT_INVERTED;
-
             // PWM Constants
             // Talon and Victors connected through Pwm
             LEFT_DRIVE_PWM_SPEED_CONTROLLER_ADDRESS           = 0;
@@ -138,23 +86,6 @@ public class RobotMap {
 
             CARGO_HEIGHT_CHANGER = 0;
             
-            CARGO_GATE_LEFT_PWM_SPEED_CONTROLLER_ADDRESS = 0;
-            CARGO_GATE_LEFT_PWM_SPEED_CONTROLLER_TYPE = 0;
-            CARGO_GATE_LEFT_PWM_FOLLOWER_SPEED_CONTROLLER_ADDRESS = 0;
-            CARGO_GATE_LEFT_PWM_FOLLOWER_SPEED_CONTROLLER_TYPE = 0;
-            CARGO_GATE_LEFT_PWM_MOTOR_ISINVERTED = false;
-
-            CARGO_GATE_RIGHT_PWM_SPEED_CONTROLLER_ADDRESS = 0;
-            CARGO_GATE_RIGHT_PWM_SPEED_CONTROLLER_TYPE = 0;
-            CARGO_GATE_RIGHT_PWM_FOLLOWER_SPEED_CONTROLLER_ADDRESS = 0;
-            CARGO_GATE_RIGHT_PWM_FOLLOWER_SPEED_CONTROLLER_TYPE = 0;
-            CARGO_GATE_RIGHT_PWM_MOTOR_ISINVERTED = false;
-
-            CARGO_GATE_LEFT_DIO_ENCODER_PORT1 = 0;
-            CARGO_GATE_LEFT_DIO_ENCODER_ISINVERTED = false;
-            CARGO_GATE_RIGHT_DIO_ENCODER_PORT1 = 0;
-            CARGO_GATE_RIGHT_DIO_ENCODER_ISINVERTED = false;
-
             break;
         }
     }
