@@ -11,8 +11,8 @@ import robot.commands.hatch.DefaultHatchCommand;
 public class HatchSubsystem extends TSubsystem {
 
     //
-    Solenoid grabber = new Solenoid(RobotMap.HATCH_GRABBER_PORT); 
-    Solenoid deployer = new Solenoid(RobotMap.HATCH_DEPLOYER_PORT);
+    Solenoid grabber = null; //new Solenoid(RobotMap.HATCH_GRABBER_PORT); 
+    Solenoid deployer = null; //new Solenoid(RobotMap.HATCH_DEPLOYER_PORT);
 
     @Override
     public void init() {

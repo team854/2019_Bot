@@ -15,7 +15,7 @@ public class DefaultCargoCommand extends TSafeCommand {
     public DefaultCargoCommand() {
         super(TConst.NO_COMMAND_TIMEOUT, Robot.oi);
 
-        requires(Robot.hatchSubsystem);
+        //requires(Robot.hatchSubsystem);
     }
     
     @Override
@@ -33,8 +33,8 @@ public class DefaultCargoCommand extends TSafeCommand {
 
     @Override
     protected void execute() {
-        Robot.hatchSubsystem.setGrabberState(Robot.oi.getGrabberState());
-        Robot.hatchSubsystem.setDeployerState(Robot.oi.getDeployerState());
+        //Robot.hatchSubsystem.setGrabberState(Robot.oi.getGrabberState());
+        //Robot.hatchSubsystem.setDeployerState(Robot.oi.getDeployerState());
     }
 
     @Override

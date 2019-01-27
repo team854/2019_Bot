@@ -1,7 +1,16 @@
 package robot.oi;
 
-import com.torontocodingcollective.oi.*;
+import com.torontocodingcollective.oi.TButton;
+import com.torontocodingcollective.oi.TGameController;
+import com.torontocodingcollective.oi.TGameController_PS;
+import com.torontocodingcollective.oi.TOi;
+import com.torontocodingcollective.oi.TRumbleManager;
+import com.torontocodingcollective.oi.TStick;
+import com.torontocodingcollective.oi.TStickPosition;
+import com.torontocodingcollective.oi.TToggle;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import robot.subsystems.CameraSubsystem.Camera;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -31,6 +40,7 @@ public class OI extends TOi {
     private TToggle         speedPidToggle      = new TToggle(driverController, TStick.RIGHT);
     private TToggle         hatchGrabberToggle  = new TToggle(driverController, TButton.TRIANGLE);
     private TToggle         hatchDeployerToggle = new TToggle(driverController, TButton.CIRCLE);
+    private TToggle         cameraToggle        = new TToggle(driverController, TButton.RIGHT_BUMPER);
 
     private DriveSelector   driveSelector       = new DriveSelector();
 
@@ -108,6 +118,13 @@ public class OI extends TOi {
         speedPidToggle.set(state);
     }
 
+    public Camera getCamera() {
+    	if (cameraToggle.get()) {
+    		return Camera.FRONT;
+    	}
+    	return Camera.REAR;
+    }
+    
     @Override
     public void updatePeriodic() {
 
@@ -117,10 +134,12 @@ public class OI extends TOi {
         driverRumble.updatePeriodic();
         hatchGrabberToggle.updatePeriodic();
         hatchDeployerToggle.updatePeriodic();
+        cameraToggle.updatePeriodic();
 
         // Update all SmartDashboard values
         SmartDashboard.putBoolean("Speed PID Toggle", getSpeedPidEnabled());
         SmartDashboard.putBoolean("Compressor Toggle", getCompressorEnabled());
         SmartDashboard.putString("Driver Controller", driverController.toString());
+        SmartDashboard.putString("Camera", getCamera().toString());
     }
 }

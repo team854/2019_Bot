@@ -1,4 +1,4 @@
-package robot.commands.hatch;
+package robot.commands.camera;
 
 import com.torontocodingcollective.TConst;
 import com.torontocodingcollective.commands.TSafeCommand;
@@ -7,15 +7,15 @@ import robot.Robot;
 /**
  * 
  */
-public class DefaultHatchCommand extends TSafeCommand {
+public class DefaultCameraCommand extends TSafeCommand {
 
     private static final String COMMAND_NAME = 
-    DefaultHatchCommand.class.getSimpleName();
+    DefaultCameraCommand.class.getSimpleName();
 
-    public DefaultHatchCommand() {
+    public DefaultCameraCommand() {
         super(TConst.NO_COMMAND_TIMEOUT, Robot.oi);
 
-        //requires(Robot.hatchSubsystem);
+        requires(Robot.cameraSubsystem);
     }
     
     @Override
@@ -33,8 +33,7 @@ public class DefaultHatchCommand extends TSafeCommand {
 
     @Override
     protected void execute() {
-        //Robot.hatchSubsystem.setGrabberState(Robot.oi.getGrabberState());
-        //Robot.hatchSubsystem.setDeployerState(Robot.oi.getDeployerState());
+    	Robot.cameraSubsystem.setCameraFeed(Robot.oi.getCamera());
     }
 
     @Override

@@ -29,7 +29,7 @@ public class Robot extends IterativeRobot {
     public static final PwmDriveSubsystem   driveSubsystem      = new PwmDriveSubsystem();
 //    public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
  //   public static final PowerSubsystem      powerSubsystem      = new PowerSubsystem();
-    public static final HatchSubsystem      hatchSubsystem      = new HatchSubsystem();
+ //   public static final HatchSubsystem      hatchSubsystem      = new HatchSubsystem();
     public static final CameraSubsystem     cameraSubsystem     = new CameraSubsystem();
 
     public static OI                        oi;
@@ -42,7 +42,7 @@ public class Robot extends IterativeRobot {
     //    subsystemLs.add(pneumaticsSubsystem);
      //   subsystemLs.add(powerSubsystem);
         subsystemLs.add(cameraSubsystem);
-        subsystemLs.add(hatchSubsystem);
+     //   subsystemLs.add(hatchSubsystem);
     }
 
     /**

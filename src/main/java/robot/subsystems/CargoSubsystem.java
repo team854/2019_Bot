@@ -11,7 +11,7 @@ import robot.commands.cargo.DefaultCargoCommand;
  */
 public class CargoSubsystem extends TSubsystem {
 
-    Solenoid heightChanger = new Solenoid(RobotMap.CARGO_HEIGHT_CHANGER);
+    Solenoid heightChanger = null; //new Solenoid(RobotMap.CARGO_HEIGHT_CHANGER);
 
     @Override
     public void init() {
