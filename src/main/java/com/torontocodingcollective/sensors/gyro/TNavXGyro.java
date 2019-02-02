@@ -23,9 +23,7 @@ public class TNavXGyro extends TGyro {
 
     @Override
     public double getAngle() {
-        double getAngle_val = super.getAngle(navXGyro.getAngle());
-        System.out.println(getAngle_val);
-        return getAngle_val;
+        return super.getAngle(navXGyro.getAngle());
         
     }
 
