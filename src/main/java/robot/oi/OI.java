@@ -34,6 +34,9 @@ public class OI extends TOi {
 
     private DriveSelector   driveSelector       = new DriveSelector();
 
+    /* ***************************************************************************************
+     * Drive Subsystem commands
+     *****************************************************************************************/
     @Override
     public boolean getCancelCommand() {
         return driverController.getButton(TButton.BACK);
@@ -51,14 +54,6 @@ public class OI extends TOi {
     @Override
     public boolean getReset() {
         return driverController.getButton(TButton.START);
-    }
-
-    public boolean getGrabberState() {
-        return hatchGrabberToggle.get();
-    }
-
-    public boolean getDeployerState() {
-        return hatchDeployerToggle.get();
     }
 
     @Override
@@ -91,10 +86,28 @@ public class OI extends TOi {
         return speedPidToggle.get();
     }
 
-    public boolean getTurboOn() {
-        return driverController.getButton(TButton.LEFT_BUMPER);
+    public void setSpeedPidEnabled(boolean state) {
+        speedPidToggle.set(state);
     }
 
+    /* ***************************************************************************************
+     * Hatch Subsystem commands
+     *****************************************************************************************/
+    public boolean getGrabberState() {
+        return hatchGrabberToggle.get();
+    }
+
+    public boolean getDeployerState() {
+        return hatchDeployerToggle.get();
+    }
+
+    /* ***************************************************************************************
+     * Cargo Subsystem commands
+     *****************************************************************************************/
+    
+    /* ***************************************************************************************
+     * OI Init and Periodic 
+     *****************************************************************************************/
     public void init() {
         compressorToggle.set(true);
         speedPidToggle.set(false);
@@ -102,10 +115,6 @@ public class OI extends TOi {
         //should start out.
         hatchGrabberToggle.set(false);
         hatchDeployerToggle.set(false);
-    }
-
-    public void setSpeedPidEnabled(boolean state) {
-        speedPidToggle.set(state);
     }
 
     @Override
