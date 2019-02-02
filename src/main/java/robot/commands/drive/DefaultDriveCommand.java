@@ -58,13 +58,6 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
         // Check the driver controller buttons
         super.execute();
 
-        // Enable turbo mode
-        if (oi.getTurboOn()) {
-            driveSubsystem.enableTurbo();
-        } else {
-            driveSubsystem.disableTurbo();
-        }
-
         // Drive according to the type of drive selected in the
         // operator input.
         TStickPosition leftStickPosition = oi.getDriveStickPosition(TStick.LEFT);
