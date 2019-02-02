@@ -30,36 +30,14 @@ public class HatchSubsystem extends TSubsystem {
 
     //Depending on the state that the grabber is in, the grabber will open or close.
     public void setGrabberState(boolean state) {
-        //grabber.set(state);
+        grabber.set(state);
     }
 
     //Depending on the state that the deployer is in, the deployer will open or close.
     public void setDeployerState(boolean state) {
-        //deployer.set(state);
+        deployer.set(state);
     }
 
-
-    ///Unused Methods
-    
-    //The "grabber" will close itself (piston will expand) 
-    // public void grabberClose() {
-    //     grabber.set(false);
-    // }
-    
-    //The "grabber" will open (piston will retract)
-    // public void grabberOpen() {
-    //     grabber.set(true);
-    // }
-
-    //  Causes "deployer" piston to push out
-    //  public void deployerOut(){
-    //     deployer.set(true);
-    // }
-
-    // Causes "deployer" piston to retract back.
-    // public void deployerRetract() {
-    //     deployer.set(false);
-    // }
 
     // Periodically update the dashboard and any PIDs or sensors
     @Override
