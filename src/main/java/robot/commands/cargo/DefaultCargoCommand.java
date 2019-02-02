@@ -33,7 +33,8 @@ public class DefaultCargoCommand extends TSafeCommand {
 
     @Override
     protected void execute() {
-    //To be finished later    
+        Robot.cargoSubsystem.setHeightState(Robot.oi.getHeightState());
+        Robot.cargoSubsystem.setGateState(Robot.oi.getGateState());
     }
 
     @Override

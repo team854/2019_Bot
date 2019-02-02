@@ -47,7 +47,8 @@ public class RobotMap {
     public static final int                     HATCH_GRABBER_PORT;
     public static final int                     HATCH_DEPLOYER_PORT;
 
-    public static final int                     CARGO_HEIGHT_CHANGER;
+    public static final int                     CARGO_HEIGHT;
+    public static final int                     CARGO_GATE;
 
     // Initializers if this code will be deployed to more than one
     // robot with different mappings
@@ -81,11 +82,11 @@ public class RobotMap {
 
             // Unset values below
             // **********************************
-            HATCH_GRABBER_PORT = 0;
-            HATCH_DEPLOYER_PORT = 0;
+            HATCH_GRABBER_PORT      = 0;
+            HATCH_DEPLOYER_PORT     = 0;
 
-            CARGO_HEIGHT_CHANGER = 0;
-            
+            CARGO_HEIGHT    = 0;
+            CARGO_GATE      = 0;
             break;
         }
     }

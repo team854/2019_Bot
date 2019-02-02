@@ -31,6 +31,8 @@ public class OI extends TOi {
     private TToggle         speedPidToggle      = new TToggle(driverController, TStick.RIGHT);
     private TToggle         hatchGrabberToggle  = new TToggle(driverController, TButton.TRIANGLE);
     private TToggle         hatchDeployerToggle = new TToggle(driverController, TButton.CIRCLE);
+    private TToggle         cargoHeightToggle   = new TToggle(driverController, TTrigger.RIGHT);
+    private TToggle         cargoGateToggle     = new TToggle(driverController, TTrigger.LEFT);
 
     private DriveSelector   driveSelector       = new DriveSelector();
 
@@ -104,17 +106,26 @@ public class OI extends TOi {
     /* ***************************************************************************************
      * Cargo Subsystem commands
      *****************************************************************************************/
-    
+    public boolean getHeightState() {
+        return cargoHeightToggle.get();
+    }
+
+    public boolean getGateState() {
+        return cargoGateToggle.get();
+    }
+
     /* ***************************************************************************************
      * OI Init and Periodic 
      *****************************************************************************************/
     public void init() {
         compressorToggle.set(true);
         speedPidToggle.set(false);
-        //Subject to possible future modifications, as it's yet to be decided how the grabber
-        //should start out.
+        // Subject to possible future modifications, as it's yet to be decided how the grabber should start out.
         hatchGrabberToggle.set(false);
         hatchDeployerToggle.set(false);
+        // Will change as well - height should start high, gate should start closed
+        cargoHeightToggle.set(false);
+        cargoGateToggle.set(false);
     }
 
     @Override
@@ -126,6 +137,8 @@ public class OI extends TOi {
         driverRumble.updatePeriodic();
         hatchGrabberToggle.updatePeriodic();
         hatchDeployerToggle.updatePeriodic();
+        cargoHeightToggle.updatePeriodic();
+        cargoGateToggle.updatePeriodic();
 
         // Update all SmartDashboard values
         SmartDashboard.putBoolean("Speed PID Toggle", getSpeedPidEnabled());

@@ -11,7 +11,8 @@ import robot.commands.cargo.DefaultCargoCommand;
  */
 public class CargoSubsystem extends TSubsystem {
 
-    Solenoid heightChanger = new Solenoid(RobotMap.CARGO_HEIGHT_CHANGER);
+    Solenoid height  = new Solenoid(RobotMap.CARGO_HEIGHT);
+    Solenoid gate    = new Solenoid(RobotMap.CARGO_GATE);
 
     @Override
     public void init() {
@@ -29,17 +30,11 @@ public class CargoSubsystem extends TSubsystem {
         //Empty for now.
     }
 
-    // Should start high
     public void setHeightState(boolean state) {
-        heightChanger.set(state);
+        height.set(state);
     }
 
-    // Should start closed
-    // Encoders should reset after that
     public void setGateState(boolean state) {
-        if (state) {
-        } else {
-        }
+        gate.set(state);
     }
-
 }
