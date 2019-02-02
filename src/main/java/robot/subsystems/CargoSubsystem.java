@@ -1,7 +1,7 @@
 package robot.subsystems;
 
 import com.torontocodingcollective.subsystem.TSubsystem;
-import edu.wpi.first.wpilibj.Solenoid;
+
 import robot.RobotMap;
 import robot.commands.cargo.DefaultCargoCommand;
 
@@ -10,9 +10,9 @@ import robot.commands.cargo.DefaultCargoCommand;
  *
  */
 public class CargoSubsystem extends TSubsystem {
+    FakeSolenoid height  = new FakeSolenoid(RobotMap.CARGO_HEIGHT);
+    FakeSolenoid gate    = new FakeSolenoid(RobotMap.CARGO_GATE);
 
-    Solenoid height  = new Solenoid(RobotMap.CARGO_HEIGHT);
-    Solenoid gate    = new Solenoid(RobotMap.CARGO_GATE);
 
     @Override
     public void init() {
