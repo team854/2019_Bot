@@ -2,6 +2,7 @@ package robot.subsystems;
 
 import com.torontocodingcollective.subsystem.TSubsystem;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import robot.RobotMap;
 import robot.commands.cargo.DefaultCargoCommand;
 
@@ -31,10 +32,8 @@ public class CargoSubsystem extends TSubsystem {
     // Periodically update the dashboard and any PIDs or sensors
     @Override
     public void updatePeriodic() {
-    	// RM:  Always put the states of all devices on the 
-    	//      Smartdashboard.
-    	//      Add the solenoids here!!
-    	
+        SmartDashboard.putBoolean("cargoHeight", height.get());
+        SmartDashboard.putBoolean("cargoGate", gate.get());
     }
 
 }
