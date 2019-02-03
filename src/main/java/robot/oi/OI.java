@@ -40,10 +40,10 @@ public class OI extends TOi {
     private TToggle         compressorToggle    = new TToggle(driverController, TStick.LEFT);
     private TToggle         speedPidToggle      = new TToggle(driverController, TStick.RIGHT);
     private TToggle         hatchGrabberToggle  = new TToggle(driverController, TButton.TRIANGLE);
-    private TToggle         hatchDeployerToggle = new TToggle(driverController, TButton.CIRCLE);
+    private TToggle         hatchDeployerToggle = new TToggle(driverController, TButton.X_SYMBOL);
     private TToggle         cargoHeightToggle   = new TToggle(driverController, TTrigger.RIGHT);
     private TToggle         cargoGateToggle     = new TToggle(driverController, TTrigger.LEFT);
-    private TToggle         cameraToggle        = new TToggle(driverController, TButton.RIGHT_BUMPER);
+    private TToggle         cameraToggle        = new TToggle(driverController, TButton.CIRCLE);
 
     private DriveSelector   driveSelector       = new DriveSelector();
 
@@ -169,10 +169,12 @@ public class OI extends TOi {
     @Override
     public void updatePeriodic() {
 
+    	// Update the Controller Rumbles
+        driverRumble.updatePeriodic();
+
         // Update all Toggles
         compressorToggle.updatePeriodic();
         speedPidToggle.updatePeriodic();
-        driverRumble.updatePeriodic();
         hatchGrabberToggle.updatePeriodic();
         hatchDeployerToggle.updatePeriodic();
         cargoHeightToggle.updatePeriodic();
@@ -180,6 +182,7 @@ public class OI extends TOi {
         cameraToggle.updatePeriodic();
 
         // Update all SmartDashboard values
+        // RM: Put all toggles in the OI Update Periodic so they show on the SmartDashboard!!!
         SmartDashboard.putBoolean("Speed PID Toggle", getSpeedPidEnabled());
         SmartDashboard.putBoolean("Compressor Toggle", getCompressorEnabled());
         SmartDashboard.putString("Driver Controller", driverController.toString());

@@ -28,11 +28,11 @@ public class Robot extends IterativeRobot {
     public static final List<TSubsystem>    subsystemLs         = new ArrayList<TSubsystem>();
 
     public static final PwmDriveSubsystem   driveSubsystem      = new PwmDriveSubsystem();
+    public static final HatchSubsystem      hatchSubsystem      = new HatchSubsystem();
+    public static final CargoSubsystem      cargoSubsystem      = new CargoSubsystem();
 //  public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
 //   public static final PowerSubsystem      powerSubsystem      = new PowerSubsystem();
-    public static final HatchSubsystem      hatchSubsystem      = new HatchSubsystem();
     public static final CameraSubsystem     cameraSubsystem     = new CameraSubsystem();
-    public static final CargoSubsystem      cargoSubsystem      = new CargoSubsystem();
 
     public static OI                        oi;
 
@@ -41,10 +41,11 @@ public class Robot extends IterativeRobot {
     // Add all of the subsystems to the subsystem list
     static {
         subsystemLs.add(driveSubsystem);
+        subsystemLs.add(hatchSubsystem);
+        subsystemLs.add(cargoSubsystem);
     //    subsystemLs.add(pneumaticsSubsystem);
      //   subsystemLs.add(powerSubsystem);
         subsystemLs.add(cameraSubsystem);
-        subsystemLs.add(hatchSubsystem);
     }
 
     /**
