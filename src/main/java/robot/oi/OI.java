@@ -1,7 +1,17 @@
 package robot.oi;
 
-import com.torontocodingcollective.oi.*;
+import com.torontocodingcollective.oi.TButton;
+import com.torontocodingcollective.oi.TGameController;
+import com.torontocodingcollective.oi.TGameController_PS;
+import com.torontocodingcollective.oi.TOi;
+import com.torontocodingcollective.oi.TRumbleManager;
+import com.torontocodingcollective.oi.TStick;
+import com.torontocodingcollective.oi.TStickPosition;
+import com.torontocodingcollective.oi.TToggle;
+import com.torontocodingcollective.oi.TTrigger;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import robot.subsystems.CameraSubsystem.Camera;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -33,6 +43,7 @@ public class OI extends TOi {
     private TToggle         hatchDeployerToggle = new TToggle(driverController, TButton.CIRCLE);
     private TToggle         cargoHeightToggle   = new TToggle(driverController, TTrigger.RIGHT);
     private TToggle         cargoGateToggle     = new TToggle(driverController, TTrigger.LEFT);
+    private TToggle         cameraToggle        = new TToggle(driverController, TButton.RIGHT_BUMPER);
 
     private DriveSelector   driveSelector       = new DriveSelector();
 
@@ -132,6 +143,16 @@ public class OI extends TOi {
     }
 
     /* ***************************************************************************************
+     * Camera Subsystem 
+     *****************************************************************************************/
+    public Camera getCamera() {
+    	if (cameraToggle.get()) {
+    		return Camera.FRONT;
+    	}
+    	return Camera.REAR;
+    }
+    
+    /* ***************************************************************************************
      * OI Init and Periodic 
      *****************************************************************************************/
     public void init() {
@@ -156,10 +177,12 @@ public class OI extends TOi {
         hatchDeployerToggle.updatePeriodic();
         cargoHeightToggle.updatePeriodic();
         cargoGateToggle.updatePeriodic();
+        cameraToggle.updatePeriodic();
 
         // Update all SmartDashboard values
         SmartDashboard.putBoolean("Speed PID Toggle", getSpeedPidEnabled());
         SmartDashboard.putBoolean("Compressor Toggle", getCompressorEnabled());
         SmartDashboard.putString("Driver Controller", driverController.toString());
+        SmartDashboard.putString("Camera", getCamera().toString());
     }
 }
