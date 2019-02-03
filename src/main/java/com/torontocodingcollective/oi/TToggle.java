@@ -19,6 +19,23 @@ public class TToggle {
     private boolean               previousButtonState;
 
     /**
+     * Declare a generic toggle.
+     * <br>
+     * The initial state will be set to {@code false}.
+     * <p>
+     * On each loop, call the {@link #updatePeriodic(boolean)} method to 
+     * update the state of the toggle based on the current state of the input
+     */
+    public TToggle() {
+        this.gameController = null;
+        this.button = null;
+        this.stick = null;
+        this.trigger = null;
+        this.toggleState = false;
+        this.previousButtonState = false;
+    }
+
+    /**
      * Declare a toggle over the specified button on the GameController <br>
      * The initial state will be set to {@code false}.
      * <p>
@@ -162,19 +179,35 @@ public class TToggle {
 
         boolean curButtonState = false;
 
-        if (button != null) {
-            curButtonState = gameController.getButton(button);
-        }
-        if (stick != null) {
-            curButtonState = gameController.getButton(stick);
-        }
-        if (trigger != null) {
-            curButtonState = gameController.getButton(trigger);
+        if (gameController != null) {
+	        if (button != null) {
+	            curButtonState = gameController.getButton(button);
+	        }
+	        if (stick != null) {
+	            curButtonState = gameController.getButton(stick);
+	        }
+	        if (trigger != null) {
+	            curButtonState = gameController.getButton(trigger);
+	        }
         }
 
-        if (curButtonState && !previousButtonState) {
+        updatePeriodic(curButtonState);
+    }
+
+    /**
+     * UpdatePeriodic
+     * <p>
+     * This routine must be called every loop in order to update the state of the
+     * toggle based on the game controller and button.  If the constructor
+     * does not pass in a game controller and button, use this routine to 
+     * update the toggle based on another criteria
+     * @param currentInputState of the toggle input
+     */
+    public void updatePeriodic(boolean currentInputState) {
+
+        if (currentInputState && !previousButtonState) {
             toggleState = !toggleState;
         }
-        previousButtonState = curButtonState;
+        previousButtonState = currentInputState;
     }
 }
