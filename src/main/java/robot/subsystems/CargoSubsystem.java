@@ -5,14 +5,10 @@ import com.torontocodingcollective.subsystem.TSubsystem;
 import robot.RobotMap;
 import robot.commands.cargo.DefaultCargoCommand;
 
-
-/**
- *
- */
 public class CargoSubsystem extends TSubsystem {
-    FakeSolenoid height  = new FakeSolenoid(RobotMap.CARGO_HEIGHT);
-    FakeSolenoid gate    = new FakeSolenoid(RobotMap.CARGO_GATE);
 
+	FakeSolenoid height  = new FakeSolenoid(RobotMap.CARGO_HEIGHT);
+    FakeSolenoid gate    = new FakeSolenoid(RobotMap.CARGO_GATE);
 
     @Override
     public void init() {
@@ -24,12 +20,6 @@ public class CargoSubsystem extends TSubsystem {
         setDefaultCommand(new DefaultCargoCommand());
     }
 
-    // Periodically update the dashboard and any PIDs or sensors
-    @Override
-    public void updatePeriodic() {
-        //Empty for now.
-    }
-
     public void setHeightState(boolean state) {
         height.set(state);
     }
@@ -37,4 +27,14 @@ public class CargoSubsystem extends TSubsystem {
     public void setGateState(boolean state) {
         gate.set(state);
     }
+
+    // Periodically update the dashboard and any PIDs or sensors
+    @Override
+    public void updatePeriodic() {
+    	// RM:  Always put the states of all devices on the 
+    	//      Smartdashboard.
+    	//      Add the solenoids here!!
+    	
+    }
+
 }

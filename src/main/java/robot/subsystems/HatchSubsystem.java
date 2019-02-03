@@ -3,19 +3,14 @@ package robot.subsystems;
 import com.torontocodingcollective.subsystem.TSubsystem;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import robot.RobotMap;
 import robot.commands.hatch.DefaultHatchCommand;
 
-/**
- *
- */
 public class HatchSubsystem extends TSubsystem {
 
     // Changed to FakeSolenoids until the production robot is built
-	
-//    Solenoid grabber = new Solenoid(RobotMap.HATCH_GRABBER_PORT); 
-//    Solenoid deployer = new Solenoid(RobotMap.HATCH_DEPLOYER_PORT);
-	private FakeSolenoid grabber = new FakeSolenoid();
-	private FakeSolenoid deployer = new FakeSolenoid();
+	private FakeSolenoid grabber = new FakeSolenoid(RobotMap.HATCH_GRABBER_PORT);
+	private FakeSolenoid deployer = new FakeSolenoid(RobotMap.HATCH_DEPLOYER_PORT);
 
     @Override
     public void init() {
@@ -45,6 +40,5 @@ public class HatchSubsystem extends TSubsystem {
     	SmartDashboard.putBoolean("Grabber", grabber.get());
     	SmartDashboard.putBoolean("Deployer", deployer.get());
     }
-
 
 }
