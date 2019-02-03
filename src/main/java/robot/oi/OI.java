@@ -182,10 +182,6 @@ public class OI extends TOi {
         cameraToggle.updatePeriodic();
 
         // Update all SmartDashboard values
-        // RM: Put all toggles in the OI Update Periodic so they show on the SmartDashboard!!!
-        SmartDashboard.putBoolean("Speed PID Toggle", getSpeedPidEnabled());
-        SmartDashboard.putBoolean("Compressor Toggle", getCompressorEnabled());
         SmartDashboard.putString("Driver Controller", driverController.toString());
-        SmartDashboard.putString("Camera", getCamera().toString());
     }
 }
