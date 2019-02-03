@@ -96,6 +96,11 @@ public class OI extends TOi {
      * Hatch Subsystem commands
      *****************************************************************************************/
     public boolean getGrabberState() {
+    	
+    	// RM: The hatch currently has two buttons in the controller map 
+    	//     diagram - one for grab, and one for release.  
+    	//     Having two buttons will hopefully help lower the accidental
+    	//     release of the hatch (by double hitting the toggle)
         return hatchGrabberToggle.get();
     }
 
@@ -107,10 +112,22 @@ public class OI extends TOi {
      * Cargo Subsystem commands
      *****************************************************************************************/
     public boolean getHeightState() {
+    	
+    	// RM: For the cargo height, do you want this as a 
+    	//     toggle or a press and hold to put the height up?
+    	//     Using a press and hold feature for the height
+    	//     will ensure that the height is always set low
+    	//     when driving.
         return cargoHeightToggle.get();
     }
 
     public boolean getGateState() {
+    	
+    	// RM: For the cargo release gate, do you want this as a 
+    	//     toggle or a press and hold to open the gate?
+    	//     Opening the gate is more like a "shot", so I would
+    	//     recommend not using a toggle.  The gate should
+    	//     always be closed when not shooting.
         return cargoGateToggle.get();
     }
 

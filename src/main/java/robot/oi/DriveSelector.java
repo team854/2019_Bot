@@ -1,6 +1,7 @@
 package robot.oi;
 
 import com.torontocodingcollective.oi.TStick;
+
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -19,16 +20,16 @@ public class DriveSelector {
     {
         // Drive Type
         driveControlType = new SendableChooser<>();
-        driveControlType.addDefault(DRIVE_CONTROL_TYPE_ARCADE, DRIVE_CONTROL_TYPE_ARCADE);
-        driveControlType.addObject(DRIVE_CONTROL_TYPE_TANK, DRIVE_CONTROL_TYPE_TANK);
-        driveControlType.addObject(DRIVE_CONTROL_TYPE_SINGLE_STICK, DRIVE_CONTROL_TYPE_SINGLE_STICK);
+        driveControlType.setDefaultOption(DRIVE_CONTROL_TYPE_ARCADE, DRIVE_CONTROL_TYPE_ARCADE);
+        driveControlType.addOption(DRIVE_CONTROL_TYPE_TANK, DRIVE_CONTROL_TYPE_TANK);
+        driveControlType.addOption(DRIVE_CONTROL_TYPE_SINGLE_STICK, DRIVE_CONTROL_TYPE_SINGLE_STICK);
 
         SmartDashboard.putData("Drive Type", driveControlType);
 
         // Single Stick Side
         singleStickSide = new SendableChooser<>();
-        singleStickSide.addDefault(SINGLE_STICK_RIGHT, SINGLE_STICK_RIGHT);
-        singleStickSide.addObject(SINGLE_STICK_LEFT, SINGLE_STICK_LEFT);
+        singleStickSide.setDefaultOption(SINGLE_STICK_RIGHT, SINGLE_STICK_RIGHT);
+        singleStickSide.addOption(SINGLE_STICK_LEFT, SINGLE_STICK_LEFT);
 
         SmartDashboard.putData("Single Stick Side", singleStickSide);
     }
