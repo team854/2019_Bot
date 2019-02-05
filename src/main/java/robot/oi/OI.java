@@ -36,10 +36,9 @@ public class OI extends TOi {
 
     private TGameController driverController    = new TGameController_PS(0);
     private TRumbleManager  driverRumble        = new TRumbleManager("Driver", driverController);
-
+    private TToggle         hatchGrabberToggle  = new TToggle();
     private TToggle         compressorToggle    = new TToggle(driverController, TStick.LEFT);
     private TToggle         speedPidToggle      = new TToggle(driverController, TStick.RIGHT);
-    private TToggle         hatchGrabberToggle  = new TToggle(driverController, TButton.TRIANGLE);
     private TToggle         hatchDeployerToggle = new TToggle(driverController, TButton.X_SYMBOL);
     private TToggle         cargoHeightToggle   = new TToggle(driverController, TTrigger.RIGHT);
     private TToggle         cargoGateToggle     = new TToggle(driverController, TTrigger.LEFT);
@@ -107,11 +106,7 @@ public class OI extends TOi {
      * Hatch Subsystem commands
      *****************************************************************************************/
     public boolean getGrabberState() {
-    	
-    	// RM: The hatch currently has two buttons in the controller map 
-    	//     diagram - one for grab, and one for release.  
-    	//     Having two buttons will hopefully help lower the accidental
-    	//     release of the hatch (by double hitting the toggle)
+        // Looks at two buttons to determine this - look at updatePeriodic()
         return hatchGrabberToggle.get();
     }
 
@@ -175,12 +170,23 @@ public class OI extends TOi {
         // Update all Toggles
         compressorToggle.updatePeriodic();
         speedPidToggle.updatePeriodic();
-        hatchGrabberToggle.updatePeriodic();
         hatchDeployerToggle.updatePeriodic();
         cargoHeightToggle.updatePeriodic();
         cargoGateToggle.updatePeriodic();
         cameraToggle.updatePeriodic();
 
+        // Update hatch grabber toggle by looking at two buttons
+        // Will not change if both buttons are pressed
+
+        // If only Close button pressed
+        if (driverController.getButton(TButton.LEFT_BUMPER) && !driverController.getButton(TButton.RIGHT_BUMPER)) {
+            hatchGrabberToggle.updatePeriodic(false);  // Assumes false = closed
+        }
+        else if (!driverController.getButton(TButton.LEFT_BUMPER) && driverController.getButton(TButton.RIGHT_BUMPER)) {
+            hatchGrabberToggle.updatePeriodic(true);  // Assumes true = opened
+        }
+
+        
         // Update all SmartDashboard values
         SmartDashboard.putString("Driver Controller", driverController.toString());
     }
