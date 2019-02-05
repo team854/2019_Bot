@@ -1,5 +1,6 @@
 package robot.oi;
 
+import com.torontocodingcollective.oi.TAxis;
 import com.torontocodingcollective.oi.TButton;
 import com.torontocodingcollective.oi.TGameController;
 import com.torontocodingcollective.oi.TGameController_PS;
@@ -11,6 +12,7 @@ import com.torontocodingcollective.oi.TToggle;
 import com.torontocodingcollective.oi.TTrigger;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import robot.RobotConst;
 import robot.subsystems.CameraSubsystem.Camera;
 
 /**
@@ -64,9 +66,18 @@ public class OI extends TOi {
         return compressorToggle.get();
     }
 
+    // DO NOT USE - Use the Driver and Operator ones below
     @Override
     public TStickPosition getDriveStickPosition(TStick stick) {
+        return null;
+    }
+    
+    public TStickPosition getDriverDriveStickPosition(TStick stick) {
         return driverController.getStickPosition(stick);
+    }
+
+    public TStickPosition getOperatorDriveStickPosition(TStick stick) {
+        return operatorController.getStickPosition(stick);
     }
 
     @Override
@@ -163,6 +174,38 @@ public class OI extends TOi {
         return (driverController.getButton(trigger) || operatorController.getButton(trigger));
     }
     
+    public boolean isDriverMoving() {
+        double[] axes  = new double[4];
+        axes[0]        = driverController.getAxis(TStick.LEFT, TAxis.X);
+        axes[1]        = driverController.getAxis(TStick.LEFT, TAxis.Y);
+        axes[2]        = driverController.getAxis(TStick.RIGHT, TAxis.X);
+        axes[3]        = driverController.getAxis(TStick.RIGHT, TAxis.Y);
+
+        for (int i = 0; i < axes.length; i++) {
+            if (axes[i] >= RobotConst.JOYSTICK_AXIS_MAX_MOVEMENT_ERROR) {
+                return true;
+            }
+        }
+        // No moving sticks were found
+        return false;
+    }
+
+    public boolean isOperatorMoving() {
+        double[] axes  = new double[4];
+        axes[0]        = operatorController.getAxis(TStick.LEFT, TAxis.X);
+        axes[1]        = operatorController.getAxis(TStick.LEFT, TAxis.Y);
+        axes[2]        = operatorController.getAxis(TStick.RIGHT, TAxis.X);
+        axes[3]        = operatorController.getAxis(TStick.RIGHT, TAxis.Y);
+
+        for (int i = 0; i < axes.length; i++) {
+            if (axes[i] >= RobotConst.JOYSTICK_AXIS_MAX_MOVEMENT_ERROR) {
+                return true;
+            }
+        }
+        // No moving sticks were found
+        return false;
+    }
+
     /* ***************************************************************************************
      * OI Init and Periodic 
      *****************************************************************************************/
@@ -182,6 +225,7 @@ public class OI extends TOi {
 
     	// Update the Controller Rumbles
         driverRumble.updatePeriodic();
+        operatorRumble.updatePeriodic();
 
         // Update all Toggles
         compressorToggle.updatePeriodic();
@@ -207,5 +251,6 @@ public class OI extends TOi {
         
         // Update all SmartDashboard values
         SmartDashboard.putString("Driver Controller", driverController.toString());
+        SmartDashboard.putString("Operator Controller", operatorController.toString());
     }
 }

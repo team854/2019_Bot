@@ -6,6 +6,7 @@ import com.torontocodingcollective.oi.TStick;
 import com.torontocodingcollective.oi.TStickPosition;
 import com.torontocodingcollective.speedcontroller.TSpeeds;
 import robot.Robot;
+import robot.RobotConst;
 import robot.oi.OI;
 import robot.subsystems.PwmDriveSubsystem;
 
@@ -17,10 +18,12 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
     private static final String COMMAND_NAME = 
             DefaultDriveCommand.class.getSimpleName();
     
-    OI                oi                = Robot.oi;
-    PwmDriveSubsystem driveSubsystem    = Robot.driveSubsystem;
+    OI                oi                    = Robot.oi;
+    PwmDriveSubsystem driveSubsystem        = Robot.driveSubsystem;
 
-    TDifferentialDrive differentialDrive = new TDifferentialDrive();
+    TDifferentialDrive differentialDrive    = new TDifferentialDrive();
+
+    boolean operatorControlling                 = true;
 
     public DefaultDriveCommand() {
         // The drive logic will be handled by the TDefaultDriveCommand
@@ -58,11 +61,17 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
         // Check the driver controller buttons
         super.execute();
 
+        // Check whether Driver is moving or not, otherwise the Operator can control
+        TStickPosition leftStickPosition = oi.getOperatorDriveStickPosition(TStick.LEFT);
+        TStickPosition rightStickPosition = oi.getOperatorDriveStickPosition(TStick.RIGHT);
+        if (oi.isDriverMoving()) {
+            leftStickPosition = oi.getDriverDriveStickPosition(TStick.LEFT);
+            rightStickPosition = oi.getDriverDriveStickPosition(TStick.RIGHT);
+            operatorControlling = false;
+        }
+
         // Drive according to the type of drive selected in the
         // operator input.
-        TStickPosition leftStickPosition = oi.getDriveStickPosition(TStick.LEFT);
-        TStickPosition rightStickPosition = oi.getDriveStickPosition(TStick.RIGHT);
-
         TStick singleStickSide = oi.getSelectedSingleStickSide();
 
         TSpeeds motorSpeeds;
@@ -87,8 +96,12 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             break;
         }
 
-        //motorSpeeds.left /= 2.0;
-        //motorSpeeds.right /= 2.0;
+        // Limit Operator speeds
+        if (operatorControlling) {
+            motorSpeeds.left /= RobotConst.OPERATOR_SPEED_DIVISOR;
+            motorSpeeds.right /= RobotConst.OPERATOR_SPEED_DIVISOR;
+        }
+        
         driveSubsystem.setSpeed(motorSpeeds);
     }
 
