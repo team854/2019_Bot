@@ -36,13 +36,19 @@ public class OI extends TOi {
 
     private TGameController driverController    = new TGameController_PS(0);
     private TRumbleManager  driverRumble        = new TRumbleManager("Driver", driverController);
-    private TToggle         hatchGrabberToggle  = new TToggle();
+
+    private TGameController operatorController  = new TGameController_PS(1);  // Possible wrong port?
+    private TRumbleManager  operatorRumble       = new TRumbleManager("Operator", operatorController);
+
     private TToggle         compressorToggle    = new TToggle(driverController, TStick.LEFT);
     private TToggle         speedPidToggle      = new TToggle(driverController, TStick.RIGHT);
-    private TToggle         hatchDeployerToggle = new TToggle(driverController, TButton.X_SYMBOL);
-    private TToggle         cargoHeightToggle   = new TToggle(driverController, TTrigger.RIGHT);
-    private TToggle         cargoGateToggle     = new TToggle(driverController, TTrigger.LEFT);
-    private TToggle         cameraToggle        = new TToggle(driverController, TButton.CIRCLE);
+
+    // The following toggles are shared between Driver and Operator
+    private TToggle         hatchGrabberToggle  = new TToggle();
+    private TToggle         hatchDeployerToggle = new TToggle();
+    private TToggle         cargoHeightToggle   = new TToggle();
+    private TToggle         cargoGateToggle     = new TToggle();
+    private TToggle         cameraToggle        = new TToggle();
 
     private DriveSelector   driveSelector       = new DriveSelector();
 
@@ -146,6 +152,16 @@ public class OI extends TOi {
     	}
     	return Camera.REAR;
     }
+
+    // Look at Driver and Operator toggles
+    // If both are pressed, only toggle once
+    private boolean getDualToggle(TButton button) {
+        return (driverController.getButton(button) || operatorController.getButton(button));
+    }
+
+    private boolean getDualToggle(TTrigger trigger) {
+        return (driverController.getButton(trigger) || operatorController.getButton(trigger));
+    }
     
     /* ***************************************************************************************
      * OI Init and Periodic 
@@ -170,19 +186,21 @@ public class OI extends TOi {
         // Update all Toggles
         compressorToggle.updatePeriodic();
         speedPidToggle.updatePeriodic();
-        hatchDeployerToggle.updatePeriodic();
-        cargoHeightToggle.updatePeriodic();
-        cargoGateToggle.updatePeriodic();
-        cameraToggle.updatePeriodic();
 
+        // ********************
+        // Update dual toggles
+        // ********************
+        hatchDeployerToggle.updatePeriodic(getDualToggle(TButton.X_SYMBOL));
+        cargoHeightToggle.updatePeriodic(getDualToggle(TTrigger.RIGHT));
+        cargoGateToggle.updatePeriodic(getDualToggle(TTrigger.LEFT));
+        cameraToggle.updatePeriodic(getDualToggle(TButton.CIRCLE));
         // Update hatch grabber toggle by looking at two buttons
         // Will not change if both buttons are pressed
-
         // If only Close button pressed
-        if (driverController.getButton(TButton.LEFT_BUMPER) && !driverController.getButton(TButton.RIGHT_BUMPER)) {
+        if (getDualToggle(TButton.LEFT_BUMPER) && !getDualToggle(TButton.RIGHT_BUMPER)) {
             hatchGrabberToggle.updatePeriodic(false);  // Assumes false = closed
         }
-        else if (!driverController.getButton(TButton.LEFT_BUMPER) && driverController.getButton(TButton.RIGHT_BUMPER)) {
+        else if (!getDualToggle(TButton.LEFT_BUMPER) && getDualToggle(TButton.RIGHT_BUMPER)) {
             hatchGrabberToggle.updatePeriodic(true);  // Assumes true = opened
         }
 
