@@ -212,10 +212,10 @@ public class OI extends TOi {
     public void init() {
         compressorToggle.set(true);
         speedPidToggle.set(false);
-        // Subject to possible future modifications, as it's yet to be decided how the grabber should start out.
+        // XXX: Subject to possible future modifications, as it's yet to be decided how the grabber should start out.
         hatchGrabberToggle.set(false);
         hatchDeployerToggle.set(false);
-        // Will change as well - height should start high, gate should start closed
+        // XXX: Will change as well - height should start high, gate should start closed
         cargoHeightToggle.set(false);
         cargoGateToggle.set(false);
     }
@@ -242,10 +242,10 @@ public class OI extends TOi {
         // Will not change if both buttons are pressed
         // If only Close button pressed
         if (getDualToggle(TButton.LEFT_BUMPER) && !getDualToggle(TButton.RIGHT_BUMPER)) {
-            hatchGrabberToggle.set(false);  // Assumes false = closed
+            hatchGrabberToggle.set(false);  // XXX: Assumes false = closed
         }
         else if (!getDualToggle(TButton.LEFT_BUMPER) && getDualToggle(TButton.RIGHT_BUMPER)) {
-            hatchGrabberToggle.set(true);  // Assumes true = opened
+            hatchGrabberToggle.set(true);  // XXX: Assumes true = opened
         }
 
         

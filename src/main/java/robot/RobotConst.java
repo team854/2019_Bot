@@ -88,7 +88,6 @@ public class RobotConst {
             CARGO_GATE_MOTOR_SPEED = 0;
             CARGO_GATE_TOGGLE_ENCODER_DISTANCE = 0;
 
-
             break;
         }
 

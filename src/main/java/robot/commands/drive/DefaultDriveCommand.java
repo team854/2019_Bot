@@ -15,15 +15,11 @@ import robot.subsystems.PwmDriveSubsystem;
  */
 public class DefaultDriveCommand extends TDefaultDriveCommand {
 
-    private static final String COMMAND_NAME = 
-            DefaultDriveCommand.class.getSimpleName();
-    
-    OI                oi                    = Robot.oi;
-    PwmDriveSubsystem driveSubsystem        = Robot.driveSubsystem;
-
-    TDifferentialDrive differentialDrive    = new TDifferentialDrive();
-
-    boolean operatorControlling                 = true;
+    private static final    String COMMAND_NAME = DefaultDriveCommand.class.getSimpleName();
+    OI                      oi                  = Robot.oi;
+    PwmDriveSubsystem       driveSubsystem      = Robot.driveSubsystem;
+    TDifferentialDrive      differentialDrive   = new TDifferentialDrive();
+    boolean                 operatorControlling = true;
 
     public DefaultDriveCommand() {
         // The drive logic will be handled by the TDefaultDriveCommand
