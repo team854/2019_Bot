@@ -242,10 +242,10 @@ public class OI extends TOi {
         // Will not change if both buttons are pressed
         // If only Close button pressed
         if (getDualToggle(TButton.LEFT_BUMPER) && !getDualToggle(TButton.RIGHT_BUMPER)) {
-            hatchGrabberToggle.updatePeriodic(false);  // Assumes false = closed
+            hatchGrabberToggle.set(false);  // Assumes false = closed
         }
         else if (!getDualToggle(TButton.LEFT_BUMPER) && getDualToggle(TButton.RIGHT_BUMPER)) {
-            hatchGrabberToggle.updatePeriodic(true);  // Assumes true = opened
+            hatchGrabberToggle.set(true);  // Assumes true = opened
         }
 
         
