@@ -5,6 +5,7 @@ import com.torontocodingcollective.subsystem.TSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import robot.RobotMap;
 import robot.commands.hatch.DefaultHatchCommand;
+import robot.subsystems.FakeSolenoid;
 
 public class HatchSubsystem extends TSubsystem {
 
