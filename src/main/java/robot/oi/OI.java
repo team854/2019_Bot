@@ -3,6 +3,7 @@ package robot.oi;
 import com.torontocodingcollective.oi.TAxis;
 import com.torontocodingcollective.oi.TButton;
 import com.torontocodingcollective.oi.TGameController;
+import com.torontocodingcollective.oi.TGameController_Logitech;
 import com.torontocodingcollective.oi.TGameController_PS;
 import com.torontocodingcollective.oi.TOi;
 import com.torontocodingcollective.oi.TRumbleManager;
@@ -39,8 +40,8 @@ public class OI extends TOi {
     private TGameController driverController    = new TGameController_PS(0);
     private TRumbleManager  driverRumble        = new TRumbleManager("Driver", driverController);
 
-    private TGameController operatorController  = new TGameController_PS(1);  // Possible wrong port?
-    private TRumbleManager  operatorRumble       = new TRumbleManager("Operator", operatorController);
+    private TGameController operatorController  = new TGameController_Logitech(1);  // Possible wrong port?
+    private TRumbleManager  operatorRumble      = new TRumbleManager("Operator", operatorController);
 
     private TToggle         compressorToggle    = new TToggle(driverController, TStick.LEFT);
     private TToggle         speedPidToggle      = new TToggle(driverController, TStick.RIGHT);
