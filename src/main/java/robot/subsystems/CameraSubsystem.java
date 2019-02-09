@@ -6,7 +6,7 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSink;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import robot.commands.*;
+import robot.commands.camera.DefaultCameraCommand;
 
 /**
  *
