@@ -175,6 +175,10 @@ public class OI extends TOi {
         return (driverController.getButton(trigger) || operatorController.getButton(trigger));
     }
 
+    public boolean getAlignmentState() {
+        return operatorController.getButton(TButton.SQUARE);
+    }
+
     /* ***************************************************************************************
      * OI Init and Periodic 
      *****************************************************************************************/

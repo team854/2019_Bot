@@ -30,8 +30,11 @@ public class RobotConst {
     public static final double  ULTRASONIC_VOLTAGE_80IN       = 0.764;
 
     // Operator speed limitation - as a division of the motor speed
-    // XXX: Needs to be changed after testing
-    public static final double OPERATOR_SPEED_DIVISOR = 3;
+    public static final double  OPERATOR_SPEED_DIVISOR = 3;
+
+    // The margin of error for vision alignment, what constitutes the center
+    // XXX: Needs to be set
+    public static final double  VISION_AVG_X_ERROR_MARGIN = 0;
 
     public static enum Direction {
         FORWARD, BACKWARD

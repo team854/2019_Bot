@@ -5,6 +5,10 @@ import com.torontocodingcollective.commands.TDifferentialDrive;
 import com.torontocodingcollective.oi.TStick;
 import com.torontocodingcollective.oi.TStickPosition;
 import com.torontocodingcollective.speedcontroller.TSpeeds;
+
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import robot.Robot;
 import robot.RobotConst;
 import robot.oi.OI;
@@ -20,6 +24,16 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
     PwmDriveSubsystem           driveSubsystem      = Robot.driveSubsystem;
     TDifferentialDrive          differentialDrive   = new TDifferentialDrive();
     boolean                     operatorControlling;
+
+    // NetworkTable stuff
+    NetworkTableInstance    inst    = NetworkTableInstance.getDefault();
+    NetworkTable            table   = inst.getTable("myContoursReport");
+    NetworkTableEntry       centerX = table.getEntry("centerX");
+    double                  avgX;
+    /*NetworkTableEntry       centerY = table.getEntry("centerY");
+    NetworkTableEntry       area    = table.getEntry("area");
+    NetworkTableEntry       width   = table.getEntry("width");
+    NetworkTableEntry       height  = table.getEntry("height");*/
 
     public DefaultDriveCommand() {
         // The drive logic will be handled by the TDefaultDriveCommand
@@ -99,7 +113,17 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             motorSpeeds.right /= RobotConst.OPERATOR_SPEED_DIVISOR;
         }
         
-        driveSubsystem.setSpeed(motorSpeeds);
+        // Check if aligning needs to happen instead
+        if (oi.getAlignmentState()) {
+            avgX = (centerX.getNumberArray(null)[0].doubleValue() + centerX.getNumberArray(null)[1].doubleValue()) / 2;
+            // XXX: Do math here based on desired avgX value
+            //      Convert to a heading based on the current gyro angle
+            //      Use RobotConst.VISION_AVG_X_ERROR_MARGIN
+            driveSubsystem.rotateToHeading(0);
+        }
+        else {
+            driveSubsystem.setSpeed(motorSpeeds);
+        }
     }
 
     @Override
