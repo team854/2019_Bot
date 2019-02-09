@@ -41,7 +41,7 @@ public class RobotConst {
 
     // Operator speed limitation - as a division of the motor speed
     // XXX: Needs to be changed after testing
-    public static final double OPERATOR_SPEED_DIVISOR = 2;
+    public static final double OPERATOR_SPEED_DIVISOR = 4;
 
     public static enum Direction {
         FORWARD, BACKWARD
