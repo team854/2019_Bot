@@ -38,12 +38,7 @@ public class RobotConst {
     public static final double  CARGO_GATE_MOTOR_SPEED;
     // Encoder distance for the motors to turn enough to open/close the gate
     public static final double  CARGO_GATE_TOGGLE_ENCODER_DISTANCE;
-    
-    // Most axis movement on joysticks that counts as no movement
-    // Used with a >= in code
-    // Theoretically this is 0, but there might be some environment jiggling
-    // XXX: Set this after testing, for now it's 0
-    public static final double JOYSTICK_AXIS_MAX_MOVEMENT_ERROR = 0;
+
     // Operator speed limitation - as a division of the motor speed
     // XXX: Needs to be changed after testing
     public static final double OPERATOR_SPEED_DIVISOR = 2;

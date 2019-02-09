@@ -37,14 +37,14 @@ import robot.subsystems.CameraSubsystem.Camera;
  */
 public class OI extends TOi {
 
-    private TGameController driverController    = new TGameController_PS(0);
-    private TRumbleManager  driverRumble        = new TRumbleManager("Driver", driverController);
+    public final TGameController driverController    = new TGameController_PS(0);
+    private      TRumbleManager  driverRumble        = new TRumbleManager("Driver", driverController);
 
-    private TGameController operatorController  = new TGameController_Logitech(1);  // Possible wrong port?
-    private TRumbleManager  operatorRumble      = new TRumbleManager("Operator", operatorController);
+    public final TGameController operatorController  = new TGameController_Logitech(1);  // Possible wrong port?
+    private      TRumbleManager  operatorRumble      = new TRumbleManager("Operator", operatorController);
 
-    private TToggle         compressorToggle    = new TToggle(driverController, TStick.LEFT);
-    private TToggle         speedPidToggle      = new TToggle(driverController, TStick.RIGHT);
+    private      TToggle         compressorToggle    = new TToggle(driverController, TStick.LEFT);
+    private      TToggle         speedPidToggle      = new TToggle(driverController, TStick.RIGHT);
 
     // The following toggles are shared between Driver and Operator
     private TToggle         hatchGrabberToggle  = new TToggle();
@@ -173,38 +173,6 @@ public class OI extends TOi {
 
     private boolean getDualToggle(TTrigger trigger) {
         return (driverController.getButton(trigger) || operatorController.getButton(trigger));
-    }
-    
-    public boolean isDriverMoving() {
-        double[] axes  = new double[4];
-        axes[0]        = driverController.getAxis(TStick.LEFT, TAxis.X);
-        axes[1]        = driverController.getAxis(TStick.LEFT, TAxis.Y);
-        axes[2]        = driverController.getAxis(TStick.RIGHT, TAxis.X);
-        axes[3]        = driverController.getAxis(TStick.RIGHT, TAxis.Y);
-
-        for (int i = 0; i < axes.length; i++) {
-            if (axes[i] >= RobotConst.JOYSTICK_AXIS_MAX_MOVEMENT_ERROR) {
-                return true;
-            }
-        }
-        // No moving sticks were found
-        return false;
-    }
-
-    public boolean isOperatorMoving() {
-        double[] axes  = new double[4];
-        axes[0]        = operatorController.getAxis(TStick.LEFT, TAxis.X);
-        axes[1]        = operatorController.getAxis(TStick.LEFT, TAxis.Y);
-        axes[2]        = operatorController.getAxis(TStick.RIGHT, TAxis.X);
-        axes[3]        = operatorController.getAxis(TStick.RIGHT, TAxis.Y);
-
-        for (int i = 0; i < axes.length; i++) {
-            if (axes[i] >= RobotConst.JOYSTICK_AXIS_MAX_MOVEMENT_ERROR) {
-                return true;
-            }
-        }
-        // No moving sticks were found
-        return false;
     }
 
     /* ***************************************************************************************

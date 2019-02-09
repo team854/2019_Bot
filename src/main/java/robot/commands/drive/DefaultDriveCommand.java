@@ -61,7 +61,7 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
         TStickPosition leftStickPosition = oi.getOperatorDriveStickPosition(TStick.LEFT);
         TStickPosition rightStickPosition = oi.getOperatorDriveStickPosition(TStick.RIGHT);
         operatorControlling = true;
-        if (oi.isDriverMoving()) {
+        if (oi.driverController.isUserActive()) {
             leftStickPosition = oi.getDriverDriveStickPosition(TStick.LEFT);
             rightStickPosition = oi.getDriverDriveStickPosition(TStick.RIGHT);
             operatorControlling = false;
