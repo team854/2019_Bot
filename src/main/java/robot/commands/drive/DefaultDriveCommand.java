@@ -30,6 +30,7 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
     NetworkTable            table   = inst.getTable("myContoursReport");
     NetworkTableEntry       centerX = table.getEntry("centerX");
     double                  avgX;
+    double                  degreesOff;
     /*NetworkTableEntry       centerY = table.getEntry("centerY");
     NetworkTableEntry       area    = table.getEntry("area");
     NetworkTableEntry       width   = table.getEntry("width");
@@ -113,13 +114,22 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             motorSpeeds.right /= RobotConst.OPERATOR_SPEED_DIVISOR;
         }
         
-        // Check if aligning needs to happen instead
-        if (oi.getAlignmentState()) {
+        // Check if aligning needs to happen instead, and that a contour can actually be found
+        if (oi.getAlignmentState() && centerX.getNumberArray(null) != null) {
+            // Average the centerX values of both contours - both pieces of tape
             avgX = (centerX.getNumberArray(null)[0].doubleValue() + centerX.getNumberArray(null)[1].doubleValue()) / 2;
             // XXX: Do math here based on desired avgX value
             //      Convert to a heading based on the current gyro angle
             //      Use RobotConst.VISION_AVG_X_ERROR_MARGIN
-            driveSubsystem.rotateToHeading(0);
+            // To better visualize the below math, paste the following into https://www.desmos.com/scientific :
+            // \tan^{-1}\left(\frac{\frac{x-320}{320}\left(146.25\right)}{307}\right)
+            // x represents the avgX variable
+
+            // - or + is left or right
+            degreesOff = Math.toDegrees(Math.atan((((avgX-320)/320) * 146.25) / 307));
+            
+            // Calculate the absolute angle to rotate to by looking at the current angle
+            driveSubsystem.rotateToHeading(driveSubsystem.getGyroAngle() + degreesOff);
         }
         else {
             driveSubsystem.setSpeed(motorSpeeds);

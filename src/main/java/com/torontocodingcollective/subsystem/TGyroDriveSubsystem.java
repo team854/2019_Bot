@@ -180,7 +180,7 @@ public abstract class TGyroDriveSubsystem extends TDriveSubsystem {
      * 
      * @return gyro angle in degrees.
      */
-    public double getGryoAngle() {
+    public double getGyroAngle() {
 
         return gyro.getAngle();
     }
@@ -446,7 +446,7 @@ public abstract class TGyroDriveSubsystem extends TDriveSubsystem {
 
         // Update all SmartDashboard values
         SmartDashboard.putData("Gyro", gyro);
-        SmartDashboard.putNumber("Gyro Angle", getGryoAngle());
+        SmartDashboard.putNumber("Gyro Angle", getGyroAngle());
 
         SmartDashboard.putData("Gyro PID", gyroPid);
 

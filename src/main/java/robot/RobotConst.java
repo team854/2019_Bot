@@ -35,6 +35,8 @@ public class RobotConst {
     // The margin of error for vision alignment, what constitutes the center
     // XXX: Needs to be set
     public static final double  VISION_AVG_X_ERROR_MARGIN = 0;
+    
+    public static final double  CAMERA_FIELD_OF_VIEW_ANGLE = 51;
 
     public static enum Direction {
         FORWARD, BACKWARD
