@@ -176,7 +176,7 @@ public class OI extends TOi {
     }
 
     public boolean getAlignmentState() {
-        return operatorController.getButton(TButton.X);
+        return getDualToggle(TButton.X);
     }
 
     /* ***************************************************************************************
