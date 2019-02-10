@@ -126,6 +126,8 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             // x represents the avgX variable
 
             // - or + is left or right
+            // 146.25: half the camera view field in cm
+            // 307 distance from camera to 146.25 cm viewfield line
             degreesOff = Math.toDegrees(Math.atan((((avgX-320)/320) * 146.25) / 307));
             
             // Calculate the absolute angle to rotate to by looking at the current angle
