@@ -16,13 +16,14 @@ import robot.commands.drive.DefaultDriveCommand;
  * <p>
  * This class is describes all of the components in a differential (left/right)
  * drive subsystem.
- *
+ **/
+
 public class CanDriveSubsystem extends TGyroDriveSubsystem {
 
     private static final boolean LOW_GEAR     = false;
     private static final boolean HIGH_GEAR    = true;
 
-    private Solenoid             shifter      = new Solenoid(RobotMap.SHIFTER_PNEUMATIC_PORT);
+    //private Solenoid             shifter      = new Solenoid(RobotMap.SHIFTER_PNEUMATIC_PORT);
     private boolean              turboEnabled = false;
 
     public CanDriveSubsystem() {
@@ -67,7 +68,7 @@ public class CanDriveSubsystem extends TGyroDriveSubsystem {
 
     @Override
     public void init() {
-        shifter.set(LOW_GEAR);
+       //shifter.set(LOW_GEAR);
     }
 
     // Initialize the default command for the Chassis subsystem.
@@ -79,7 +80,7 @@ public class CanDriveSubsystem extends TGyroDriveSubsystem {
     // ********************************************************************************************************************
     // Turbo routines
     // ********************************************************************************************************************
-    public void enableTurbo() {
+    /*public void enableTurbo() {
         turboEnabled = true;
         setMaxEncoderSpeed(RobotConst.MAX_HIGH_GEAR_SPEED);
         shifter.set(HIGH_GEAR);
@@ -100,6 +101,6 @@ public class CanDriveSubsystem extends TGyroDriveSubsystem {
         super.updatePeriodic();
 
         SmartDashboard.putBoolean("Turbo Enabled", isTurboEnabled());
-    }
+    }*/
 
-}*/
+}

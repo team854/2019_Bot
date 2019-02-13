@@ -11,7 +11,7 @@ import robot.oi.OI;
 import robot.subsystems.CameraSubsystem;
 import robot.subsystems.HatchSubsystem;
 import robot.subsystems.CargoSubsystem;
-import robot.subsystems.PwmDriveSubsystem;
+import robot.subsystems.CanDriveSubsystem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class Robot extends IterativeRobot {
 
     public static final List<TSubsystem>    subsystemLs         = new ArrayList<TSubsystem>();
 
-    public static final PwmDriveSubsystem   driveSubsystem      = new PwmDriveSubsystem();
+    public static final CanDriveSubsystem   driveSubsystem      = new CanDriveSubsystem();
     public static final HatchSubsystem      hatchSubsystem      = new HatchSubsystem();
     public static final CargoSubsystem      cargoSubsystem      = new CargoSubsystem();
 //  public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();

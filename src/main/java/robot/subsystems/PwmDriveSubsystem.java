@@ -15,7 +15,7 @@ import robot.commands.drive.DefaultDriveCommand;
  * This class is describes all of the components in a differential (left/right)
  * drive subsystem.
  */
-public class PwmDriveSubsystem extends TGyroDriveSubsystem {
+/*public class PwmDriveSubsystem extends TGyroDriveSubsystem {
 
     private static final boolean LOW_GEAR     = false;
     //private static final boolean HIGH_GEAR    = true;
@@ -103,4 +103,4 @@ public class PwmDriveSubsystem extends TGyroDriveSubsystem {
         SmartDashboard.putBoolean("Turbo Enabled", isTurboEnabled());
     }
 
-}
+}*/
