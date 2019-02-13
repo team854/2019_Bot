@@ -132,7 +132,7 @@ public class TRotateToHeadingCommand extends TSafeCommand {
             logMessage(getParmDesc() + " starting");
         }
 
-        logMessage("current heading " + driveSubsystem.getGryoAngle());
+        logMessage("current heading " + driveSubsystem.getGyroAngle());
         
         if (error) {
             return;
@@ -159,14 +159,14 @@ public class TRotateToHeadingCommand extends TSafeCommand {
         double headingError = driveSubsystem.getGyroHeadingError();
 
         if (super.isFinished()) {
-            logMessage("ended at heading " + TUtil.round(driveSubsystem.getGryoAngle(), 1)
+            logMessage("ended at heading " + TUtil.round(driveSubsystem.getGyroAngle(), 1)
             + " with error " + TUtil.round(headingError, 2) 
             + ", rotation rate " + TUtil.round(rotationRate, 1));
             return true;
         }
 
         if (Math.abs(headingError) <= 1.5 && Math.abs(rotationRate) < 3) {
-            logMessage("finished at heading " + TUtil.round(driveSubsystem.getGryoAngle(), 1)
+            logMessage("finished at heading " + TUtil.round(driveSubsystem.getGyroAngle(), 1)
             + " with error " + TUtil.round(headingError, 2) 
             + ", rotation rate " + TUtil.round(rotationRate, 1));
             return true;

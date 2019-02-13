@@ -175,12 +175,16 @@ public class OI extends TOi {
         return (driverController.getButton(trigger) || operatorController.getButton(trigger));
     }
 
+    public boolean getAlignmentState() {
+        return getDualToggle(TButton.X);
+    }
+
     /* ***************************************************************************************
      * OI Init and Periodic 
      *****************************************************************************************/
     public void init() {
         compressorToggle.set(true);
-        speedPidToggle.set(false);
+        speedPidToggle.set(true);
         // XXX: Subject to possible future modifications, as it's yet to be decided how the grabber should start out.
         hatchGrabberToggle.set(false);
         hatchDeployerToggle.set(false);
