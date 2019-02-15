@@ -5,6 +5,7 @@ import com.torontocodingcollective.commands.TDifferentialDrive;
 import com.torontocodingcollective.oi.TStick;
 import com.torontocodingcollective.oi.TStickPosition;
 import com.torontocodingcollective.speedcontroller.TSpeeds;
+import com.torontocodingcollective.subsystem.TGyroDriveSubsystem;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -12,7 +13,6 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import robot.Robot;
 import robot.RobotConst;
 import robot.oi.OI;
-import robot.subsystems.CanDriveSubsystem;
 
 /**
  * Default drive command for a drive base
@@ -21,7 +21,7 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
 
     private static final String COMMAND_NAME        = DefaultDriveCommand.class.getSimpleName();
     OI                          oi                  = Robot.oi;
-    CanDriveSubsystem           driveSubsystem      = Robot.driveSubsystem;
+    TGyroDriveSubsystem         driveSubsystem      = Robot.driveSubsystem;
     TDifferentialDrive          differentialDrive   = new TDifferentialDrive();
     boolean                     operatorControlling;
 

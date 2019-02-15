@@ -1,7 +1,12 @@
 
 package robot;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.torontocodingcollective.subsystem.TGyroDriveSubsystem;
 import com.torontocodingcollective.subsystem.TSubsystem;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -9,12 +14,10 @@ import robot.commands.AutonomousCommand;
 import robot.oi.AutoSelector;
 import robot.oi.OI;
 import robot.subsystems.CameraSubsystem;
-import robot.subsystems.HatchSubsystem;
-import robot.subsystems.CargoSubsystem;
 import robot.subsystems.CanDriveSubsystem;
-
-import java.util.ArrayList;
-import java.util.List;
+import robot.subsystems.CargoSubsystem;
+import robot.subsystems.HatchSubsystem;
+import robot.subsystems.PwmDriveSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -27,8 +30,10 @@ public class Robot extends IterativeRobot {
 
     public static final List<TSubsystem>    subsystemLs         = new ArrayList<TSubsystem>();
 
-    public static final CanDriveSubsystem   driveSubsystem      = new CanDriveSubsystem();
-    public static final HatchSubsystem      hatchSubsystem      = new HatchSubsystem();
+    public static final TGyroDriveSubsystem driveSubsystem      = 
+    		RobotConst.robot.equals(RobotConst.PROD_ROBOT) ? new CanDriveSubsystem() : new PwmDriveSubsystem();
+
+    		public static final HatchSubsystem      hatchSubsystem      = new HatchSubsystem();
     public static final CargoSubsystem      cargoSubsystem      = new CargoSubsystem();
 //  public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
 //   public static final PowerSubsystem      powerSubsystem      = new PowerSubsystem();

@@ -4,7 +4,7 @@ import com.torontocodingcollective.sensors.encoder.TDioQuadEncoder;
 import com.torontocodingcollective.sensors.gyro.TNavXGyro;
 import com.torontocodingcollective.speedcontroller.TPwmSpeedController;
 import com.torontocodingcollective.subsystem.TGyroDriveSubsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import robot.RobotConst;
 import robot.RobotMap;
 import robot.commands.drive.DefaultDriveCommand;
@@ -15,12 +15,7 @@ import robot.commands.drive.DefaultDriveCommand;
  * This class is describes all of the components in a differential (left/right)
  * drive subsystem.
  */
-/*public class PwmDriveSubsystem extends TGyroDriveSubsystem {
-
-    private static final boolean LOW_GEAR     = false;
-    //private static final boolean HIGH_GEAR    = true;
-
-    private boolean              turboEnabled = false;
+public class PwmDriveSubsystem extends TGyroDriveSubsystem {
 
     public PwmDriveSubsystem() {
 
@@ -45,12 +40,12 @@ import robot.commands.drive.DefaultDriveCommand;
                 new TDioQuadEncoder(
                         RobotMap.LEFT_DRIVE_DIO_ENCODER_PORT1,
                         RobotMap.LEFT_DRIVE_DIO_ENCODER_PORT1 + 1,
-                        RobotMap.LEFT_DRIVE_DIO_ENCODER_ISINVERTED),
+                        RobotMap.LEFT_DRIVE_ENCODER_ISINVERTED),
                 // Right Encoder
                 new TDioQuadEncoder(
                         RobotMap.RIGHT_DRIVE_DIO_ENCODER_PORT1,
                         RobotMap.RIGHT_DRIVE_DIO_ENCODER_PORT1 + 1,
-                        RobotMap.RIGHT_DRIVE_DIO_ENCODER_ISINVERTED),
+                        RobotMap.RIGHT_DRIVE_ENCODER_ISINVERTED),
                 
                 // Encoder counts per inch
                 RobotConst.ENCODER_COUNTS_PER_INCH, 
@@ -79,28 +74,4 @@ import robot.commands.drive.DefaultDriveCommand;
         setDefaultCommand(new DefaultDriveCommand());
     }
 
-    // ********************************************************************************************************************
-    // Turbo routines
-    // ********************************************************************************************************************
-    public void enableTurbo() {
-        turboEnabled = true;
-        //setMaxEncoderSpeed(RobotConst.MAX_HIGH_GEAR_SPEED);
-    }
-
-    public void disableTurbo() {
-        turboEnabled = false;
-        setMaxEncoderSpeed(RobotConst.MAX_LOW_GEAR_SPEED);
-    }
-
-    public boolean isTurboEnabled() {
-        return turboEnabled;
-    }
-
-    @Override
-    public void updatePeriodic() {
-        super.updatePeriodic();
-
-        SmartDashboard.putBoolean("Turbo Enabled", isTurboEnabled());
-    }
-
-}*/
+}
