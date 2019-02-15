@@ -31,8 +31,9 @@ public class DefaultWedgeCommand extends TSafeCommand {
 
     @Override
     protected void execute() {
-        System.out.println("FPGATimestampp: " + Timer.getFPGATimestamp());
-        if (Robot.oi.getWedgeState() && Timer.getMatchTime() < 30) {
+        // If align button is pressed, there's less than 30 secs in the current period,
+        // and if the current period is manual not auto
+        if (Robot.oi.getWedgeState() && Timer.getMatchTime() <= 30 && Timer.getFPGATimestamp() > 15) {
             Robot.wedgeSubsystem.deployWedge();
         }
     }
