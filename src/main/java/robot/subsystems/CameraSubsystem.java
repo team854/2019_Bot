@@ -114,12 +114,13 @@ public class CameraSubsystem extends TSubsystem {
 	public double getDegreesOff() {
 		// Calculates degrees off and considers error margins
 		// Check targetsFound() before using
+		// Make sure to add this to the current gyro angle
 
-		if (getRawDegreesOff() < RobotConst.VISION_AVG_X_ERROR_MARGIN) {
+		if (Math.abs(getRawDegreesOff()) < RobotConst.VISION_AVG_X_ERROR_MARGIN) {
 			return 0;
 		}
 
-		return getDegreesOff();
+		return getRawDegreesOff();
 	}
 
 	public boolean alignmentNeeded() {

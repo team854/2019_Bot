@@ -107,7 +107,7 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
         // Check if aligning needs to happen instead, and that two pieces of tape can be seen
         if (oi.getAlignButton() && cameraSubsystem.alignmentNeeded()) {
             // XXX: Has a default timeout of 5 secs, we'll see if we need to change it
-            rotateToHeadingCommand = new TRotateToHeadingCommand(cameraSubsystem.getDegreesOff(), oi, driveSubsystem);
+            rotateToHeadingCommand = new TRotateToHeadingCommand(driveSubsystem.getGyroAngle()+cameraSubsystem.getDegreesOff(), oi, driveSubsystem);
             rotateToHeadingCommand.start();
         }   
         else {
