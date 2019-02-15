@@ -18,6 +18,7 @@ import robot.subsystems.CanDriveSubsystem;
 import robot.subsystems.CargoSubsystem;
 import robot.subsystems.HatchSubsystem;
 import robot.subsystems.PwmDriveSubsystem;
+import robot.subsystems.WedgeSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -36,6 +37,7 @@ public class Robot extends IterativeRobot {
     public static final HatchSubsystem      hatchSubsystem      = new HatchSubsystem();
     public static final CargoSubsystem      cargoSubsystem      = new CargoSubsystem();
     public static final CameraSubsystem     cameraSubsystem     = new CameraSubsystem();
+    public static final WedgeSubsystem      wedgeSubsystem      = new WedgeSubsystem();
 
     public static OI                        oi;
 
@@ -46,9 +48,8 @@ public class Robot extends IterativeRobot {
         subsystemLs.add(driveSubsystem);
         subsystemLs.add(hatchSubsystem);
         subsystemLs.add(cargoSubsystem);
-    //    subsystemLs.add(pneumaticsSubsystem);
-     //   subsystemLs.add(powerSubsystem);
         subsystemLs.add(cameraSubsystem);
+        subsystemLs.add(wedgeSubsystem);
     }
 
     /**
@@ -137,11 +138,8 @@ public class Robot extends IterativeRobot {
             autoCommand.cancel();
         }
 
-        // Turn off the drive PIDs
-        // Save the battery in teleop by using the
-        // SpeedController built in braking.
-        Robot.oi.setSpeedPidEnabled(false);
-        driveSubsystem.disableSpeedPids();
+        Robot.oi.setSpeedPidEnabled(true);
+        driveSubsystem.enableSpeedPids();
 
     }
 

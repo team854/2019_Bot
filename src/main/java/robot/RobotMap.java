@@ -49,6 +49,9 @@ public class RobotMap {
 	public static final int                     RIGHT_DRIVE_DIO_ENCODER_PORT1;
 	public static final boolean                 RIGHT_DRIVE_ENCODER_ISINVERTED;
 
+	public static final int						WEDGE_MOTOR_PORT;
+	public static final boolean					WEDGE_MOTOR_ISINVERTED;
+
 	// ******************************************
 	// Gyro Ports
 	// ******************************************
@@ -98,6 +101,10 @@ public class RobotMap {
 			CARGO_HEIGHT            = 2;
 			CARGO_GATE              = 3;
 
+			// XXX: Needs to be set 
+			WEDGE_MOTOR_PORT		= 0;
+			WEDGE_MOTOR_ISINVERTED	= false;
+
 			// PWM Values are Unused on Prod Robot
 			// PWM Constants
 			LEFT_DRIVE_PWM_SPEED_CONTROLLER_ADDRESS           = 0;
@@ -114,6 +121,7 @@ public class RobotMap {
 
 			LEFT_DRIVE_DIO_ENCODER_PORT1                      = 0;
 			RIGHT_DRIVE_DIO_ENCODER_PORT1                     = 1;
+
 			break;
 
 		case RobotConst.TEST_ROBOT:
@@ -145,6 +153,9 @@ public class RobotMap {
 			HATCH_DEPLOYER_PORT     = 1;
 			CARGO_HEIGHT    = 2;
 			CARGO_GATE      = 3;
+
+			WEDGE_MOTOR_PORT		= 0;
+			WEDGE_MOTOR_ISINVERTED	= false;
 
 			// CAN Constants
 			// CAN Constants are unused

@@ -187,6 +187,10 @@ public class OI extends TOi {
         return operatorController.isUserActive();
     }
 
+    public boolean getWedgeState() {
+        return getDualToggle(TButton.TRIANGLE);
+    }
+
     /* ***************************************************************************************
      * OI Init and Periodic 
      *****************************************************************************************/
