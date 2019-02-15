@@ -37,11 +37,11 @@ import robot.subsystems.CameraSubsystem.Camera;
  */
 public class OI extends TOi {
 
-    public final TGameController driverController    = new TGameController_PS(0);
-    private      TRumbleManager  driverRumble        = new TRumbleManager("Driver", driverController);
+    private final   TGameController driverController    = new TGameController_PS(0);
+    private         TRumbleManager  driverRumble        = new TRumbleManager("Driver", driverController);
 
-    public final TGameController operatorController  = new TGameController_Logitech(1);  // Possible wrong port?
-    private      TRumbleManager  operatorRumble      = new TRumbleManager("Operator", operatorController);
+    private final   TGameController operatorController  = new TGameController_Logitech(1);
+    private         TRumbleManager  operatorRumble      = new TRumbleManager("Operator", operatorController);
 
     private      TToggle         compressorToggle    = new TToggle(driverController, TStick.LEFT);
     private      TToggle         speedPidToggle      = new TToggle(driverController, TStick.RIGHT);
@@ -177,6 +177,14 @@ public class OI extends TOi {
 
     public boolean getAlignmentState() {
         return getDualToggle(TButton.X);
+    }
+
+    public boolean isDriverActive() {
+        return driverController.isUserActive();
+    }
+
+    public boolean isOperatorActive() {
+        return operatorController.isUserActive();
     }
 
     /* ***************************************************************************************
