@@ -126,12 +126,17 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             // x represents the avgX variable
 
             // - or + is left or right
-            // 146.25: half the camera view field in cm
+            // 146.25: half the camera view field in cm - when we measured
             // 307 distance from camera to 146.25 cm viewfield line
+            // Field of view is 51 degrees
+            // Microsoft Skype LifeCam HD 3000
             degreesOff = Math.toDegrees(Math.atan((((avgX-320)/320) * 146.25) / 307));
             
-            // Calculate the absolute angle to rotate to by looking at the current angle
-            driveSubsystem.rotateToHeading(driveSubsystem.getGyroAngle() + degreesOff);
+            // See if it's actually off by a reasonable amount - this prevents overcorrection
+            if (Math.abs(avgX) > RobotConst.VISION_AVG_X_ERROR_MARGIN) {
+                // Calculate the absolute angle to rotate to by looking at the current angle
+                driveSubsystem.rotateToHeading(driveSubsystem.getGyroAngle() + degreesOff);
+            }
         }
         else {
             driveSubsystem.setSpeed(motorSpeeds);
