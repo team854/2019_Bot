@@ -43,8 +43,8 @@ public class OI extends TOi {
     private final   TGameController operatorController  = new TGameController_Logitech(1);
     private         TRumbleManager  operatorRumble      = new TRumbleManager("Operator", operatorController);
 
-    private      TToggle         compressorToggle    = new TToggle(driverController, TStick.LEFT);
-    private      TToggle         speedPidToggle      = new TToggle(driverController, TStick.RIGHT);
+    private      TToggle            compressorToggle    = new TToggle(driverController, TStick.LEFT);
+    private      TToggle            speedPidToggle      = new TToggle(driverController, TStick.RIGHT);
 
     // The following toggles are shared between Driver and Operator
     private TToggle         hatchGrabberToggle  = new TToggle();
@@ -175,7 +175,7 @@ public class OI extends TOi {
         return (driverController.getButton(trigger) || operatorController.getButton(trigger));
     }
 
-    public boolean getAlignmentState() {
+    public boolean getAlignButton() {
         return getDualToggle(TButton.X);
     }
 

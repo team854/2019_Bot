@@ -33,10 +33,8 @@ public class Robot extends IterativeRobot {
     public static final TGyroDriveSubsystem driveSubsystem      = 
     		RobotConst.robot.equals(RobotConst.PROD_ROBOT) ? new CanDriveSubsystem() : new PwmDriveSubsystem();
 
-    		public static final HatchSubsystem      hatchSubsystem      = new HatchSubsystem();
+    public static final HatchSubsystem      hatchSubsystem      = new HatchSubsystem();
     public static final CargoSubsystem      cargoSubsystem      = new CargoSubsystem();
-//  public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
-//   public static final PowerSubsystem      powerSubsystem      = new PowerSubsystem();
     public static final CameraSubsystem     cameraSubsystem     = new CameraSubsystem();
 
     public static OI                        oi;
