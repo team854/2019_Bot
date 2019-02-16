@@ -34,7 +34,12 @@ public class DefaultWedgeCommand extends TSafeCommand {
         // If align button is pressed, there's less than 30 secs in the current period,
         // and if the current period is manual not auto
         if (Robot.oi.getWedgeState() && Timer.getMatchTime() <= 30 && Timer.getFPGATimestamp() > 15) {
+            // Wedge will hit Cargo if it is down, move it up beforehand
+            Robot.cargoSubsystem.setHeightState(true);; // XXX: Assumes true is up
             Robot.wedgeSubsystem.deployWedge();
+            // XXX: Is the below needed?
+            // Timer.delay(2);
+            Robot.cargoSubsystem.setHeightState(false);
         }
     }
 
