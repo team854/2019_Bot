@@ -24,7 +24,7 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
     TDifferentialDrive          differentialDrive   = new TDifferentialDrive();
     CameraSubsystem             cameraSubsystem     = Robot.cameraSubsystem;
     boolean                     operatorControlling;
-    TRotateToHeadingCommand     rotateToHeadingCommand;
+    TRotateToHeadingCommand     rotateToHeadingCommand = null;
 
     public DefaultDriveCommand() {
         // The drive logic will be handled by the TDefaultDriveCommand
@@ -111,8 +111,10 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             rotateToHeadingCommand.start();
         }   
         else {
-            // Stop aligning in case the robot was doing that
-            rotateToHeadingCommand.cancel();
+            if (rotateToHeadingCommand != null) {
+                // Stop aligning in case the robot was doing that
+                rotateToHeadingCommand.cancel();
+            }
             driveSubsystem.setSpeed(motorSpeeds);
         }
     }

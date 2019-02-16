@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 public class HatchSubsystem extends TSubsystem {
 
     // Changed to FakeSolenoids until the production robot is built
-	private DoubleSolenoid grabber = new DoubleSolenoid(RobotMap.HATCH_GRABBER_PORT, RobotMap.HATCH_GRABBER_PORT_2);
-	private DoubleSolenoid deployer = new DoubleSolenoid(RobotMap.HATCH_DEPLOYER_PORT, RobotMap.HATCH_DEPLOYER_PORT_2);
+	private DoubleSolenoid grabber = new DoubleSolenoid(RobotMap.HATCH_GRABBER_PORT_2, RobotMap.HATCH_GRABBER_PORT);
+	private DoubleSolenoid deployer = new DoubleSolenoid(RobotMap.HATCH_DEPLOYER_PORT_2, RobotMap.HATCH_DEPLOYER_PORT);
 
     @Override
     public void init() {
@@ -26,7 +26,7 @@ public class HatchSubsystem extends TSubsystem {
 
     //Depending on the state that the grabber is in, the grabber will open or close.
     public void setGrabberState(boolean state) {
-        if (state) { // XXX: Assumes true means open
+        if (state) { // Assumes true means open
             grabber.set(DoubleSolenoid.Value.kForward);
         }
         else {

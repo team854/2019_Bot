@@ -138,8 +138,8 @@ public class Robot extends IterativeRobot {
             autoCommand.cancel();
         }
 
-        Robot.oi.setSpeedPidEnabled(true);
-        driveSubsystem.enableSpeedPids();
+        Robot.oi.setSpeedPidEnabled(false);
+        driveSubsystem.disableSpeedPids();
 
     }
 

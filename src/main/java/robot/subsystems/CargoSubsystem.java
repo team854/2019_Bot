@@ -9,7 +9,7 @@ import robot.commands.cargo.DefaultCargoCommand;
 public class CargoSubsystem extends TSubsystem {
 
 	private DoubleSolenoid height  = new DoubleSolenoid(RobotMap.CARGO_HEIGHT, RobotMap.CARGO_HEIGHT_2);
-    private DoubleSolenoid gate    = new DoubleSolenoid(RobotMap.CARGO_GATE, RobotMap.CARGO_GATE_2);
+    private DoubleSolenoid gate    = new DoubleSolenoid(RobotMap.CARGO_GATE_2, RobotMap.CARGO_GATE);
 
     @Override
     public void init() {
@@ -26,8 +26,7 @@ public class CargoSubsystem extends TSubsystem {
             height.set(DoubleSolenoid.Value.kForward);
         }
         else {
-            // kReverse will pull on the metal - just relax it instead
-            height.set(DoubleSolenoid.Value.kOff);
+            height.set(DoubleSolenoid.Value.kReverse);
         }
     }
 

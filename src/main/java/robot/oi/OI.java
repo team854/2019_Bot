@@ -201,11 +201,13 @@ public class OI extends TOi {
     public void init() {
         compressorToggle.set(true);
         speedPidToggle.set(true);
-        // XXX: Subject to possible future modifications, as it's yet to be decided how the grabber should start out.
+        // Close is false
         hatchGrabberToggle.set(false);
+        // Up is false
         hatchDeployerToggle.set(false);
-        // XXX: Will change as well - height should start high, gate should start closed
-        cargoHeightToggle.set(false);
+        // True is up
+        cargoHeightToggle.set(true);
+        // False is closed
         cargoGateToggle.set(false);
     }
 
@@ -224,7 +226,7 @@ public class OI extends TOi {
         // Update dual toggles
         // ********************
         hatchDeployerToggle.updatePeriodic(getDualToggle(TButton.X_SYMBOL));
-        cargoHeightToggle.updatePeriodic(getDualToggle(TTrigger.RIGHT));
+        cargoHeightToggle.updatePeriodic(driverController.getButton(TTrigger.RIGHT));
         cargoGateToggle.updatePeriodic(getDualToggle(TTrigger.LEFT));
         cameraToggle.updatePeriodic(getDualToggle(TButton.CIRCLE));
         // Update hatch grabber toggle by looking at two buttons
@@ -241,5 +243,7 @@ public class OI extends TOi {
         // Update all SmartDashboard values
         SmartDashboard.putString("Driver Controller", driverController.toString());
         SmartDashboard.putString("Operator Controller", operatorController.toString());
+        SmartDashboard.putBoolean("cargoHeightToggle", cargoHeightToggle.get());
+        SmartDashboard.putBoolean("cargoGateToggle", cargoGateToggle.get());
     }
 }

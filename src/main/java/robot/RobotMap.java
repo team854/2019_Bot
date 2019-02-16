@@ -106,7 +106,7 @@ public class RobotMap {
 
 			CARGO_HEIGHT            = 0;  // Putting air into this one should bring it up
 			CARGO_HEIGHT_2			= CARGO_HEIGHT+1;
-			CARGO_GATE              = 2;  // Putting air into this should open the gate
+			CARGO_GATE              = 2;
 			CARGO_GATE_2			= CARGO_GATE+1;
 
 			// PWM

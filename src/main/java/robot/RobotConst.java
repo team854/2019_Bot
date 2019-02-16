@@ -54,7 +54,7 @@ public class RobotConst {
 
             // The low gear speed should be set just below the 
             // maximum loaded speed of the robot
-            MAX_LOW_GEAR_SPEED = 2900.0; // Encoder counts/sec
+            MAX_LOW_GEAR_SPEED = 950.0; // Encoder counts/sec
             //MAX_HIGH_GEAR_SPEED = 900.0;
 
             // Typically set the integral gain at 1/20 of the 

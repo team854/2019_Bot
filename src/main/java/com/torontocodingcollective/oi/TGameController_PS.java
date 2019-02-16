@@ -163,7 +163,14 @@ public class TGameController_PS extends TGameController {
     @Override
     public double getTrigger(TTrigger trigger) {
 
-        return 0.0;
+        switch(trigger) {
+            case LEFT:
+                return getRawButton(7) ? 1.0: 0.0;
+            case RIGHT:
+                return getRawButton(8) ? 1.0: 0.0;
+            default:
+                return 0;
+        }
     }
 
     @Override

@@ -48,6 +48,12 @@ public class TSpeedPID extends PIDController {
             return 0;
         }
 
+        // XXX: test this value
+        // Don't use PID to go stop - controllers should be set to brake instead
+        /*if (Math.abs(super.getSetpoint()) < 0.05) {
+            return 0;
+        }*/
+
         if (normalizedRate > 1.5) {
             normalizedRate = 1.5;
         }

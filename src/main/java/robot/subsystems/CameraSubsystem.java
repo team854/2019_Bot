@@ -78,10 +78,12 @@ public class CameraSubsystem extends TSubsystem {
 		// Use alignmentNeeded() to check whether alignment should happen or not
 
 		// Check if anything is working
-		if (centerX.getNumberArray(null) != null) {
-			// Check if only two contours can be seen
-			if (centerX.getNumberArray(null).length == 2) {
-				return true;
+		if (centerX != null) {
+			if (centerX.getNumberArray(null) != null) {
+				// Check if only two contours can be seen
+				if (centerX.getNumberArray(null).length == 2) {
+					return true;
+				}
 			}
 		}
 
