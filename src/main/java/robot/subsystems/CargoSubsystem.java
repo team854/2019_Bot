@@ -8,8 +8,8 @@ import robot.commands.cargo.DefaultCargoCommand;
 
 public class CargoSubsystem extends TSubsystem {
 
-	DoubleSolenoid height  = new DoubleSolenoid(RobotMap.CARGO_HEIGHT, RobotMap.CARGO_HEIGHT_2);
-    DoubleSolenoid gate    = new DoubleSolenoid(RobotMap.CARGO_GATE, RobotMap.CARGO_GATE_2);
+	private DoubleSolenoid height  = new DoubleSolenoid(RobotMap.CARGO_HEIGHT, RobotMap.CARGO_HEIGHT_2);
+    private DoubleSolenoid gate    = new DoubleSolenoid(RobotMap.CARGO_GATE, RobotMap.CARGO_GATE_2);
 
     @Override
     public void init() {

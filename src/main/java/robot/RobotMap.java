@@ -100,9 +100,9 @@ public class RobotMap {
 
 			// Pneumatic DoubleSolenoid values
 			// Unset
-			HATCH_GRABBER_PORT      = 0;
+			HATCH_GRABBER_PORT      = 0;  // Putting air into this should open it
 			HATCH_GRABBER_PORT_2	= HATCH_GRABBER_PORT+1;
-			HATCH_DEPLOYER_PORT     = 1;
+			HATCH_DEPLOYER_PORT     = 1;  // Putting air into this should bring it down
 			HATCH_DEPLOYER_PORT_2	= HATCH_DEPLOYER_PORT+1;
 
 			CARGO_HEIGHT            = 2;  // Putting air into this one should bring it up

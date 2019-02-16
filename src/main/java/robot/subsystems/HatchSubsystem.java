@@ -5,13 +5,13 @@ import com.torontocodingcollective.subsystem.TSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import robot.RobotMap;
 import robot.commands.hatch.DefaultHatchCommand;
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class HatchSubsystem extends TSubsystem {
 
     // Changed to FakeSolenoids until the production robot is built
-	private Solenoid grabber = new Solenoid(RobotMap.HATCH_GRABBER_PORT);
-	private Solenoid deployer = new Solenoid(RobotMap.HATCH_DEPLOYER_PORT);
+	private DoubleSolenoid grabber = new DoubleSolenoid(RobotMap.HATCH_GRABBER_PORT, RobotMap.HATCH_GRABBER_PORT_2);
+	private DoubleSolenoid deployer = new DoubleSolenoid(RobotMap.HATCH_DEPLOYER_PORT, RobotMap.HATCH_DEPLOYER_PORT_2);
 
     @Override
     public void init() {
@@ -26,20 +26,30 @@ public class HatchSubsystem extends TSubsystem {
 
     //Depending on the state that the grabber is in, the grabber will open or close.
     public void setGrabberState(boolean state) {
-        grabber.set(state);
+        if (state) { // XXX: Assumes true means open
+            grabber.set(DoubleSolenoid.Value.kForward);
+        }
+        else {
+            grabber.set(DoubleSolenoid.Value.kReverse);
+        }
     }
 
     //Depending on the state that the deployer is in, the deployer will open or close.
     public void setDeployerState(boolean state) {
-        deployer.set(state);
+        if (state) { // XXX: Assumes true is down
+            deployer.set(DoubleSolenoid.Value.kForward);
+        }
+        else {
+            deployer.set(DoubleSolenoid.Value.kReverse);
+        }
     }
 
 
     // Periodically update the dashboard and any PIDs or sensors
     @Override
     public void updatePeriodic() {
-    	SmartDashboard.putBoolean("Grabber", grabber.get());
-    	SmartDashboard.putBoolean("Deployer", deployer.get());
+    	SmartDashboard.putString("Grabber", grabber.get().name());
+    	SmartDashboard.putString("Deployer", deployer.get().name());
     }
 
 }
