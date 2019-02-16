@@ -48,7 +48,7 @@ public class RobotMap {
 	public static final boolean                 LEFT_DRIVE_ENCODER_ISINVERTED;
 	public static final int                     RIGHT_DRIVE_DIO_ENCODER_PORT1;
 	public static final boolean                 RIGHT_DRIVE_ENCODER_ISINVERTED;
-
+	// PWM still
 	public static final int						WEDGE_MOTOR_PORT;
 	public static final boolean					WEDGE_MOTOR_ISINVERTED;
 
@@ -62,10 +62,14 @@ public class RobotMap {
 	// Pneumatics Ports
 	// ******************************************
 	public static final int                     HATCH_GRABBER_PORT;
+	public static final int						HATCH_GRABBER_PORT_2;
 	public static final int                     HATCH_DEPLOYER_PORT;
+	public static final int                     HATCH_DEPLOYER_PORT_2;
 
 	public static final int                     CARGO_HEIGHT;
+	public static final int                     CARGO_HEIGHT_2;
 	public static final int                     CARGO_GATE;
+	public static final int                     CARGO_GATE_2;
 
 	// Initializers if this code will be deployed to more than one
 	// robot with different mappings
@@ -94,14 +98,19 @@ public class RobotMap {
 			GYRO_PORT       = 0;
 			GYRO_ISINVERTED = TConst.NOT_INVERTED;
 
-			// Unset values below
+			// Pneumatic DoubleSolenoid values
+			// Unset
 			HATCH_GRABBER_PORT      = 0;
+			HATCH_GRABBER_PORT_2	= HATCH_GRABBER_PORT+1;
 			HATCH_DEPLOYER_PORT     = 1;
+			HATCH_DEPLOYER_PORT_2	= HATCH_DEPLOYER_PORT+1;
 
-			CARGO_HEIGHT            = 2;
-			CARGO_GATE              = 3;
+			CARGO_HEIGHT            = 2;  // Putting air into this one should bring it up
+			CARGO_HEIGHT_2			= CARGO_HEIGHT+1;
+			CARGO_GATE              = 3;  // Putting air into this should open the gate
+			CARGO_GATE_2			= CARGO_GATE+1;
 
-			// XXX: Needs to be set 
+			// PWM
 			WEDGE_MOTOR_PORT		= 0;
 			WEDGE_MOTOR_ISINVERTED	= false;
 
@@ -150,9 +159,14 @@ public class RobotMap {
 
 			// Pneumatics are not used on the test platform
 			HATCH_GRABBER_PORT      = 0;
+			HATCH_GRABBER_PORT_2	= HATCH_GRABBER_PORT+1;
 			HATCH_DEPLOYER_PORT     = 1;
-			CARGO_HEIGHT    = 2;
-			CARGO_GATE      = 3;
+			HATCH_DEPLOYER_PORT_2	= HATCH_DEPLOYER_PORT+1;
+
+			CARGO_HEIGHT            = 2;
+			CARGO_HEIGHT_2			= CARGO_HEIGHT+1;
+			CARGO_GATE              = 3;
+			CARGO_GATE_2			= CARGO_GATE+1;
 
 			WEDGE_MOTOR_PORT		= 0;
 			WEDGE_MOTOR_ISINVERTED	= false;

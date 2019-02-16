@@ -1,15 +1,15 @@
 package robot.subsystems;
 
 import com.torontocodingcollective.subsystem.TSubsystem;
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import robot.RobotMap;
 import robot.commands.cargo.DefaultCargoCommand;
 
 public class CargoSubsystem extends TSubsystem {
 
-	Solenoid height  = new Solenoid(RobotMap.CARGO_HEIGHT);
-    Solenoid gate    = new Solenoid(RobotMap.CARGO_GATE);
+	DoubleSolenoid height  = new DoubleSolenoid(RobotMap.CARGO_HEIGHT, RobotMap.CARGO_HEIGHT_2);
+    DoubleSolenoid gate    = new DoubleSolenoid(RobotMap.CARGO_GATE, RobotMap.CARGO_GATE_2);
 
     @Override
     public void init() {
@@ -22,18 +22,29 @@ public class CargoSubsystem extends TSubsystem {
     }
 
     public void setHeightState(boolean state) {
-        height.set(state);
+        if (state) {  // XXX: Assumes true is up
+            height.set(DoubleSolenoid.Value.kForward);
+        }
+        else {
+            // kReverse will pull on the metal - just relax it instead
+            height.set(DoubleSolenoid.Value.kOff);
+        }
     }
 
     public void setGateState(boolean state) {
-        gate.set(state);
+        if (state) { // XXX: Assumes true is an open gate
+            gate.set(DoubleSolenoid.Value.kForward);
+        }
+        else {
+            gate.set(DoubleSolenoid.Value.kReverse);
+        }
     }
 
     // Periodically update the dashboard and any PIDs or sensors
     @Override
     public void updatePeriodic() {
-        SmartDashboard.putBoolean("cargoHeight", height.get());
-        SmartDashboard.putBoolean("cargoGate", gate.get());
+        SmartDashboard.putString("cargoHeight", height.get().name());
+        SmartDashboard.putString("cargoGate", gate.get().name());
     }
 
 }
