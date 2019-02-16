@@ -191,6 +191,10 @@ public class OI extends TOi {
         return getDualToggle(TButton.TRIANGLE);
     }
 
+    public void setCargoHeightToggle(boolean state) {
+        cargoHeightToggle.set(state);
+    }
+
     /* ***************************************************************************************
      * OI Init and Periodic 
      *****************************************************************************************/
