@@ -24,15 +24,29 @@ public class WedgeSubsystem extends TSubsystem {
         setDefaultCommand(new DefaultWedgeCommand());
     }
 
-    public void deployWedge() {
+    /*public void deployWedge() {
         // XXX: Test
         wedge.set(1);
         Timer.delay(2);
         wedge.set(0);
+    }*/
+
+    public void setWedgeSpeed(double speed) {
+        wedge.set(speed);
+    }
+
+    public double getWedgeSpeed() {
+        return wedge.get();
+    }
+
+    public boolean isDeployable() {
+        // There's 30 secs or less left
+        // and we're not in Sandstorm
+        return (Timer.getMatchTime() <= 30 && Timer.getFPGATimestamp() > 15);
     }
 
     @Override
     public void updatePeriodic() {
-        //SmartDashboard.putBoolean(key, value);
+        SmartDashboard.putBoolean("WedgeIsDeployable", isDeployable());
     }
 }
