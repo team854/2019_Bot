@@ -5,6 +5,7 @@ import com.torontocodingcollective.oi.TButton;
 import com.torontocodingcollective.oi.TGameController;
 import com.torontocodingcollective.oi.TGameController_Logitech;
 import com.torontocodingcollective.oi.TGameController_PS;
+import com.torontocodingcollective.oi.TGameController_Xbox;
 import com.torontocodingcollective.oi.TOi;
 import com.torontocodingcollective.oi.TRumbleManager;
 import com.torontocodingcollective.oi.TStick;
