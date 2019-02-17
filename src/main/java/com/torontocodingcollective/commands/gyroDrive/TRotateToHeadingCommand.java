@@ -165,7 +165,7 @@ public class TRotateToHeadingCommand extends TSafeCommand {
             return true;
         }
 
-        if (Math.abs(headingError) <= 1.5 && Math.abs(rotationRate) < 3) {
+        if (Math.abs(headingError) <= 1.5 && Math.abs(rotationRate) < 1.5) {
             logMessage("finished at heading " + TUtil.round(driveSubsystem.getGyroAngle(), 1)
             + " with error " + TUtil.round(headingError, 2) 
             + ", rotation rate " + TUtil.round(rotationRate, 1));

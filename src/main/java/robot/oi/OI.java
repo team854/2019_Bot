@@ -89,7 +89,7 @@ public class OI extends TOi {
 
     @Override
     public int getRotateToHeading() {
-        return driverController.getPOV();
+        return operatorController.getPOV();
     }
 
     /**

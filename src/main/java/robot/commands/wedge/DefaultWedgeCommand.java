@@ -38,11 +38,11 @@ public class DefaultWedgeCommand extends TSafeCommand {
             // Bring cargo up, so the wedge doesn't hit
             Robot.oi.setCargoHeightToggle(true);  // XXX: Assumes true is up
             Robot.wedgeSubsystem.setWedgeSpeed(1);
-            startTime = Timer.getFPGATimestamp();  // What time did we start doing this?
+            startTime = timeSinceInitialized();  // What time did we start doing this?
         }
         // XXX: Delay needs to be tested
         // Deploying is happening, and 0.5 secs have passed
-        else if (Robot.wedgeSubsystem.getWedgeSpeed() == 1 && Timer.getFPGATimestamp()-startTime >= 0.5) {
+        else if (Robot.wedgeSubsystem.getWedgeSpeed() == 1 && timeSinceInitialized()-startTime >= 0.5) {
             Robot.wedgeSubsystem.setWedgeSpeed(0);
             // Bring the cargo back down
             Robot.oi.setCargoHeightToggle(false);
