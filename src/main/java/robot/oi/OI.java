@@ -35,7 +35,7 @@ import robot.subsystems.CameraSubsystem.Camera;
  */
 public class OI extends TOi {
 
-    private final   TGameController driverController    = new TGameController_PS(0);
+    private final   TGameController driverController    = new TGameController_Logitech(0);
     private         TRumbleManager  driverRumble        = new TRumbleManager("Driver", driverController);
 
     private final   TGameController operatorController  = new TGameController_Logitech(1);
