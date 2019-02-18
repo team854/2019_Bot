@@ -40,9 +40,10 @@ public class WedgeSubsystem extends TSubsystem {
     }
 
     public boolean isDeployable() {
+        return true;
         // There's 30 secs or less left
         // and we're not in Sandstorm
-        return (Timer.getMatchTime() <= 30 && Timer.getFPGATimestamp() > 15);
+//        return (Timer.getMatchTime() <= 30 && Timer.getFPGATimestamp() > 15);
     }
 
     @Override
