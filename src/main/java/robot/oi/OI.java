@@ -139,6 +139,10 @@ public class OI extends TOi {
         return hatchGrabberToggle.get();
     }
 
+    public void setGrabberState(boolean state) {
+        hatchGrabberToggle.set(state);
+    }
+
     public boolean getDeployerState() {
         return hatchDeployerToggle.get();
     }

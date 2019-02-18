@@ -33,7 +33,13 @@ public class DefaultHatchCommand extends TSafeCommand {
 
     @Override
     protected void execute() {
-        Robot.hatchSubsystem.setGrabberState(Robot.oi.getGrabberState());
+        if (!Robot.oi.getDeployerState()) {  // If it's up...
+            Robot.oi.setGrabberState(true);  // ...open the grabber, or keep it from being closed
+        }
+        else { // If it's down...
+            // ... do whatever is asked for
+            Robot.hatchSubsystem.setGrabberState(Robot.oi.getGrabberState());
+        }
         Robot.hatchSubsystem.setDeployerState(Robot.oi.getDeployerState());
     }
 
