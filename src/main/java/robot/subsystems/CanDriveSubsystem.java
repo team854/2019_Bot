@@ -1,7 +1,7 @@
 package robot.subsystems;
 
 import com.torontocodingcollective.sensors.encoder.TEncoder;
-import com.torontocodingcollective.sensors.gyro.TAnalogGyro;
+import com.torontocodingcollective.sensors.gyro.TNavXGyro;
 import com.torontocodingcollective.speedcontroller.TCanSpeedController;
 import com.torontocodingcollective.subsystem.TGyroDriveSubsystem;
 
@@ -38,7 +38,7 @@ public class CanDriveSubsystem extends TGyroDriveSubsystem {
 						RobotMap.RIGHT_DRIVE_CAN_MOTOR_ISINVERTED),
 
 				// Gyro used for this subsystem
-				new TAnalogGyro(RobotMap.GYRO_PORT, RobotMap.GYRO_ISINVERTED),
+				new TNavXGyro(RobotMap.GYRO_ISINVERTED),
 
 				// Gyro PID Constants
 				RobotConst.DRIVE_GYRO_PID_KP, 

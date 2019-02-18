@@ -1,11 +1,9 @@
 package robot.oi;
 
-import com.torontocodingcollective.oi.TAxis;
 import com.torontocodingcollective.oi.TButton;
 import com.torontocodingcollective.oi.TGameController;
 import com.torontocodingcollective.oi.TGameController_Logitech;
 import com.torontocodingcollective.oi.TGameController_PS;
-import com.torontocodingcollective.oi.TGameController_Xbox;
 import com.torontocodingcollective.oi.TOi;
 import com.torontocodingcollective.oi.TRumbleManager;
 import com.torontocodingcollective.oi.TStick;
@@ -14,7 +12,6 @@ import com.torontocodingcollective.oi.TToggle;
 import com.torontocodingcollective.oi.TTrigger;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import robot.RobotConst;
 import robot.subsystems.CameraSubsystem.Camera;
 
 /**
@@ -89,7 +86,19 @@ public class OI extends TOi {
 
     @Override
     public int getRotateToHeading() {
-        return operatorController.getPOV();
+    	
+    	int operatorControllerPOV = operatorController.getPOV();
+    	int driverControllerPOV = driverController.getPOV();
+    	
+    	if (driverControllerPOV != -1) {
+    		return driverControllerPOV;
+    	}
+
+    	if (operatorControllerPOV != -1) {
+    		return operatorControllerPOV;
+    	}
+    	
+        return -1;
     }
 
     /**
