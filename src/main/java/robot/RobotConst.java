@@ -15,7 +15,7 @@ public class RobotConst {
 
     public static final double  DRIVE_GYRO_PID_KP;
     public static final double  DRIVE_GYRO_PID_KI;
-    public static final double  DRIVE_MAX_ROTATION_OUTPUT     = 0.35;
+    public static final double  DRIVE_MAX_ROTATION_OUTPUT     = 0.55;
 
     public static final double  DRIVE_SPEED_PID_KP;
     public static final double  DRIVE_SPEED_PID_KI;
@@ -30,7 +30,7 @@ public class RobotConst {
     public static final double  ULTRASONIC_VOLTAGE_80IN       = 0.764;
 
     // Operator speed limitation - as a division of the motor speed
-    public static final double  OPERATOR_SPEED_DIVISOR = 3;
+    public static final double  OPERATOR_SPEED_DIVISOR = 2.5;
 
     // The margin of error for vision alignment, what constitutes the center
     // XXX: Needs to be set
