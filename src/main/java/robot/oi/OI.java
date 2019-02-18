@@ -45,13 +45,14 @@ public class OI extends TOi {
     private      TToggle            speedPidToggle      = new TToggle(driverController, TStick.RIGHT);
 
     // The following toggles are shared between Driver and Operator
-    private TToggle         hatchGrabberToggle  = new TToggle();
-    private TToggle         hatchDeployerToggle = new TToggle();
-    private TToggle         cargoHeightToggle   = new TToggle();
-    private TToggle         cargoGateToggle     = new TToggle();
-    private TToggle         cameraToggle        = new TToggle();
+    private TToggle         hatchGrabberToggle          = new TToggle();
+    private TToggle         hatchDeployerToggle         = new TToggle();
+    private TToggle         cargoGateToggle             = new TToggle();
+    private boolean         cargoHeightOverride         = false;
+    private boolean         cargoHeightOverrideState    = false;
+    private TToggle         cameraToggle                = new TToggle();
 
-    private DriveSelector   driveSelector       = new DriveSelector();
+    private DriveSelector   driveSelector               = new DriveSelector();
 
     /* ***************************************************************************************
      * Drive Subsystem commands
@@ -146,13 +147,24 @@ public class OI extends TOi {
      * Cargo Subsystem commands
      *****************************************************************************************/
     public boolean getHeightState() {
-    	
-    	// RM: For the cargo height, do you want this as a 
-    	//     toggle or a press and hold to put the height up?
-    	//     Using a press and hold feature for the height
-    	//     will ensure that the height is always set low
-    	//     when driving.
-        return cargoHeightToggle.get();
+        // Press and hold from the controller
+        
+        // Allow software to override what the controller(s) says
+        if (cargoHeightOverride) {
+            return cargoHeightOverrideState;
+        }
+        return getDualToggle(TTrigger.RIGHT);
+    }
+
+    public void overrideHeightState(boolean state) {
+        // Overrides whatever the controllers are doing
+        cargoHeightOverride = true;
+        cargoHeightOverrideState = state;
+    }
+
+    public void releaseHeightState() {
+        // Stops overriding the height state
+        cargoHeightOverride = false;
     }
 
     public boolean getGateState() {
@@ -201,22 +213,16 @@ public class OI extends TOi {
         return getDualToggle(TButton.TRIANGLE);
     }
 
-    public void setCargoHeightToggle(boolean state) {
-        cargoHeightToggle.set(state);
-    }
-
     /* ***************************************************************************************
      * OI Init and Periodic 
      *****************************************************************************************/
     public void init() {
         compressorToggle.set(true);
         speedPidToggle.set(true);
-        // Close is false
-        hatchGrabberToggle.set(false);
+        // Open is true
+        hatchGrabberToggle.set(true);
         // Up is false
         hatchDeployerToggle.set(false);
-        // True is up
-        cargoHeightToggle.set(true);
         // False is closed
         cargoGateToggle.set(false);
     }
@@ -236,7 +242,6 @@ public class OI extends TOi {
         // Update dual toggles
         // ********************
         hatchDeployerToggle.updatePeriodic(getDualToggle(TButton.X_SYMBOL));
-        cargoHeightToggle.updatePeriodic(driverController.getButton(TTrigger.RIGHT));
         cargoGateToggle.updatePeriodic(getDualToggle(TTrigger.LEFT));
         cameraToggle.updatePeriodic(getDualToggle(TButton.CIRCLE));
         // Update hatch grabber toggle by looking at two buttons
@@ -253,7 +258,7 @@ public class OI extends TOi {
         // Update all SmartDashboard values
         SmartDashboard.putString("Driver Controller", driverController.toString());
         SmartDashboard.putString("Operator Controller", operatorController.toString());
-        SmartDashboard.putBoolean("cargoHeightToggle", cargoHeightToggle.get());
+        SmartDashboard.putBoolean("cargoHeightToggle", getDualToggle(TTrigger.RIGHT));
         SmartDashboard.putBoolean("cargoGateToggle", cargoGateToggle.get());
     }
 }
