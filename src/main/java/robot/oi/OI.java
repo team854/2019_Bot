@@ -157,7 +157,7 @@ public class OI extends TOi {
         if (cargoHeightOverride) {
             return cargoHeightOverrideState;
         }
-        return getDualToggle(TTrigger.RIGHT);
+        return (driverController.getButton(TTrigger.RIGHT) || operatorController.getButton(TButton.Y));
     }
 
     public void overrideHeightState(boolean state) {
@@ -202,8 +202,9 @@ public class OI extends TOi {
     }
 
     public boolean getAlignButton() {
-        return getDualToggle(TButton.X);
+        return (driverController.getButton(TButton.SQUARE) || operatorController.getButton(TStick.RIGHT));
     }
+    
 
     public boolean isDriverActive() {
         return driverController.isUserActive();
@@ -216,6 +217,14 @@ public class OI extends TOi {
     public boolean getWedgeState() {
         return getDualToggle(TButton.TRIANGLE);
     }
+
+    public boolean getSlightLeft() {
+        return operatorController.getButton(TTrigger.LEFT);
+    }
+
+    public boolean getSlightRight() {
+        return operatorController.getButton(TTrigger.RIGHT);
+    }    
 
     /* ***************************************************************************************
      * OI Init and Periodic 
@@ -246,7 +255,8 @@ public class OI extends TOi {
         // Update dual toggles
         // ********************
         hatchDeployerToggle.updatePeriodic(getDualToggle(TButton.X_SYMBOL));
-        cargoGateToggle.updatePeriodic(getDualToggle(TTrigger.LEFT));
+        cargoGateToggle.updatePeriodic(driverController.getButton(TTrigger.LEFT) 
+                                            || operatorController.getButton(TButton.X));
         cameraToggle.updatePeriodic(getDualToggle(TButton.CIRCLE));
         // Update hatch grabber toggle by looking at two buttons
         // Will not change if both buttons are pressed

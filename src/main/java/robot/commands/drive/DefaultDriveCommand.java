@@ -115,6 +115,14 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
                 // Stop aligning in case the robot was doing that
                 rotateToHeadingCommand.cancel();
             }
+            if (operatorControlling && oi.getSlightLeft()) {
+                motorSpeeds.left = 0;
+                motorSpeeds.right = 0.1;  // XXX: Set this value
+            }
+            else if (operatorControlling && oi.getSlightRight()) {
+                motorSpeeds.left = 0.1;  // XXX: Set this value
+                motorSpeeds.right = 0;
+            }
             driveSubsystem.setSpeed(motorSpeeds);
         }
     }
