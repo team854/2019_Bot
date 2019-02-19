@@ -12,6 +12,7 @@ import robot.Robot;
 import robot.RobotConst;
 import robot.oi.OI;
 import robot.subsystems.CameraSubsystem;
+import robot.subsystems.CameraSubsystem.Camera;
 
 /**
  * Default drive command for a drive base
@@ -102,6 +103,12 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
         if (operatorControlling) {
             motorSpeeds.left /= RobotConst.OPERATOR_SPEED_DIVISOR;
             motorSpeeds.right /= RobotConst.OPERATOR_SPEED_DIVISOR;
+
+            if (Robot.cameraSubsystem.getCurrentCamera() == Camera.REAR) {
+                double temp = motorSpeeds.right;
+                motorSpeeds.right = -motorSpeeds.left;
+                motorSpeeds.left = -temp;
+            }
         }
         
         // Check if aligning needs to happen instead, and that two pieces of tape can be seen
@@ -117,10 +124,10 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             }
             if (operatorControlling && oi.getSlightLeft()) {
                 motorSpeeds.left = 0;
-                motorSpeeds.right = 0.1;  // XXX: Set this value
+                motorSpeeds.right = 0.5;  // XXX: Set this value
             }
             else if (operatorControlling && oi.getSlightRight()) {
-                motorSpeeds.left = 0.1;  // XXX: Set this value
+                motorSpeeds.left = 0.5;  // XXX: Set this value
                 motorSpeeds.right = 0;
             }
             driveSubsystem.setSpeed(motorSpeeds);

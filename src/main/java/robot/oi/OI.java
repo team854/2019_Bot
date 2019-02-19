@@ -147,6 +147,11 @@ public class OI extends TOi {
         return hatchDeployerToggle.get();
     }
 
+    public void setDeployerState(boolean state) {
+        hatchDeployerToggle.set(state);
+    }
+
+
     /* ***************************************************************************************
      * Cargo Subsystem commands
      *****************************************************************************************/
@@ -215,7 +220,7 @@ public class OI extends TOi {
     }
 
     public boolean getWedgeState() {
-        return getDualToggle(TButton.TRIANGLE);
+        return driverController.getButton(TButton.TRIANGLE);
     }
 
     public boolean getSlightLeft() {
@@ -238,6 +243,8 @@ public class OI extends TOi {
         hatchDeployerToggle.set(false);
         // False is closed
         cargoGateToggle.set(false);
+        // True is front
+        cameraToggle.set(true);
     }
 
     @Override
@@ -274,5 +281,6 @@ public class OI extends TOi {
         SmartDashboard.putString("Operator Controller", operatorController.toString());
         SmartDashboard.putBoolean("cargoHeightToggle", getDualToggle(TTrigger.RIGHT));
         SmartDashboard.putBoolean("cargoGateToggle", cargoGateToggle.get());
+        SmartDashboard.putString("Camera", getCamera().toString());
     }
 }

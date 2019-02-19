@@ -40,8 +40,8 @@ public class CameraSubsystem extends TSubsystem {
     public CameraSubsystem() {
 
         //Uncomment this line to start a USB camera feed
-        frontCamera = CameraServer.getInstance().startAutomaticCapture(0);
-        rearCamera  = CameraServer.getInstance().startAutomaticCapture(1);
+        frontCamera = CameraServer.getInstance().startAutomaticCapture(1);
+        rearCamera  = CameraServer.getInstance().startAutomaticCapture(0);
 
         cameraFeed = CameraServer.getInstance().getServer();
         curCamera = Camera.FRONT;
@@ -49,6 +49,7 @@ public class CameraSubsystem extends TSubsystem {
 
     @Override
     public void init() {
+		setCameraFeed(curCamera);
     }
 
     public void setCameraFeed(Camera camera) {
@@ -72,20 +73,24 @@ public class CameraSubsystem extends TSubsystem {
     		break;
     	}
     	
-    }
+	}
+	
+	public Camera getCurrentCamera() {
+		return curCamera;
+	}
 	
 	public boolean targetsFound() {
 		// Use alignmentNeeded() to check whether alignment should happen or not
 
 		// Check if anything is working
-		if (centerX != null) {
-			if (centerX.getNumberArray(null) != null) {
-				// Check if only two contours can be seen
-				if (centerX.getNumberArray(null).length == 2) {
-					return true;
-				}
-			}
-		}
+		// if (centerX != null) {
+		// 	if (centerX.getNumberArray(null) != null) {
+		// 		// Check if only two contours can be seen
+		// 		if (centerX.getNumberArray(null).length == 2) {
+		// 			return true;
+		// 		}
+		// 	}
+		// }
 
 		return false;
 	}

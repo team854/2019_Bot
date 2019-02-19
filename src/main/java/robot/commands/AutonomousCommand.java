@@ -1,11 +1,10 @@
 package robot.commands;
 
-import com.torontocodingcollective.TConst;
-import com.torontocodingcollective.commands.drive.TDriveTimeCommand;
 import com.torontocodingcollective.commands.gyroDrive.TDriveOnHeadingDistanceCommand;
-import com.torontocodingcollective.commands.gyroDrive.TRotateToHeadingCommand;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import robot.Robot;
+import robot.commands.hatch.DropHatchCommand;
 import robot.oi.AutoSelector;
 
 /**
@@ -54,6 +53,13 @@ public class AutonomousCommand extends CommandGroup {
         System.out.println("Robot Position : " + robotStartPosition);
         System.out.println("Pattern        : " + pattern);
 
+        addParallel(new DropHatchCommand());
+        addSequential(new TDriveOnHeadingDistanceCommand(60, 0, .5, 5, true, 
+        Robot.oi, Robot.driveSubsystem) );
+        addSequential(new TDriveOnHeadingDistanceCommand(22, 340, .5, 5, true, 
+        Robot.oi, Robot.driveSubsystem) );
+        addSequential(new TDriveOnHeadingDistanceCommand(40, 0, .5, 5, true, 
+        Robot.oi, Robot.driveSubsystem) );
         return;
     }
 }

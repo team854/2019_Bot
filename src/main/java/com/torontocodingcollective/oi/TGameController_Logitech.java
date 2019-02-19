@@ -14,7 +14,7 @@ public class TGameController_Logitech extends TGameController {
         case LEFT:
             switch (axis) {
             case X:
-                return super.getFilteredRawAxis(0);
+                return 0; //super.getFilteredRawAxis(0);
             case Y:
                 return super.getFilteredRawAxis(1);
             default:
