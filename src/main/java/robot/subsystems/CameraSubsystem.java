@@ -29,9 +29,7 @@ public class CameraSubsystem extends TSubsystem {
 	// NetworkTable stuff
 	private NetworkTableInstance    inst    = NetworkTableInstance.getDefault();
 	private NetworkTable            table   = inst.getTable("myContoursReport");
-	private NetworkTableEntry       centerX = table.getEntry("centerX");
-	private double                  avgX;
-	private double                  degreesOff;
+	private NetworkTableEntry       centerX; //= table.getEntry("centerX");
 	/*NetworkTableEntry       centerY = table.getEntry("centerY");
 	NetworkTableEntry       area    = table.getEntry("area");
 	NetworkTableEntry       width   = table.getEntry("width");
@@ -79,18 +77,25 @@ public class CameraSubsystem extends TSubsystem {
 		return curCamera;
 	}
 	
+
+
 	public boolean targetsFound() {
 		// Use alignmentNeeded() to check whether alignment should happen or not
-
-		// Check if anything is working
-		// if (centerX != null) {
-		// 	if (centerX.getNumberArray(null) != null) {
-		// 		// Check if only two contours can be seen
-		// 		if (centerX.getNumberArray(null).length == 2) {
-		// 			return true;
-		// 		}
-		// 	}
-		// }
+		
+		centerX = table.getEntry("centerX");
+		try {
+			// Check if anything is working
+			if (centerX != null) {
+				if (centerX.getNumberArray(null) != null) {
+					// Check if only two contours can be seen
+					if (centerX.getNumberArray(null).length == 2) {
+						return true;
+					}
+				}
+			}
+		} catch (NullPointerException e) {
+			return false;
+		}
 
 		return false;
 	}
@@ -115,6 +120,7 @@ public class CameraSubsystem extends TSubsystem {
 		Field of view is 51 degrees
 		Microsoft Skype LifeCam HD 3000
 		*/
+		
 		return Math.toDegrees(Math.atan((((getTargetAveragesX()-320)/320) * 146.25) / 307));
 	}
 
