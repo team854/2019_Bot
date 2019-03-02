@@ -153,7 +153,6 @@ public class CameraSubsystem extends TSubsystem {
     @Override
     public void updatePeriodic() {
         
-
 		// Setup the vision targets array so we use the same values each loop
 		centerX = table.getEntry("centerX");
 		if (centerX != null) {
@@ -165,6 +164,7 @@ public class CameraSubsystem extends TSubsystem {
 		else {
 		    centerXArray = null;
 		}
+		
     	SmartDashboard.putString("Camera", curCamera.toString());
     	SmartDashboard.putBoolean("Targets Found", targetsFound());
 		SmartDashboard.putBoolean("On Target", targetsFound() && !alignmentNeeded());
