@@ -84,7 +84,7 @@ public class RobotConst {
             // proportional gain.  The gain can often be increased
             // above this value, but typically gives good 
             // stability and acceptable performance
-            DRIVE_GYRO_PID_KP = .01;
+            DRIVE_GYRO_PID_KP = .05;
             DRIVE_GYRO_PID_KI = DRIVE_GYRO_PID_KP / 20.0;
 
             DRIVE_SPEED_PID_KP = 0.0045;

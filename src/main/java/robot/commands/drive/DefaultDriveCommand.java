@@ -114,13 +114,19 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
         
         // Check if aligning needs to happen instead, and that two pieces of tape can be seen
         if (oi.getAlignButton() && cameraSubsystem.alignmentNeeded()) {
+            // Calculate required rotate heading and make use it's >=0 and < 360
+            double heading = driveSubsystem.getGyroAngle() + cameraSubsystem.getDegreesOff();
+            heading = heading % 360;
+            if (heading < 0) {
+                heading += 360;
+            }
             // XXX: Has a default timeout of 5 secs, we'll see if we need to change it
             // Use the following to start a command through the scheduler
-            Scheduler.getInstance().add(new TRotateToHeadingCommand(driveSubsystem.getGyroAngle()+cameraSubsystem.getDegreesOff(), oi, driveSubsystem));
+            Scheduler.getInstance().add(new TRotateToHeadingCommand(heading, oi, driveSubsystem));
             return;
         }
 
-        // This will only run if the TRotateToHeadingCommand isn't running
+        // This will only run if the TRotateToHeadingCtommand isn't running
         if (operatorControlling && oi.getSlightLeft()) {
             motorSpeeds.left = 0;
             motorSpeeds.right = 0.5;  // XXX: Set this value

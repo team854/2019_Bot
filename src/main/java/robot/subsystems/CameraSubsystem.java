@@ -28,9 +28,9 @@ public class CameraSubsystem extends TSubsystem {
 
 	// NetworkTable stuff
 	private NetworkTableInstance    inst    = NetworkTableInstance.getDefault();
-	private NetworkTable            table   = inst.getTable("myContoursReport");
-	private NetworkTableEntry       centerX;
-	private Number[]				centerXArray;
+	private NetworkTable            table   = inst.getTable("GRIP/myContoursReport");
+	private NetworkTableEntry       centerX	= table.getEntry("centerX");
+	private double[]				centerXArray;
 	
     public CameraSubsystem() {
 
@@ -39,7 +39,9 @@ public class CameraSubsystem extends TSubsystem {
         rearCamera  = CameraServer.getInstance().startAutomaticCapture(0);
 
         cameraFeed = CameraServer.getInstance().getServer();
-        curCamera = Camera.FRONT;
+		curCamera = Camera.FRONT;
+		
+		
     }
 
     @Override
@@ -101,7 +103,7 @@ public class CameraSubsystem extends TSubsystem {
 
 	private double getTargetAveragesX() {
 		// Check targetsFound() before using
-		return centerXArray[0].doubleValue() + centerXArray[1].doubleValue() / 2;
+		return (centerXArray[0] + centerXArray[1]) / 2.0;
 	}
 
 	private double getRawDegreesOff() {
@@ -119,8 +121,9 @@ public class CameraSubsystem extends TSubsystem {
 		Field of view is 51 degrees
 		Microsoft Skype LifeCam HD 3000
 		*/
-		
-		return Math.toDegrees(Math.atan((((getTargetAveragesX()-320)/320) * 146.25) / 307));
+
+		// Last division part is a hack
+		return Math.toDegrees(Math.atan((((getTargetAveragesX()-320)/320) * 146.25) / 307)) * 0.75;
 	}
 
 	public double getDegreesOff() {
@@ -154,9 +157,8 @@ public class CameraSubsystem extends TSubsystem {
     public void updatePeriodic() {
         
 		// Setup the vision targets array so we use the same values each loop
-		centerX = table.getEntry("centerX");
 		if (centerX != null) {
-		    centerXArray = centerX.getNumberArray(new Number[] {});
+			centerXArray = centerX.getDoubleArray(new double[] {});
 		    if (centerXArray.length == 0) {
 		        centerXArray = null;
 		    }
