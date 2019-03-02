@@ -78,7 +78,7 @@ public class CameraSubsystem extends TSubsystem {
 	
 
 
-	public boolean targetsFound() {
+	private boolean targetsFound() {
 	    
 	    // NOTE: The targets cannot be found if the robot is moving.
 	    //
@@ -93,18 +93,18 @@ public class CameraSubsystem extends TSubsystem {
         }
         
 		// Use alignmentNeeded() to check whether alignment should happen or not
-		if (centerXArray != null && centerXArray.length != 2) {
+		if (centerXArray != null && centerXArray.length == 2) {
 			return true;
 		}
 		return false;
 	}
 
-	public double getTargetAveragesX() {
+	private double getTargetAveragesX() {
 		// Check targetsFound() before using
 		return centerXArray[0].doubleValue() + centerXArray[1].doubleValue() / 2;
 	}
 
-	public double getRawDegreesOff() {
+	private double getRawDegreesOff() {
 		// Calculates degrees off and doesn't correct for error margins
 		// Check targetsFound() before using
 		// But getDegreesOff() should be used instead
@@ -128,10 +128,14 @@ public class CameraSubsystem extends TSubsystem {
 		// Check targetsFound() before using
 		// Make sure to add this to the current gyro angle
 
-		if (Math.abs(getRawDegreesOff()) < RobotConst.VISION_AVG_X_ERROR_MARGIN) {
+		// Users should use alignmentNeeded before using - this is just in case
+		if (!targetsFound()) {
 			return 0;
 		}
 
+		if (Math.abs(getRawDegreesOff()) < RobotConst.VISION_AVG_X_ERROR_MARGIN) {
+			return 0;
+		}
 		return getRawDegreesOff();
 	}
 
@@ -148,13 +152,13 @@ public class CameraSubsystem extends TSubsystem {
     // Periodically update the dashboard and any PIDs or sensors
     @Override
     public void updatePeriodic() {
+		// Setup the vision targets array so we use the same values each loop
+		centerX = table.getEntry("centerX");
+		centerXArray = centerX.getNumberArray(null);
         
     	SmartDashboard.putString("Camera", curCamera.toString());
     	SmartDashboard.putBoolean("Targets Found", targetsFound());
 		SmartDashboard.putBoolean("On Target", targetsFound() && !alignmentNeeded());
-		// Setup the vision targets array so we use the same values each loop
-		centerX = table.getEntry("centerX");
-		centerXArray = centerX.getNumberArray(null);
     }
 
     @Override
