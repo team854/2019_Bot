@@ -167,7 +167,7 @@ public class RobotMap {
 			CARGO_GATE              = 3;
 			CARGO_GATE_2			= CARGO_GATE+1;
 
-			WEDGE_MOTOR_PORT		= 0;
+			WEDGE_MOTOR_PORT		= 4;
 			WEDGE_MOTOR_ISINVERTED	= false;
 
 			// CAN Constants

@@ -3,14 +3,28 @@ package robot.subsystems;
 import com.torontocodingcollective.subsystem.TSubsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import robot.RobotConst;
 import robot.RobotMap;
 import robot.commands.cargo.DefaultCargoCommand;
 
 public class CargoSubsystem extends TSubsystem {
 
-	private DoubleSolenoid height  = new DoubleSolenoid(RobotMap.CARGO_HEIGHT, RobotMap.CARGO_HEIGHT_2);
-    private DoubleSolenoid gate    = new DoubleSolenoid(RobotMap.CARGO_GATE_2, RobotMap.CARGO_GATE);
+	private DoubleSolenoid height;
+    private DoubleSolenoid gate;  
 
+    public CargoSubsystem() {
+        
+        // There is no pneumatics on the test robot
+        if (RobotConst.robot == RobotConst.PROD_ROBOT) {
+            height  = new DoubleSolenoid(RobotMap.CARGO_HEIGHT, RobotMap.CARGO_HEIGHT_2);
+            gate    = new DoubleSolenoid(RobotMap.CARGO_GATE_2, RobotMap.CARGO_GATE);
+        }
+        else {
+            height = null;
+            gate = null;
+        }
+    }
+    
     @Override
     public void init() {
         //Empty for now
@@ -22,6 +36,10 @@ public class CargoSubsystem extends TSubsystem {
     }
 
     public void setHeightState(boolean state) {
+        if (height == null) {
+            return;
+        }
+        
         if (state) {  // XXX: Assumes true is up
             height.set(DoubleSolenoid.Value.kForward);
         }
@@ -31,6 +49,10 @@ public class CargoSubsystem extends TSubsystem {
     }
 
     public void setGateState(boolean state) {
+        if (gate == null) {
+            return;
+        }
+        
         if (state) { // XXX: Assumes true is an open gate
             gate.set(DoubleSolenoid.Value.kForward);
         }
@@ -42,8 +64,15 @@ public class CargoSubsystem extends TSubsystem {
     // Periodically update the dashboard and any PIDs or sensors
     @Override
     public void updatePeriodic() {
-        SmartDashboard.putString("cargoHeight", height.get().name());
-        SmartDashboard.putString("cargoGate", gate.get().name());
+        
+        if (height != null) {
+            SmartDashboard.putString("cargoHeight", height.get().name());
+            SmartDashboard.putString("cargoGate", gate.get().name());
+        }
+        else {
+            SmartDashboard.putString("cargoHeight", "no pnuematics");
+            SmartDashboard.putString("cargoGate", "no pnuematics");
+        }
     }
 
 }

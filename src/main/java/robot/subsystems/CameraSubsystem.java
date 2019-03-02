@@ -152,10 +152,19 @@ public class CameraSubsystem extends TSubsystem {
     // Periodically update the dashboard and any PIDs or sensors
     @Override
     public void updatePeriodic() {
+        
+
 		// Setup the vision targets array so we use the same values each loop
 		centerX = table.getEntry("centerX");
-		centerXArray = centerX.getNumberArray(null);
-        
+		if (centerX != null) {
+		    centerXArray = centerX.getNumberArray(new Number[] {});
+		    if (centerXArray.length == 0) {
+		        centerXArray = null;
+		    }
+		}
+		else {
+		    centerXArray = null;
+		}
     	SmartDashboard.putString("Camera", curCamera.toString());
     	SmartDashboard.putBoolean("Targets Found", targetsFound());
 		SmartDashboard.putBoolean("On Target", targetsFound() && !alignmentNeeded());
