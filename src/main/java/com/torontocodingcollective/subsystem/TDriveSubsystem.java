@@ -5,6 +5,7 @@ import com.torontocodingcollective.pid.TSpeedPID;
 import com.torontocodingcollective.sensors.encoder.TEncoder;
 import com.torontocodingcollective.speedcontroller.TSpeedController;
 import com.torontocodingcollective.speedcontroller.TSpeeds;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -30,6 +31,8 @@ public abstract class TDriveSubsystem extends TSubsystem {
     private double                   encoderCountsPerInch = 0;
 
     boolean                          speedPidsEnabled     = false;
+    
+    long                             robotStoppedInstant  = -1;
 
     /**
      * Drive subsystem with left/right drive.
@@ -224,6 +227,24 @@ public abstract class TDriveSubsystem extends TSubsystem {
         return (leftEncoder.getRate() + rightEncoder.getRate()) / 2.0d;
     }
 
+    /**
+     * Get the stopped time of the robot.
+     * <p>
+     * This is the time (duration) since the robot last stopped moving 
+     * in seconds.  If the robot is currently moving, this routine returns -1.0.
+     * <p>
+     * This routine is designed to help with vision tracking where the camera
+     * can lag behind the robot and stopping the robot for a short period of 
+     * time can aid in precision.
+     * @return double Seconds since the robot last stopped moving.
+     */
+    public double getStoppedTime() {
+        if (robotStoppedInstant == -1) {
+            return -1.0;
+        }
+        return ((double) (System.currentTimeMillis() - robotStoppedInstant)) / 1000.0;
+    }
+    
     /**
      * Reset the encoder counts on the encoders.
      */
@@ -428,6 +449,19 @@ public abstract class TDriveSubsystem extends TSubsystem {
         // Only update the encoders and pids if there are encoders.
         if (leftEncoder != null && rightEncoder != null) {
 
+            // Calculate the duration that the robot has been stopped
+            if (   Math.abs(rightEncoder.getRate()) > 2
+                || Math.abs(leftEncoder.getRate())  > 2) {
+                // Robot is moving
+                robotStoppedInstant = -1;
+            }
+            else {
+                // Robot is stopped
+                if (robotStoppedInstant == -1) {
+                    robotStoppedInstant = System.currentTimeMillis();
+                }
+            }
+            
             // Update all of the PIDS
             if (speedPidsEnabled) {
 
@@ -453,10 +487,27 @@ public abstract class TDriveSubsystem extends TSubsystem {
             SmartDashboard.putData("LeftPid", leftSpeedPid);
             SmartDashboard.putData("RightPid", rightSpeedPid);
         }
+        else {
+            // If there are no encoders, then update the robotStoppedTime
+            // based on the output to the drive motors
+            if (   leftSpeedController .get() > 0 
+                || rightSpeedController.get() > 0) {
+                // Robot is moving
+                robotStoppedInstant = -1;
+            }
+            else {
+                // Robot is stopped
+                if (robotStoppedInstant == -1) {
+                    robotStoppedInstant = System.currentTimeMillis();
+                }
+            }
+
+        }
 
         // Always print the current motor set speeds.
         SmartDashboard.putNumber("Left Output", leftSpeedController.get());
         SmartDashboard.putNumber("Right Output", rightSpeedController.get());
+        SmartDashboard.putNumber("Stopped Time", getStoppedTime());
     }
 
 }

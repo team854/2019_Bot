@@ -5,13 +5,13 @@ import com.torontocodingcollective.subsystem.TSubsystem;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSink;
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import robot.RobotConst;
-import robot.commands.camera.DefaultCameraCommand;
-
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import robot.Robot;
+import robot.RobotConst;
+import robot.commands.camera.DefaultCameraCommand;
 
 /**
  *
@@ -69,6 +69,8 @@ public class CameraSubsystem extends TSubsystem {
     			}
     		}
     		break;
+    	default:
+    	    break;
     	}
     	
 	}
@@ -80,6 +82,19 @@ public class CameraSubsystem extends TSubsystem {
 
 
 	public boolean targetsFound() {
+	    
+	    // NOTE: The targets cannot be found if the robot is moving.
+	    //
+        //       Since the camera lags behind the robot,   
+        //       any targets found when the robot is moving will be 
+        //       in the wrong position.  
+        //
+        //       The robot must be still for about 200ms to guarantee
+        //       the targets.
+        if (Robot.driveSubsystem.getStoppedTime() < 0.2) {
+            return false;
+        }
+        
 		// Use alignmentNeeded() to check whether alignment should happen or not
 		
 		centerX = table.getEntry("centerX");
@@ -88,6 +103,10 @@ public class CameraSubsystem extends TSubsystem {
 			if (centerX != null) {
 				if (centerX.getNumberArray(null) != null) {
 					// Check if only two contours can be seen
+				    // NOTE: The getNumberArray is not guaranteed to 
+				    //       be null here.  The array is updated in 
+				    //       another thread.  This code could throw
+				    //       a null pointer exception.
 					if (centerX.getNumberArray(null).length == 2) {
 						return true;
 					}
@@ -103,6 +122,15 @@ public class CameraSubsystem extends TSubsystem {
 	public double getTargetAveragesX() {
 		// Check targetsFound() before using
 
+	    // NOTE: This code can be problematic and can cause a null pointer exception.
+	    //       The array that was used in targetsFound is updated in another thread
+	    //       and could have changed by this point in time.  The length of the 
+	    //       array can now be a different length and you are not guaranteed to have
+	    //       exactly two elements.  You want to save the 
+	    //       array and never get a new array until the next time you want to check.
+	    //
+	    //       Move the centerX.getNumberArray() to the updatePeriodic, and always 
+	    //       reference the same array for this loop.
 		return centerX.getNumberArray(null)[0].doubleValue() + centerX.getNumberArray(null)[1].doubleValue() / 2;
 	}
 
@@ -139,16 +167,17 @@ public class CameraSubsystem extends TSubsystem {
 	public boolean alignmentNeeded() {
 		// Includes error margin correction
 
-		if (targetsFound() && getDegreesOff() != 0) {
+	    if (targetsFound() && getDegreesOff() != 0) {
 			return true;
 		}
 
 		return false;
 	}
-
+	
     // Periodically update the dashboard and any PIDs or sensors
     @Override
     public void updatePeriodic() {
+        
     	SmartDashboard.putString("Camera", curCamera.toString());
     }
 

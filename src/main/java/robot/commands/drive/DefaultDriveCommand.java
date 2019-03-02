@@ -116,10 +116,32 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             // XXX: Has a default timeout of 5 secs, we'll see if we need to change it
             rotateToHeadingCommand = new TRotateToHeadingCommand(driveSubsystem.getGyroAngle()+cameraSubsystem.getDegreesOff(), oi, driveSubsystem);
             rotateToHeadingCommand.start();
+            // Use the following to start a command through the scheduler
+//            Scheduler.getInstance().add(
+//                    new TRotateToHeadingCommand(
+//                            driveSubsystem.getGyroAngle()+cameraSubsystem.getDegreesOff(), 
+//                            oi, driveSubsystem) );
         }   
+        // NOTE:
+        // The else here is not required.
+        // The code below will only run one time, and then the 
+        // rotateToHeading will take over on the next loop (20ms).  
+        // A better practice might be to set an explicit motor speed,
+        // and use a return statement in the 
+        // execute loop after starting a new command. 
         else {
+            // Do not do this: 
+            // NOTE: This line will not run once the rotateToHeading command
+            // is running and cannot be used to stop the rotateToHeading.  
+            // In order to stop the rotateToHeading, you need to put something in the 
+            // rotateToHeading command itself.
             if (rotateToHeadingCommand != null) {
                 // Stop aligning in case the robot was doing that
+                
+                // NOTE: In order to stop the rotateToHeading command, use the 
+                //       cancel button (Back) on the Driver Controller, which 
+                //       is already coded.
+                //       This code will never run if the rotateToHeadingCommand is running.
                 rotateToHeadingCommand.cancel();
             }
             if (operatorControlling && oi.getSlightLeft()) {
