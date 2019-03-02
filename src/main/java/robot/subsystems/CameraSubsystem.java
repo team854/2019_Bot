@@ -29,11 +29,8 @@ public class CameraSubsystem extends TSubsystem {
 	// NetworkTable stuff
 	private NetworkTableInstance    inst    = NetworkTableInstance.getDefault();
 	private NetworkTable            table   = inst.getTable("myContoursReport");
-	private NetworkTableEntry       centerX; //= table.getEntry("centerX");
-	/*NetworkTableEntry       centerY = table.getEntry("centerY");
-	NetworkTableEntry       area    = table.getEntry("area");
-	NetworkTableEntry       width   = table.getEntry("width");
-	NetworkTableEntry       height  = table.getEntry("height");*/
+	private NetworkTableEntry       centerX;
+	private Number[]				centerXArray;
 	
     public CameraSubsystem() {
 
@@ -96,42 +93,15 @@ public class CameraSubsystem extends TSubsystem {
         }
         
 		// Use alignmentNeeded() to check whether alignment should happen or not
-		
-		centerX = table.getEntry("centerX");
-		try {
-			// Check if anything is working
-			if (centerX != null) {
-				if (centerX.getNumberArray(null) != null) {
-					// Check if only two contours can be seen
-				    // NOTE: The getNumberArray is not guaranteed to 
-				    //       be null here.  The array is updated in 
-				    //       another thread.  This code could throw
-				    //       a null pointer exception.
-					if (centerX.getNumberArray(null).length == 2) {
-						return true;
-					}
-				}
-			}
-		} catch (NullPointerException e) {
-			return false;
+		if (centerXArray != null && centerXArray.length != 2) {
+			return true;
 		}
-
 		return false;
 	}
 
 	public double getTargetAveragesX() {
 		// Check targetsFound() before using
-
-	    // NOTE: This code can be problematic and can cause a null pointer exception.
-	    //       The array that was used in targetsFound is updated in another thread
-	    //       and could have changed by this point in time.  The length of the 
-	    //       array can now be a different length and you are not guaranteed to have
-	    //       exactly two elements.  You want to save the 
-	    //       array and never get a new array until the next time you want to check.
-	    //
-	    //       Move the centerX.getNumberArray() to the updatePeriodic, and always 
-	    //       reference the same array for this loop.
-		return centerX.getNumberArray(null)[0].doubleValue() + centerX.getNumberArray(null)[1].doubleValue() / 2;
+		return centerXArray[0].doubleValue() + centerXArray[1].doubleValue() / 2;
 	}
 
 	public double getRawDegreesOff() {
@@ -139,7 +109,8 @@ public class CameraSubsystem extends TSubsystem {
 		// Check targetsFound() before using
 		// But getDegreesOff() should be used instead
 
-		/* To better visualize the below math, paste the following into https://www.desmos.com/scientific :
+		/* 
+		To better visualize the below math, paste the following into https://www.desmos.com/scientific :
 		\tan^{-1}\left(\frac{\frac{x-320}{320}\left(146.25\right)}{307}\right)
 		x represents the avgX variable
 		- or + is left or right
@@ -180,7 +151,10 @@ public class CameraSubsystem extends TSubsystem {
         
     	SmartDashboard.putString("Camera", curCamera.toString());
     	SmartDashboard.putBoolean("Targets Found", targetsFound());
-        SmartDashboard.putBoolean("On Target", targetsFound() && !alignmentNeeded());
+		SmartDashboard.putBoolean("On Target", targetsFound() && !alignmentNeeded());
+		// Setup the vision targets array so we use the same values each loop
+		centerX = table.getEntry("centerX");
+		centerXArray = centerX.getNumberArray(null);
     }
 
     @Override

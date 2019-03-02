@@ -8,6 +8,7 @@ import com.torontocodingcollective.oi.TStickPosition;
 import com.torontocodingcollective.speedcontroller.TSpeeds;
 import com.torontocodingcollective.subsystem.TGyroDriveSubsystem;
 
+import edu.wpi.first.wpilibj.command.Scheduler;
 import robot.Robot;
 import robot.RobotConst;
 import robot.oi.OI;
@@ -114,46 +115,21 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
         // Check if aligning needs to happen instead, and that two pieces of tape can be seen
         if (oi.getAlignButton() && cameraSubsystem.alignmentNeeded()) {
             // XXX: Has a default timeout of 5 secs, we'll see if we need to change it
-            rotateToHeadingCommand = new TRotateToHeadingCommand(driveSubsystem.getGyroAngle()+cameraSubsystem.getDegreesOff(), oi, driveSubsystem);
-            rotateToHeadingCommand.start();
             // Use the following to start a command through the scheduler
-//            Scheduler.getInstance().add(
-//                    new TRotateToHeadingCommand(
-//                            driveSubsystem.getGyroAngle()+cameraSubsystem.getDegreesOff(), 
-//                            oi, driveSubsystem) );
-        }   
-        // NOTE:
-        // The else here is not required.
-        // The code below will only run one time, and then the 
-        // rotateToHeading will take over on the next loop (20ms).  
-        // A better practice might be to set an explicit motor speed,
-        // and use a return statement in the 
-        // execute loop after starting a new command. 
-        else {
-            // Do not do this: 
-            // NOTE: This line will not run once the rotateToHeading command
-            // is running and cannot be used to stop the rotateToHeading.  
-            // In order to stop the rotateToHeading, you need to put something in the 
-            // rotateToHeading command itself.
-            if (rotateToHeadingCommand != null) {
-                // Stop aligning in case the robot was doing that
-                
-                // NOTE: In order to stop the rotateToHeading command, use the 
-                //       cancel button (Back) on the Driver Controller, which 
-                //       is already coded.
-                //       This code will never run if the rotateToHeadingCommand is running.
-                rotateToHeadingCommand.cancel();
-            }
-            if (operatorControlling && oi.getSlightLeft()) {
-                motorSpeeds.left = 0;
-                motorSpeeds.right = 0.5;  // XXX: Set this value
-            }
-            else if (operatorControlling && oi.getSlightRight()) {
-                motorSpeeds.left = 0.5;  // XXX: Set this value
-                motorSpeeds.right = 0;
-            }
-            driveSubsystem.setSpeed(motorSpeeds);
+            Scheduler.getInstance().add(new TRotateToHeadingCommand(driveSubsystem.getGyroAngle()+cameraSubsystem.getDegreesOff(), oi, driveSubsystem));
+            return;
         }
+
+        // This will only run if the TRotateToHeadingCommand isn't running
+        if (operatorControlling && oi.getSlightLeft()) {
+            motorSpeeds.left = 0;
+            motorSpeeds.right = 0.5;  // XXX: Set this value
+        }
+        else if (operatorControlling && oi.getSlightRight()) {
+            motorSpeeds.left = 0.5;  // XXX: Set this value
+            motorSpeeds.right = 0;
+        }
+        driveSubsystem.setSpeed(motorSpeeds);
     }
 
     @Override
