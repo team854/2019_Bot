@@ -160,9 +160,8 @@ public class CameraSubsystem extends TSubsystem {
 		    if (centerXArray.length == 0) {
 		        centerXArray = null;
 		    }
-		}
-		else {
-		    centerXArray = null;
+		} else {
+			centerXArray = null;
 		}
 		
     	SmartDashboard.putString("Camera", curCamera.toString());
