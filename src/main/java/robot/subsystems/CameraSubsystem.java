@@ -179,6 +179,8 @@ public class CameraSubsystem extends TSubsystem {
     public void updatePeriodic() {
         
     	SmartDashboard.putString("Camera", curCamera.toString());
+    	SmartDashboard.putBoolean("Targets Found", targetsFound());
+        SmartDashboard.putBoolean("On Target", targetsFound() && !alignmentNeeded());
     }
 
     @Override
