@@ -12,107 +12,6 @@
         "tiles": {
           "0,0": {
             "size": [
-              1,
-              2
-            ],
-            "content": {
-              "_type": "PID Controller",
-              "_source0": "network_table:///SmartDashboard/RightPid",
-              "_title": "RightPid"
-            }
-          },
-          "1,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "ComboBox Chooser",
-              "_source0": "network_table:///SmartDashboard/Auto Pattern",
-              "_title": "Auto Pattern"
-            }
-          },
-          "2,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "ComboBox Chooser",
-              "_source0": "network_table:///SmartDashboard/Robot Start",
-              "_title": "Robot Start"
-            }
-          },
-          "3,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "ComboBox Chooser",
-              "_source0": "network_table:///SmartDashboard/Single Stick Side",
-              "_title": "Single Stick Side"
-            }
-          },
-          "4,0": {
-            "size": [
-              1,
-              2
-            ],
-            "content": {
-              "_type": "PID Controller",
-              "_source0": "network_table:///SmartDashboard/Gyro PID",
-              "_title": "Gyro PID"
-            }
-          },
-          "5,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "ComboBox Chooser",
-              "_source0": "network_table:///SmartDashboard/Drive Type",
-              "_title": "Drive Type"
-            }
-          },
-          "6,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Boolean Box",
-              "_source0": "network_table:///SmartDashboard/cargoHeight",
-              "_title": "cargoHeight",
-              "Colors/Color when true": "#7CFC00FF",
-              "Colors/Color when false": "#8B0000FF"
-            }
-          },
-          "7,0": {
-            "size": [
-              1,
-              2
-            ],
-            "content": {
-              "_type": "PID Controller",
-              "_source0": "network_table:///SmartDashboard/LeftPid",
-              "_title": "LeftPid"
-            }
-          },
-          "8,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Left Output",
-              "_title": "Left Output"
-            }
-          },
-          "1,1": {
-            "size": [
               2,
               2
             ],
@@ -125,234 +24,74 @@
               "Visuals/Show tick mark ring": true
             }
           },
-          "3,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Driver Controller",
-              "_title": "Driver Controller"
-            }
-          },
-          "5,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Boolean Box",
-              "_source0": "network_table:///SmartDashboard/Driver rumble",
-              "_title": "Driver rumble",
-              "Colors/Color when true": "#7CFC00FF",
-              "Colors/Color when false": "#8B0000FF"
-            }
-          },
-          "6,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Gyro Steering",
-              "_title": "Gyro Steering"
-            }
-          },
-          "8,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/R Enc Dist",
-              "_title": "R Enc Dist"
-            }
-          },
           "0,2": {
             "size": [
-              1,
+              2,
               1
             ],
             "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Gyro Pitch",
-              "_title": "Gyro Pitch"
+              "_type": "ComboBox Chooser",
+              "_source0": "network_table:///SmartDashboard/Auto Pattern",
+              "_title": "SmartDashboard/Auto Pattern"
             }
           },
-          "3,2": {
+          "0,3": {
             "size": [
-              1,
+              2,
               1
             ],
             "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Gyro Angle",
-              "_title": "Gyro Angle"
+              "_type": "ComboBox Chooser",
+              "_source0": "network_table:///SmartDashboard/Robot Start",
+              "_title": "SmartDashboard/Robot Start"
             }
           },
-          "4,2": {
+          "2,3": {
             "size": [
-              1,
+              2,
               1
             ],
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Camera",
-              "_title": "Camera"
+              "_title": "SmartDashboard/Camera"
             }
           },
-          "5,2": {
+          "2,1": {
             "size": [
-              1,
+              2,
               1
             ],
             "content": {
               "_type": "Boolean Box",
-              "_source0": "network_table:///SmartDashboard/cargoGate",
-              "_title": "cargoGate",
+              "_source0": "network_table:///SmartDashboard/On Target",
+              "_title": "SmartDashboard/On Target",
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
             }
           },
-          "6,2": {
+          "2,0": {
             "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/R Enc Speed",
-              "_title": "R Enc Speed"
-            }
-          },
-          "7,2": {
-            "size": [
-              1,
+              2,
               1
             ],
             "content": {
               "_type": "Boolean Box",
-              "_source0": "network_table:///SmartDashboard/Grabber",
-              "_title": "Grabber",
+              "_source0": "network_table:///SmartDashboard/Targets Found",
+              "_title": "SmartDashboard/Targets Found",
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
             }
           },
-          "8,2": {
+          "2,2": {
             "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/L Enc Speed",
-              "_title": "L Enc Speed"
-            }
-          },
-          "0,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/AvgEnc Speed",
-              "_title": "AvgEnc Speed"
-            }
-          },
-          "1,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Right Output",
-              "_title": "Right Output"
-            }
-          },
-          "2,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/AvgEnc Dist",
-              "_title": "AvgEnc Dist"
-            }
-          },
-          "3,3": {
-            "size": [
-              1,
+              2,
               1
             ],
             "content": {
               "_type": "Boolean Box",
-              "_source0": "network_table:///SmartDashboard/Speed PIDs Active",
-              "_title": "Speed PIDs Active",
-              "Colors/Color when true": "#7CFC00FF",
-              "Colors/Color when false": "#8B0000FF"
-            }
-          },
-          "4,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/L Enc Dist",
-              "_title": "L Enc Dist"
-            }
-          },
-          "5,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Dist Inches",
-              "_title": "Dist Inches"
-            }
-          },
-          "6,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Operator Controller",
-              "_title": "Operator Controller"
-            }
-          },
-          "7,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Boolean Box",
-              "_source0": "network_table:///SmartDashboard/Operator rumble",
-              "_title": "Operator rumble",
-              "Colors/Color when true": "#7CFC00FF",
-              "Colors/Color when false": "#8B0000FF"
-            }
-          },
-          "8,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Boolean Box",
-              "_source0": "network_table:///SmartDashboard/Turbo Enabled",
-              "_title": "Turbo Enabled",
+              "_source0": "network_table:///SmartDashboard/WedgeIsDeployable",
+              "_title": "SmartDashboard/WedgeIsDeployable",
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
             }
@@ -436,6 +175,70 @@
                   "_type": "Text View",
                   "_source0": "network_table:///LiveWindow/Ungrouped/DoubleSolenoid[0,5]/Value",
                   "_title": "LiveWindow/Ungrouped/DoubleSolenoid[0,5]/Value"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/DigitalInput[10]/Value",
+                  "_title": "LiveWindow/Ungrouped/DigitalInput[10]/Value",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/ADIS16448_IMU/Pitch",
+                  "_title": "LiveWindow/Ungrouped/ADIS16448_IMU/Pitch"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/ADIS16448_IMU/Value",
+                  "_title": "LiveWindow/Ungrouped/ADIS16448_IMU/Value"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/ADIS16448_IMU/Roll",
+                  "_title": "LiveWindow/Ungrouped/ADIS16448_IMU/Roll"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/ADIS16448_IMU/Yaw",
+                  "_title": "LiveWindow/Ungrouped/ADIS16448_IMU/Yaw"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/DigitalInput[18]/Value",
+                  "_title": "LiveWindow/Ungrouped/DigitalInput[18]/Value",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/ADIS16448_IMU/AngleX",
+                  "_title": "LiveWindow/Ungrouped/ADIS16448_IMU/AngleX"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/ADIS16448_IMU/AngleY",
+                  "_title": "LiveWindow/Ungrouped/ADIS16448_IMU/AngleY"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/ADIS16448_IMU/AngleZ",
+                  "_title": "LiveWindow/Ungrouped/ADIS16448_IMU/AngleZ"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/ADIS16448_IMU/AccelX",
+                  "_title": "LiveWindow/Ungrouped/ADIS16448_IMU/AccelX"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/ADIS16448_IMU/AccelZ",
+                  "_title": "LiveWindow/Ungrouped/ADIS16448_IMU/AccelZ"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/ADIS16448_IMU/AccelY",
+                  "_title": "LiveWindow/Ungrouped/ADIS16448_IMU/AccelY"
                 }
               ]
             }
@@ -457,7 +260,7 @@
       }
     },
     {
-      "title": "Tab 3",
+      "title": "Drive",
       "autoPopulate": false,
       "autoPopulatePrefix": "",
       "widgetPane": {
@@ -466,23 +269,277 @@
         "hgap": 16.0,
         "vgap": 16.0,
         "tiles": {
-          "1,0": {
+          "0,0": {
             "size": [
-              7,
-              4
+              2,
+              2
             ],
             "content": {
-              "_type": "Camera Stream",
-              "_source0": "camera_server://USB Camera 1",
-              "_title": "USB Camera 1",
-              "Crosshair/Show crosshair": true,
-              "Crosshair/Crosshair color": "#FFFFFFFF",
-              "Controls/Show controls": true,
-              "Controls/Rotation": "NONE",
-              "compression": -1.0,
-              "fps": -1,
-              "imageWidth": -1,
-              "imageHeight": -1
+              "_type": "Gyro",
+              "_source0": "network_table:///SmartDashboard/Gyro",
+              "_title": "SmartDashboard/Gyro",
+              "Visuals/Major tick spacing": 45.0,
+              "Visuals/Starting angle": 180.0,
+              "Visuals/Show tick mark ring": true
+            }
+          },
+          "0,2": {
+            "size": [
+              2,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///SmartDashboard/Gyro PID",
+              "_title": "SmartDashboard/Gyro PID"
+            }
+          },
+          "2,0": {
+            "size": [
+              2,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///SmartDashboard/LeftPid",
+              "_title": "SmartDashboard/LeftPid"
+            }
+          },
+          "4,0": {
+            "size": [
+              2,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///SmartDashboard/RightPid",
+              "_title": "SmartDashboard/RightPid"
+            }
+          },
+          "6,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/AvgEnc Dist",
+              "_title": "SmartDashboard/AvgEnc Dist"
+            }
+          },
+          "6,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/AvgEnc Speed",
+              "_title": "SmartDashboard/AvgEnc Speed"
+            }
+          },
+          "6,1": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Dist Inches",
+              "_title": "SmartDashboard/Dist Inches"
+            }
+          },
+          "6,3": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Driver Controller",
+              "_title": "SmartDashboard/Driver Controller"
+            }
+          },
+          "6,4": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Operator Controller",
+              "_title": "SmartDashboard/Operator Controller"
+            }
+          },
+          "9,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/Driver rumble",
+              "_title": "SmartDashboard/Driver rumble",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "9,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/Operator rumble",
+              "_title": "SmartDashboard/Operator rumble",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "0,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Gyro Steering",
+              "_title": "SmartDashboard/Gyro Steering"
+            }
+          },
+          "2,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/L Enc Dist",
+              "_title": "SmartDashboard/L Enc Dist"
+            }
+          },
+          "2,3": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/L Enc Speed",
+              "_title": "SmartDashboard/L Enc Speed"
+            }
+          },
+          "2,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Left Output",
+              "_title": "SmartDashboard/Left Output"
+            }
+          },
+          "4,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/R Enc Dist",
+              "_title": "SmartDashboard/R Enc Dist"
+            }
+          },
+          "4,3": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/R Enc Speed",
+              "_title": "SmartDashboard/R Enc Speed"
+            }
+          },
+          "4,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Right Output",
+              "_title": "SmartDashboard/Right Output"
+            }
+          },
+          "8,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Stopped Time",
+              "_title": "SmartDashboard/Stopped Time"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Cargo/Hatch",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 200.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "0,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Deployer",
+              "_title": "SmartDashboard/Deployer"
+            }
+          },
+          "0,1": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Grabber",
+              "_title": "SmartDashboard/Grabber"
+            }
+          },
+          "2,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/cargoGate",
+              "_title": "SmartDashboard/cargoGate"
+            }
+          },
+          "2,1": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/cargoHeight",
+              "_title": "SmartDashboard/cargoHeight"
             }
           }
         }
@@ -490,9 +547,9 @@
     }
   ],
   "windowGeometry": {
-    "x": 0.0,
-    "y": 0.0,
-    "width": 1366.0,
-    "height": 728.0
+    "x": 468.79998779296875,
+    "y": 67.19999694824219,
+    "width": 2152.800048828125,
+    "height": 1197.5999755859375
   }
 }
