@@ -15,10 +15,6 @@ import robot.oi.AutoSelector;
  */
 public class AutonomousCommand extends CommandGroup {
 
-    public static final char LEFT   = 'L';
-    public static final char RIGHT  = 'R';
-    public static final char CENTER = 'C';
-
     /**
      * Autonomous Command
      * <p>
