@@ -275,12 +275,11 @@ public class OI extends TOi {
             hatchGrabberToggle.set(true);  // XXX: Assumes true = opened
         }
 
-        
         // Update all SmartDashboard values
         SmartDashboard.putString("Driver Controller", driverController.toString());
         SmartDashboard.putString("Operator Controller", operatorController.toString());
         SmartDashboard.putBoolean("cargoHeightToggle", getDualToggle(TTrigger.RIGHT));
         SmartDashboard.putBoolean("cargoGateToggle", cargoGateToggle.get());
-        SmartDashboard.putString("Camera", getCamera().toString());
+        SmartDashboard.putString("CameraToggle", getCamera().toString());
     }
 }

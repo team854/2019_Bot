@@ -3,6 +3,7 @@ package robot.subsystems;
 import com.torontocodingcollective.subsystem.TSubsystem;
 
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoMode.PixelFormat;
 import edu.wpi.cscore.VideoSink;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.NetworkTable;
@@ -35,13 +36,18 @@ public class CameraSubsystem extends TSubsystem {
     public CameraSubsystem() {
 
         //Uncomment this line to start a USB camera feed
-        frontCamera = CameraServer.getInstance().startAutomaticCapture(1);
-        rearCamera  = CameraServer.getInstance().startAutomaticCapture(0);
+        cameraFeed = CameraServer.getInstance().addServer("Selected Camera");
 
-        cameraFeed = CameraServer.getInstance().getServer();
+        frontCamera = CameraServer.getInstance().startAutomaticCapture("Front Camera", 1);
+        frontCamera.setVideoMode(PixelFormat.kMJPEG, 320, 240, 30);
+        frontCamera.setExposureManual(20);
+        
+        rearCamera  = CameraServer.getInstance().startAutomaticCapture("Rear Camera", 0);
+        rearCamera.setVideoMode(PixelFormat.kMJPEG, 320, 240, 30);
+        rearCamera.setExposureManual(20);
+
+        cameraFeed.setSource(frontCamera);
 		curCamera = Camera.FRONT;
-		
-		
     }
 
     @Override
