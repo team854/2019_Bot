@@ -53,13 +53,40 @@ public class AutonomousCommand extends CommandGroup {
         System.out.println("Robot Position : " + robotStartPosition);
         System.out.println("Pattern        : " + pattern);
 
-        addParallel(new DropHatchCommand());
-        addSequential(new TDriveOnHeadingDistanceCommand(60, 0, .5, 5, true, 
-        Robot.oi, Robot.driveSubsystem) );
-        addSequential(new TDriveOnHeadingDistanceCommand(22, 340, .5, 5, true, 
-        Robot.oi, Robot.driveSubsystem) );
-        addSequential(new TDriveOnHeadingDistanceCommand(40, 0, .5, 5, true, 
-        Robot.oi, Robot.driveSubsystem) );
-        return;
+        switch (pattern) {
+        
+        case AutoSelector.PATTERN_CARGO_HATCH: 
+        		
+        	switch (robotStartPosition) {
+        	
+        	case AutoSelector.ROBOT_LEFT:
+        		
+            	addParallel(new DropHatchCommand());
+                addSequential(new TDriveOnHeadingDistanceCommand(60, 0, .5, 5, true, 
+                Robot.oi, Robot.driveSubsystem) );
+                addSequential(new TDriveOnHeadingDistanceCommand(22, 340, .5, 5, true, 
+                Robot.oi, Robot.driveSubsystem) );
+                addSequential(new TDriveOnHeadingDistanceCommand(40, 0, .5, 5, true, 
+                Robot.oi, Robot.driveSubsystem) );
+
+                break;
+                
+        	case AutoSelector.ROBOT_RIGHT:
+        		
+        		// TODO: Add auto code
+        		break;
+        		
+        	case AutoSelector.ROBOT_CENTER:
+        		
+        		// TODO: Add auto code
+
+        		break;
+        	}
+        		
+        	break;
+        		
+        case AutoSelector.PATTERN_NONE:
+        	break;
+        }
     }
 }
