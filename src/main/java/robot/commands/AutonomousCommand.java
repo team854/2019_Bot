@@ -55,7 +55,7 @@ public class AutonomousCommand extends CommandGroup {
         		
         	switch (robotStartPosition) {
         	
-        	case AutoSelector.ROBOT_LEFT:
+        	case AutoSelector.ROBOT_RIGHT:
         		
             	addParallel(new DropHatchCommand());
                 addSequential(new TDriveOnHeadingDistanceCommand(60, 0, .5, 5, true, 
@@ -67,7 +67,7 @@ public class AutonomousCommand extends CommandGroup {
 
                 break;
                 
-        	case AutoSelector.ROBOT_RIGHT:
+        	case AutoSelector.ROBOT_LEFT:
         		
         		// TODO: Add auto code
         		break;
