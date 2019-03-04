@@ -37,6 +37,16 @@ public class TUltrasonicSensor {
         b2 = 40.0 - (m2 * v40);
     }
 
+    /**
+     * Get the underlying voltage for the ultrasonic distance sensor.
+     * <p>
+     * This voltage will help with calibration of the sensor.
+     * @return double Raw voltage of the sensor.
+     */
+    public double getRawVoltage() {
+    	return analogInput.getVoltage();
+    }
+    
     /***
      * Get the distance in inches from the back face of the Ultrasonic sensor
      * 

@@ -59,6 +59,11 @@ public class RobotMap {
 	public static final boolean                 GYRO_ISINVERTED;
 
 	// ******************************************
+	// Ultrasonic Ports
+	// ******************************************
+	public static final int                     ULTRASONIC_ANALOG_PORT;
+
+	// ******************************************
 	// Pneumatics Ports
 	// ******************************************
 	public static final int                     HATCH_GRABBER_PORT;
@@ -130,6 +135,8 @@ public class RobotMap {
 			LEFT_DRIVE_DIO_ENCODER_PORT1                      = 0;
 			RIGHT_DRIVE_DIO_ENCODER_PORT1                     = 1;
 
+			ULTRASONIC_ANALOG_PORT                            = 1;
+			
 			break;
 
 		case RobotConst.TEST_ROBOT:
@@ -184,6 +191,8 @@ public class RobotMap {
 			RIGHT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_TYPE    = TCanSpeedControllerType.VICTOR_SPX;
 			RIGHT_DRIVE_CAN_MOTOR_ISINVERTED                  = TConst.INVERTED;
 
+			ULTRASONIC_ANALOG_PORT                            = 1;
+			
 			break;
 		}
 	}

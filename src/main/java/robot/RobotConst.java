@@ -25,9 +25,12 @@ public class RobotConst {
     // *********************************************************
     // For Ultrasonic Calibration
     // *********************************************************
-    public static final double  ULTRASONIC_VOLTAGE_20IN       = 0.191;
-    public static final double  ULTRASONIC_VOLTAGE_40IN       = 0.383;
-    public static final double  ULTRASONIC_VOLTAGE_80IN       = 0.764;
+    public static final double  ULTRASONIC_VOLTAGE_20IN;
+    public static final double  ULTRASONIC_VOLTAGE_40IN;
+    public static final double  ULTRASONIC_VOLTAGE_80IN;
+    
+    /** Distance behind the front bumper */
+    public static final double  ULTRASONIC_RECESS; 
 
     // Operator speed limitation - as a division of the motor speed
     public static final double  OPERATOR_SPEED_DIVISOR = 2.5;
@@ -70,6 +73,11 @@ public class RobotConst {
 
             ENCODER_COUNTS_PER_INCH = 54;
 
+            ULTRASONIC_VOLTAGE_20IN       = 0.191;
+            ULTRASONIC_VOLTAGE_40IN       = 0.383;
+            ULTRASONIC_VOLTAGE_80IN       = 0.764;
+            ULTRASONIC_RECESS             = 8.0;
+            
             break;
             
         case TEST_ROBOT:
@@ -93,6 +101,11 @@ public class RobotConst {
 
             ENCODER_COUNTS_PER_INCH = 28.52;
 
+            ULTRASONIC_VOLTAGE_20IN       = 0.18;
+            ULTRASONIC_VOLTAGE_40IN       = 0.38;
+            ULTRASONIC_VOLTAGE_80IN       = 0.76;
+            ULTRASONIC_RECESS             = 8.0;
+            
             break;
         }
 
