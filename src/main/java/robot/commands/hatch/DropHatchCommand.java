@@ -29,6 +29,9 @@ public class DropHatchCommand extends TSafeCommand {
     
     @Override
     protected void initialize() {
+    	// Switch the state of the OI Deployer toggle.
+    	// This step is wrapped in a command so that it can 
+    	// be called in a command group
     	Robot.oi.setDeployerState(true);
     }
 
@@ -38,13 +41,14 @@ public class DropHatchCommand extends TSafeCommand {
 
     @Override
     protected boolean isFinished() {
-        //Default Commands should never finish(end).
+    	// Always end after switching the state of the OI deployer toggle
         return true;
     }
 
     @Override
     protected void end() {
-
+    	// Call the deploy action in the hatch subsystem.
+    	Robot.hatchSubsystem.setDeployerState(true);
     }
     
 }
