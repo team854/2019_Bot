@@ -24,14 +24,18 @@ import robot.commands.hatch.DropHatchCommand;
  */
 public class AutoAlignAndDrive extends CommandGroup {
 
-    public AutoAlignAndDrive(double heading, double distance) {
+    public AutoAlignAndDrive(double heading, double distance, double speed) {
 
-    	addParallel(new DropHatchCommand());
-    	
+    	// Rotate to the required heading.  Allow only 0.5 seconds to get there.
+    	// If this is used with vision targeting, it should not take more than 0.5 seconds
+    	// to align.
     	addSequential(new TRotateToHeadingCommand(heading, 0.5,
                 Robot.oi, Robot.driveSubsystem) );
     
-    	addSequential(new TDriveOnHeadingDistanceCommand(distance, heading, .3, 5, true, 
+    	// Drive on the heading for the requested distance at the requested speed
+    	// The command shoud time out in about 2 seconds if the distance is not 
+    	// reached.
+    	addSequential(new TDriveOnHeadingDistanceCommand(distance, heading, speed, 2, true, 
                 Robot.oi, Robot.driveSubsystem) );
 
     }
