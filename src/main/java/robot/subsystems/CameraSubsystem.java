@@ -35,17 +35,41 @@ public class CameraSubsystem extends TSubsystem {
 	
     public CameraSubsystem() {
 
-        //Uncomment this line to start a USB camera feed
+    	// The cameraFeed is the switchable camera.
+    	// Since it is added to the CameraServer first, it gets the IP address:
+    	// http://roborio-team-frc.local:1181/?action=stream
+    	//
+    	// Use the above IP address to display the switching feed in the 
+    	// SmartDashboard by adding an MJPEG Stream viewer at that URL.
+    	//
+    	// In GRIP, the selected camera source can be used for vision tracking
+    	// by using an IP camera at the above URL.
+    	//
+    	// NOTE: There is no way to display the switched view in the current
+    	//       Shuffleboard because the "Selected Camera" does not appear
+    	//       as a camera source in the Shuffleboard.
         cameraFeed = CameraServer.getInstance().addServer("Selected Camera");
 
+        // Start the front camera.
+        // The URL of the front camera will be 
+    	// http://roborio-team-frc.local:1182/?action=stream
+        //
+        // NOTE:  If there are no listeners on the 1182 port, the Camera Server will
+        //        shift the port number of the frontCamera to 1181 whenever it is selected
+        //        as the source, and will return to port 1182 when the selection is set to 
+        //        another camera.
         frontCamera = CameraServer.getInstance().startAutomaticCapture("Front Camera", 1);
         frontCamera.setVideoMode(PixelFormat.kMJPEG, 320, 240, 30);
         frontCamera.setExposureManual(20);
         
+        // Start the Rear camera.
+        // The URL of the front camera will be 
+    	// http://roborio-team-frc.local:1183/?action=stream
         rearCamera  = CameraServer.getInstance().startAutomaticCapture("Rear Camera", 0);
         rearCamera.setVideoMode(PixelFormat.kMJPEG, 320, 240, 30);
         rearCamera.setExposureManual(20);
 
+        // Set the starting feed to the front camera.
         cameraFeed.setSource(frontCamera);
 		curCamera = Camera.FRONT;
     }
