@@ -5,7 +5,6 @@ import com.torontocodingcollective.commands.gyroDrive.TRotateToHeadingCommand;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import robot.Robot;
-import robot.commands.hatch.DropHatchCommand;
 
 /**
  * AutonomousCommand
