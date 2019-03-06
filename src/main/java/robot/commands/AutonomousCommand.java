@@ -58,11 +58,11 @@ public class AutonomousCommand extends CommandGroup {
         	case AutoSelector.ROBOT_RIGHT:
         		
             	addParallel(new DropHatchCommand());
-                addSequential(new TDriveOnHeadingDistanceCommand(60, 0, .5, 5, true, 
-                Robot.oi, Robot.driveSubsystem) );
-                addSequential(new TDriveOnHeadingDistanceCommand(22, 340, .5, 5, true, 
-                Robot.oi, Robot.driveSubsystem) );
                 addSequential(new TDriveOnHeadingDistanceCommand(40, 0, .5, 5, true, 
+                Robot.oi, Robot.driveSubsystem) );
+                addSequential(new TDriveOnHeadingDistanceCommand(30, 340, .5, 5, true, 
+                Robot.oi, Robot.driveSubsystem) );
+                addSequential(new TDriveOnHeadingDistanceCommand(50, 355, .5, 5, true, 
                 Robot.oi, Robot.driveSubsystem) );
 
                 break;

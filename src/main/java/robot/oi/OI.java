@@ -51,6 +51,7 @@ public class OI extends TOi {
     private boolean         cargoHeightOverride         = false;
     private boolean         cargoHeightOverrideState    = false;
     private TToggle         cameraToggle                = new TToggle();
+    private TToggle         cargoHeightToggle           = new TToggle();
 
     private DriveSelector   driveSelector               = new DriveSelector();
 
@@ -157,18 +158,11 @@ public class OI extends TOi {
      *****************************************************************************************/
     public boolean getHeightState() {
         // Press and hold from the controller
-        
-        // Allow software to override what the controller(s) says
-        if (cargoHeightOverride) {
-            return cargoHeightOverrideState;
-        }
-        return (driverController.getButton(TTrigger.RIGHT) || operatorController.getButton(TButton.Y));
+    	return cargoHeightToggle.get();
     }
 
-    public void overrideHeightState(boolean state) {
-        // Overrides whatever the controllers are doing
-        cargoHeightOverride = true;
-        cargoHeightOverrideState = state;
+    public void setHeightState(boolean state) {
+    	cargoHeightToggle.set(state);
     }
 
     public void releaseHeightState() {
@@ -184,6 +178,10 @@ public class OI extends TOi {
     	//     recommend not using a toggle.  The gate should
     	//     always be closed when not shooting.
         return cargoGateToggle.get();
+    }
+
+    public void setGateState(boolean state) {
+        cargoGateToggle.set(state);
     }
 
     /* ***************************************************************************************
@@ -245,6 +243,8 @@ public class OI extends TOi {
         cargoGateToggle.set(false);
         // True is front
         cameraToggle.set(true);
+        // Cargo Height is down
+        cargoHeightToggle.set(false);
     }
 
     @Override
@@ -265,6 +265,7 @@ public class OI extends TOi {
         cargoGateToggle.updatePeriodic(driverController.getButton(TTrigger.LEFT) 
                                             || operatorController.getButton(TButton.X));
         cameraToggle.updatePeriodic(getDualToggle(TButton.CIRCLE));
+        cargoHeightToggle.updatePeriodic(operatorController.getButton(TButton.Y));
         // Update hatch grabber toggle by looking at two buttons
         // Will not change if both buttons are pressed
         // If only Close button pressed
@@ -278,7 +279,7 @@ public class OI extends TOi {
         // Update all SmartDashboard values
         SmartDashboard.putString("Driver Controller", driverController.toString());
         SmartDashboard.putString("Operator Controller", operatorController.toString());
-        SmartDashboard.putBoolean("cargoHeightToggle", getDualToggle(TTrigger.RIGHT));
+        SmartDashboard.putBoolean("cargoHeightToggle", cargoHeightToggle.get());
         SmartDashboard.putBoolean("cargoGateToggle", cargoGateToggle.get());
         SmartDashboard.putString("CameraToggle", getCamera().toString());
     }

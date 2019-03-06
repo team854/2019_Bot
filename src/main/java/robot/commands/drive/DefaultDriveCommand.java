@@ -74,6 +74,11 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             operatorControlling = false;
         }
 
+        // If the operator is controlling, reset the cargo state
+        if (!operatorControlling) {
+        	Robot.oi.setGateState(false);
+        	Robot.oi.setHeightState(false);
+        }
         // Drive according to the type of drive selected in the
         // operator input.
         TStick singleStickSide = oi.getSelectedSingleStickSide();

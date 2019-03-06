@@ -34,7 +34,7 @@ public class DefaultWedgeCommand extends TSafeCommand {
         // Button pressed, wedge is deployable, and we aren't already deploying
         if (Robot.oi.getWedgeState() && Robot.wedgeSubsystem.isDeployable() && Robot.wedgeSubsystem.getWedgeSpeed() == 0) {
             // Bring cargo up, so the wedge doesn't hit
-            Robot.oi.overrideHeightState(true);  // XXX: Assumes up is true
+            Robot.oi.setHeightState(true);  // XXX: Assumes up is true
             Robot.wedgeSubsystem.setWedgeSpeed(1);
             startTime = timeSinceInitialized();  // What time did we start doing this?
         }
@@ -43,7 +43,7 @@ public class DefaultWedgeCommand extends TSafeCommand {
         else if (Robot.wedgeSubsystem.getWedgeSpeed() == 1 && timeSinceInitialized()-startTime >= 0.5) {
             Robot.wedgeSubsystem.setWedgeSpeed(0);
             // Bring the cargo back down
-            Robot.oi.overrideHeightState(false);
+            Robot.oi.setHeightState(false);
             Robot.oi.releaseHeightState();
             startTime = -1;
         }

@@ -457,6 +457,17 @@
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
             }
+          },
+          "5,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Gyro Pitch",
+              "_title": "Gyro Pitch"
+            }
           }
         }
       }
@@ -1046,7 +1057,7 @@
   "windowGeometry": {
     "x": 0.0,
     "y": 0.0,
-    "width": 1478.4000244140625,
-    "height": 866.4000244140625
+    "width": 701.0,
+    "height": 867.0
   }
 }

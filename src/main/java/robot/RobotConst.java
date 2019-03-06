@@ -47,7 +47,7 @@ public class RobotConst {
 
     // The TorontoCodingCollective framework was developed to run on different
     // robots through the use of multiple mappings and constants.
-    public static final String robot = TEST_ROBOT;
+    public static final String robot = PROD_ROBOT;
 
     static {
 
@@ -76,7 +76,7 @@ public class RobotConst {
             ULTRASONIC_VOLTAGE_20IN       = 0.18;
             ULTRASONIC_VOLTAGE_40IN       = 0.38;
             ULTRASONIC_VOLTAGE_80IN       = 0.76;
-            ULTRASONIC_RECESS             = 8.0;
+            ULTRASONIC_RECESS             = 4.0;
             
             break;
             
