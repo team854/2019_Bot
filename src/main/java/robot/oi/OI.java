@@ -52,9 +52,22 @@ public class OI extends TOi {
     private boolean         cargoHeightOverrideState    = false;
     private TToggle         cameraToggle                = new TToggle();
     private TToggle         cargoHeightToggle           = new TToggle();
+    private TToggle         autoAlignToggle             = new TToggle();
 
     private DriveSelector   driveSelector               = new DriveSelector();
 
+    /* ***************************************************************************************
+     * Rumble commands
+     *****************************************************************************************/
+    public void setOperatorRumble(boolean on) {
+    	if (on) {
+    		operatorController.setRumble(1.0);
+    	}
+    	else {
+    		operatorController.setRumble(0);
+    	}
+    }
+    
     /* ***************************************************************************************
      * Drive Subsystem commands
      *****************************************************************************************/
@@ -132,6 +145,52 @@ public class OI extends TOi {
         speedPidToggle.set(state);
     }
 
+    // Look at Driver and Operator toggles
+    // If both are pressed, only toggle once
+    private boolean getDualToggle(TButton button) {
+        return (driverController.getButton(button) || operatorController.getButton(button));
+    }
+
+    private boolean getDualToggle(TTrigger trigger) {
+        return (driverController.getButton(trigger) || operatorController.getButton(trigger));
+    }
+
+    public boolean isDriverActive() {
+        return driverController.isUserActive();
+    }
+
+    public boolean isDriverDriving() {
+        return driverController.isStickActive(TStick.LEFT) || driverController.isStickActive(TStick.RIGHT);
+    }
+
+    public boolean isOperatorDriving() {
+        return operatorController.isStickActive(TStick.LEFT) || operatorController.isStickActive(TStick.RIGHT);
+    }
+
+    public boolean isOperatorActive() {
+        return operatorController.isUserActive();
+    }
+
+    public boolean getSlightLeft() {
+        return operatorController.getButton(TTrigger.LEFT);
+    }
+
+    public boolean getSlightRight() {
+        return operatorController.getButton(TTrigger.RIGHT);
+    }    
+    
+    public boolean getAutoAlignSelected() {
+    	return autoAlignToggle.get();
+    }
+    
+    public void disableAutoAlign() {
+    	autoAlignToggle.set(false);
+    }
+
+    public boolean getWedgeState() {
+        return driverController.getButton(TButton.TRIANGLE);
+    }
+
     /* ***************************************************************************************
      * Hatch Subsystem commands
      *****************************************************************************************/
@@ -194,41 +253,6 @@ public class OI extends TOi {
     	return Camera.REAR;
     }
 
-    // Look at Driver and Operator toggles
-    // If both are pressed, only toggle once
-    private boolean getDualToggle(TButton button) {
-        return (driverController.getButton(button) || operatorController.getButton(button));
-    }
-
-    private boolean getDualToggle(TTrigger trigger) {
-        return (driverController.getButton(trigger) || operatorController.getButton(trigger));
-    }
-
-    public boolean getAlignButton() {
-        return (driverController.getButton(TButton.SQUARE) || operatorController.getButton(TStick.RIGHT));
-    }
-    
-
-    public boolean isDriverActive() {
-        return driverController.isUserActive();
-    }
-
-    public boolean isOperatorActive() {
-        return operatorController.isUserActive();
-    }
-
-    public boolean getWedgeState() {
-        return driverController.getButton(TButton.TRIANGLE);
-    }
-
-    public boolean getSlightLeft() {
-        return operatorController.getButton(TTrigger.LEFT);
-    }
-
-    public boolean getSlightRight() {
-        return operatorController.getButton(TTrigger.RIGHT);
-    }    
-
     /* ***************************************************************************************
      * OI Init and Periodic 
      *****************************************************************************************/
@@ -245,6 +269,8 @@ public class OI extends TOi {
         cameraToggle.set(true);
         // Cargo Height is down
         cargoHeightToggle.set(false);
+        // Auto Align is set to false - the robot cannot move by default
+        autoAlignToggle.set(false);
     }
 
     @Override
@@ -257,6 +283,7 @@ public class OI extends TOi {
         // Update all Toggles
         compressorToggle.updatePeriodic();
         speedPidToggle.updatePeriodic();
+        autoAlignToggle.updatePeriodic(operatorController.getButton(TStick.RIGHT));
 
         // ********************
         // Update dual toggles

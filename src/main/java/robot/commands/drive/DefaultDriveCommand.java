@@ -27,6 +27,7 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
     CameraSubsystem             cameraSubsystem     = Robot.cameraSubsystem;
     boolean                     operatorControlling;
     TRotateToHeadingCommand     rotateToHeadingCommand = null;
+    double                      driverControllingStartTime = -1;
 
     public DefaultDriveCommand() {
         // The drive logic will be handled by the TDefaultDriveCommand
@@ -74,11 +75,24 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             operatorControlling = false;
         }
 
-        // If the operator is controlling, reset the cargo state
+        // If the driver is controlling, reset the cargo state after one second
         if (!operatorControlling) {
-        	Robot.oi.setGateState(false);
-        	Robot.oi.setHeightState(false);
+        	
+        	if (driverControllingStartTime < 0) {
+        		driverControllingStartTime = timeSinceInitialized();
+        	}
+        	// Reset the gate height and flap if the driver has been
+        	// controlling for more than 2 seconds.
+        	if (timeSinceInitialized() - driverControllingStartTime > 2.0) {
+        		Robot.oi.setGateState(false);
+        		Robot.oi.setHeightState(false);
+        	}
         }
+        else {
+        	// If the driver is not controlling reset the timer.
+        	driverControllingStartTime = -1;
+        }
+        
         // Drive according to the type of drive selected in the
         // operator input.
         TStick singleStickSide = oi.getSelectedSingleStickSide();
@@ -118,7 +132,7 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
         }
         
         // Check if aligning needs to happen instead, and that two pieces of tape can be seen
-        if (oi.getAlignButton() && cameraSubsystem.alignmentNeeded()) {
+        if (oi.getAutoAlignSelected() && cameraSubsystem.alignmentNeeded()) {
             // Calculate required rotate heading and make use it's >=0 and < 360
             double heading = driveSubsystem.getGyroAngle() + cameraSubsystem.getDegreesOff();
             heading = heading % 360;
@@ -127,7 +141,7 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             }
             // XXX: Has a default timeout of 5 secs, we'll see if we need to change it
             // Use the following to start a command through the scheduler
-            Scheduler.getInstance().add(new TRotateToHeadingCommand(heading, oi, driveSubsystem));
+            Scheduler.getInstance().add(new AutoAlignCommand(heading));
             return;
         }
 
