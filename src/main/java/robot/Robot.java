@@ -140,6 +140,7 @@ public class Robot extends IterativeRobot {
 
         Robot.oi.setSpeedPidEnabled(false);
         driveSubsystem.disableSpeedPids();
+        oi.disableAutoAlign();
 
     }
 
