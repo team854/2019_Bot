@@ -52,7 +52,6 @@ public class OI extends TOi {
     private boolean         cargoHeightOverrideState    = false;
     private TToggle         cameraToggle                = new TToggle();
     private TToggle         cargoHeightToggle           = new TToggle();
-    private TToggle         autoAlignToggle             = new TToggle();
 
     private DriveSelector   driveSelector               = new DriveSelector();
 
@@ -180,11 +179,7 @@ public class OI extends TOi {
     }    
     
     public boolean getAutoAlignSelected() {
-    	return autoAlignToggle.get();
-    }
-    
-    public void disableAutoAlign() {
-    	autoAlignToggle.set(false);
+    	return operatorController.getButton(TStick.RIGHT);
     }
 
     public boolean getWedgeState() {
@@ -269,8 +264,6 @@ public class OI extends TOi {
         cameraToggle.set(true);
         // Cargo Height is down
         cargoHeightToggle.set(false);
-        // Auto Align is set to false - the robot cannot move by default
-        autoAlignToggle.set(false);
     }
 
     @Override
@@ -283,7 +276,6 @@ public class OI extends TOi {
         // Update all Toggles
         compressorToggle.updatePeriodic();
         speedPidToggle.updatePeriodic();
-        autoAlignToggle.updatePeriodic(operatorController.getButton(TStick.RIGHT));
 
         // ********************
         // Update dual toggles

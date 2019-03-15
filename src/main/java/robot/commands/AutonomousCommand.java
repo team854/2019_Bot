@@ -67,9 +67,16 @@ public class AutonomousCommand extends CommandGroup {
 
                 break;
                 
-        	case AutoSelector.ROBOT_LEFT:
-        		
-        		// TODO: Add auto code
+            case AutoSelector.ROBOT_LEFT:
+            
+                addParallel(new DropHatchCommand());
+                addSequential(new TDriveOnHeadingDistanceCommand(40, 0, .5, 5, true, 
+                Robot.oi, Robot.driveSubsystem) );
+                addSequential(new TDriveOnHeadingDistanceCommand(30, 20, .5, 5, true, 
+                Robot.oi, Robot.driveSubsystem) );
+                addSequential(new TDriveOnHeadingDistanceCommand(50, 5, .5, 5, true, 
+                Robot.oi, Robot.driveSubsystem) );
+            
         		break;
         		
         	case AutoSelector.ROBOT_CENTER:

@@ -198,7 +198,8 @@ public class CameraSubsystem extends TSubsystem {
 		
     	SmartDashboard.putString("Camera", curCamera.toString());
     	SmartDashboard.putBoolean("Targets Found", targetsFound());
-		SmartDashboard.putBoolean("On Target", targetsFound() && !alignmentNeeded());
+        SmartDashboard.putBoolean("On Target", targetsFound() && !alignmentNeeded());
+        SmartDashboard.putNumber("Degrees Off", getDegreesOff());
     }
 
     @Override

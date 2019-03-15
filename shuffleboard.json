@@ -468,6 +468,17 @@
               "_source0": "network_table:///SmartDashboard/Gyro Pitch",
               "_title": "Gyro Pitch"
             }
+          },
+          "6,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Degrees Off",
+              "_title": "Degrees Off"
+            }
           }
         }
       }
@@ -1000,7 +1011,7 @@
               "_title": "SmartDashboard/Robot Start"
             }
           },
-          "2,0": {
+          "0,4": {
             "size": [
               2,
               1
@@ -1013,7 +1024,7 @@
               "Colors/Color when false": "#8B0000FF"
             }
           },
-          "2,1": {
+          "0,5": {
             "size": [
               2,
               1
@@ -1025,30 +1036,6 @@
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
             }
-          },
-          "2,2": {
-            "size": [
-              2,
-              1
-            ],
-            "content": {
-              "_type": "Boolean Box",
-              "_source0": "network_table:///SmartDashboard/WedgeIsDeployable",
-              "_title": "SmartDashboard/WedgeIsDeployable",
-              "Colors/Color when true": "#7CFC00FF",
-              "Colors/Color when false": "#8B0000FF"
-            }
-          },
-          "2,3": {
-            "size": [
-              2,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Camera",
-              "_title": "SmartDashboard/Camera"
-            }
           }
         }
       }
@@ -1057,7 +1044,7 @@
   "windowGeometry": {
     "x": 0.0,
     "y": 0.0,
-    "width": 701.0,
-    "height": 867.0
+    "width": 640.0,
+    "height": 848.0
   }
 }

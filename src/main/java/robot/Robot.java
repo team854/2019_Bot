@@ -39,7 +39,7 @@ public class Robot extends IterativeRobot {
     public static final CameraSubsystem     cameraSubsystem     = new CameraSubsystem();
     public static final WedgeSubsystem      wedgeSubsystem      = new WedgeSubsystem();
 
-    public static OI                        oi;
+    public static OI                        oi                  = new OI();
 
     private Command                         autoCommand;
 
@@ -58,10 +58,8 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void robotInit() {
-
-        oi = new OI();
         oi.init();
-
+        
         for (TSubsystem subsystem : subsystemLs) {
             subsystem.init();
         }
@@ -110,6 +108,12 @@ public class Robot extends IterativeRobot {
         Robot.driveSubsystem.setGyroAngle(0);
         Robot.driveSubsystem.resetEncoders();
 
+        // Set up things to match OI init
+        Robot.hatchSubsystem.setGrabberState(true);
+        Robot.hatchSubsystem.setDeployerState(true);
+        Robot.cargoSubsystem.setGateState(false);
+        Robot.cargoSubsystem.setHeightState(false);
+
         // Initialize the robot command after initializing the game data
         // because the game data will be used in the auto command.
         autoCommand = new AutonomousCommand();
@@ -140,8 +144,6 @@ public class Robot extends IterativeRobot {
 
         Robot.oi.setSpeedPidEnabled(false);
         driveSubsystem.disableSpeedPids();
-        oi.disableAutoAlign();
-
     }
 
     /**
