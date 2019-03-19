@@ -153,7 +153,7 @@ public class CameraSubsystem extends TSubsystem {
 		*/
 
 		// Last multiplication part is a hack
-		return Math.toDegrees(Math.atan((((getTargetAveragesX()-320)/320) * 146.25) / 307)) ;//* 0.75;
+		return Math.toDegrees(Math.atan((((getTargetAveragesX()-320)/320) * 146.25) / 307));
 	}
 
 	public double getDegreesOff() {
