@@ -479,6 +479,19 @@
               "_source0": "network_table:///SmartDashboard/Degrees Off",
               "_title": "Degrees Off"
             }
+          },
+          "7,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/AutoAlignToggle",
+              "_title": "AutoAlignToggle",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
           }
         }
       }
@@ -1011,7 +1024,7 @@
               "_title": "SmartDashboard/Robot Start"
             }
           },
-          "0,4": {
+          "0,5": {
             "size": [
               2,
               1
@@ -1024,7 +1037,7 @@
               "Colors/Color when false": "#8B0000FF"
             }
           },
-          "0,5": {
+          "2,0": {
             "size": [
               2,
               1
@@ -1036,15 +1049,28 @@
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
             }
+          },
+          "0,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/AutoAlignToggle",
+              "_title": "SmartDashboard/AutoAlignToggle",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
           }
         }
       }
     }
   ],
   "windowGeometry": {
-    "x": 0.0,
-    "y": 0.0,
-    "width": 640.0,
-    "height": 848.0
+    "x": -8.0,
+    "y": -8.0,
+    "width": 1936.0,
+    "height": 1056.0
   }
 }

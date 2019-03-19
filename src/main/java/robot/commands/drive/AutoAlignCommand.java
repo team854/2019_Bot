@@ -31,6 +31,12 @@ public class AutoAlignCommand extends TRotateToHeadingCommand {
     
     @Override
     protected void initialize() {
+        // Only print the command start message
+        // if this command was not subclassed
+        if (getCommandName().equals(COMMAND_NAME)) {
+            logMessage(getParmDesc() + " starting");
+        }
+
     	super.initialize();
     	// Start the operator rumble
     	Robot.oi.setOperatorRumble(true);
@@ -44,15 +50,18 @@ public class AutoAlignCommand extends TRotateToHeadingCommand {
     protected boolean isFinished() {
     	
     	if (super.isFinished()) {
+            System.out.println("Finished due to TRotateToHeadingCommand");
     		return true;
     	}
     	
-    	// Always interrupt if the driver or operator joysticks are active
+        // Always interrupt if the driver or operator joysticks are active
+        // XXX: Only check operator left stick because the right one might be moving from pressing in
     	if (Robot.oi.isDriverDriving() || Robot.oi.isOperatorDriving()) {
+            System.out.println("Finished due to Driver or Operator movement");
     		return true;
     	}
     	
-        return true;
+        return false;
     }
 
     @Override

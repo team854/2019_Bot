@@ -55,6 +55,8 @@ public class OI extends TOi {
 
     private DriveSelector   driveSelector               = new DriveSelector();
 
+    private TToggle         autoAlignToggle             = new TToggle();
+
     /* ***************************************************************************************
      * Rumble commands
      *****************************************************************************************/
@@ -166,6 +168,10 @@ public class OI extends TOi {
         return operatorController.isStickActive(TStick.LEFT) || operatorController.isStickActive(TStick.RIGHT);
     }
 
+    public boolean isOperatorLeftStickActive() {
+        return operatorController.isStickActive(TStick.LEFT);
+    }
+
     public boolean isOperatorActive() {
         return operatorController.isUserActive();
     }
@@ -179,7 +185,11 @@ public class OI extends TOi {
     }    
     
     public boolean getAutoAlignSelected() {
-    	return operatorController.getButton(TStick.RIGHT);
+    	return autoAlignToggle.get();
+    }
+
+    public void disableAutoAlign() {
+        autoAlignToggle.set(false);
     }
 
     public boolean getWedgeState() {
@@ -264,6 +274,8 @@ public class OI extends TOi {
         cameraToggle.set(true);
         // Cargo Height is down
         cargoHeightToggle.set(false);
+        // Auto Align is set to false - the robot cannot move by default
+        autoAlignToggle.set(false);
     }
 
     @Override
@@ -276,6 +288,8 @@ public class OI extends TOi {
         // Update all Toggles
         compressorToggle.updatePeriodic();
         speedPidToggle.updatePeriodic();
+
+        autoAlignToggle.updatePeriodic(operatorController.getButton(TStick.RIGHT));
 
         // ********************
         // Update dual toggles
@@ -301,5 +315,6 @@ public class OI extends TOi {
         SmartDashboard.putBoolean("cargoHeightToggle", cargoHeightToggle.get());
         SmartDashboard.putBoolean("cargoGateToggle", cargoGateToggle.get());
         SmartDashboard.putString("CameraToggle", getCamera().toString());
+        SmartDashboard.putBoolean("AutoAlignToggle", autoAlignToggle.get());
     }
 }

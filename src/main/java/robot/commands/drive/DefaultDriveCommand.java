@@ -133,7 +133,9 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
         
         // Check if aligning needs to happen instead, and that two pieces of tape can be seen
         // It also makes sure that no one is driving at the time
+        // XXX: Only check operator left stick because the right one might be moving from pressing in
         if (oi.getAutoAlignSelected() && cameraSubsystem.alignmentNeeded() && !(oi.isDriverDriving() || oi.isOperatorDriving())) {
+            System.out.println("*** Got inside autoalign if ***");
             // Calculate required rotate heading and make use it's >=0 and < 360
             double heading = driveSubsystem.getGyroAngle() + cameraSubsystem.getDegreesOff();
             heading = heading % 360;
@@ -142,6 +144,7 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             }
             // XXX: Has a default timeout of 5 secs, we'll see if we need to change it
             // Use the following to start a command through the scheduler
+            System.out.println("*** "+heading+" ***");
             Scheduler.getInstance().add(new AutoAlignCommand(heading));
         }
 

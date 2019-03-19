@@ -152,8 +152,8 @@ public class CameraSubsystem extends TSubsystem {
 		Microsoft Skype LifeCam HD 3000
 		*/
 
-		// Last division part is a hack
-		return Math.toDegrees(Math.atan((((getTargetAveragesX()-320)/320) * 146.25) / 307)) * 0.75;
+		// Last multiplication part is a hack
+		return Math.toDegrees(Math.atan((((getTargetAveragesX()-320)/320) * 146.25) / 307)) ;//* 0.75;
 	}
 
 	public double getDegreesOff() {
