@@ -1058,7 +1058,7 @@
             "content": {
               "_type": "Boolean Box",
               "_source0": "network_table:///SmartDashboard/AutoAlignToggle",
-              "_title": "SmartDashboard/AutoAlignToggle",
+              "_title": "/SmartDashboard/AutoAlignToggle",
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
             }
