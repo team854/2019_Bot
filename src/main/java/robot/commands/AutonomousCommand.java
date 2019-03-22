@@ -4,6 +4,7 @@ import com.torontocodingcollective.commands.gyroDrive.TDriveOnHeadingDistanceCom
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import robot.Robot;
+import robot.commands.camera.WaitForVisionTarget;
 import robot.commands.hatch.DropHatchCommand;
 import robot.oi.AutoSelector;
 
@@ -39,6 +40,8 @@ public class AutonomousCommand extends CommandGroup {
      */
     public AutonomousCommand() {
 
+        boolean deliver = true;
+        
         // getting info
         String robotStartPosition = AutoSelector.getRobotStartPosition();
         String pattern            = AutoSelector.getPattern();
@@ -64,6 +67,7 @@ public class AutonomousCommand extends CommandGroup {
                 Robot.oi, Robot.driveSubsystem) );
                 addSequential(new TDriveOnHeadingDistanceCommand(50, 355, .5, 5, true, 
                 Robot.oi, Robot.driveSubsystem) );
+                addSequential(new WaitForVisionTarget(deliver));
 
                 break;
                 
@@ -76,6 +80,7 @@ public class AutonomousCommand extends CommandGroup {
                 Robot.oi, Robot.driveSubsystem) );
                 addSequential(new TDriveOnHeadingDistanceCommand(50, 5, .5, 5, true, 
                 Robot.oi, Robot.driveSubsystem) );
+                addSequential(new WaitForVisionTarget(deliver));
             
         		break;
         		

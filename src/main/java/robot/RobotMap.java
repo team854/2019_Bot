@@ -135,7 +135,7 @@ public class RobotMap {
 			LEFT_DRIVE_DIO_ENCODER_PORT1                      = 0;
 			RIGHT_DRIVE_DIO_ENCODER_PORT1                     = 1;
 
-			ULTRASONIC_ANALOG_PORT                            = 1;
+			ULTRASONIC_ANALOG_PORT                            = 0;
 			
 			break;
 
@@ -191,7 +191,7 @@ public class RobotMap {
 			RIGHT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_TYPE    = TCanSpeedControllerType.VICTOR_SPX;
 			RIGHT_DRIVE_CAN_MOTOR_ISINVERTED                  = TConst.INVERTED;
 
-			ULTRASONIC_ANALOG_PORT                            = 1;
+			ULTRASONIC_ANALOG_PORT                            = 0;
 			
 			break;
 		}

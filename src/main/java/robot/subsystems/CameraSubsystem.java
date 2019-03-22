@@ -113,7 +113,7 @@ public class CameraSubsystem extends TSubsystem {
 		return curCamera;
 	}
 	
-	private boolean targetsFound() {
+	public boolean targetsFound() {
 	    
 	    // NOTE: The targets cannot be found if the robot is moving.
 	    //

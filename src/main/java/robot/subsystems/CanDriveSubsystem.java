@@ -2,9 +2,11 @@ package robot.subsystems;
 
 import com.torontocodingcollective.sensors.encoder.TEncoder;
 import com.torontocodingcollective.sensors.gyro.TNavXGyro;
+import com.torontocodingcollective.sensors.ultrasonic.TUltrasonicSensor;
 import com.torontocodingcollective.speedcontroller.TCanSpeedController;
 import com.torontocodingcollective.subsystem.TGyroDriveSubsystem;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import robot.RobotConst;
 import robot.RobotMap;
 import robot.commands.drive.DefaultDriveCommand;
@@ -18,6 +20,8 @@ import robot.commands.drive.DefaultDriveCommand;
 
 public class CanDriveSubsystem extends TGyroDriveSubsystem {
 
+    TUltrasonicSensor distanceSensor = new TUltrasonicSensor(RobotMap.ULTRASONIC_ANALOG_PORT);
+    
 	public CanDriveSubsystem() {
 
 		super(
@@ -67,4 +71,18 @@ public class CanDriveSubsystem extends TGyroDriveSubsystem {
 	public void initDefaultCommand() {
 		setDefaultCommand(new DefaultDriveCommand());
 	}
+	
+    public double getUltrasonicDistance() {
+        return distanceSensor.getDistance() - RobotConst.ULTRASONIC_RECESS;
+    }
+
+    @Override
+    public void updatePeriodic() {
+        
+        super.updatePeriodic();
+        
+        SmartDashboard.putNumber("Ultrasonic Voltage", distanceSensor.getRawVoltage());
+        SmartDashboard.putNumber("Ultrasonic Distance" , getUltrasonicDistance());
+    }
+
 }
