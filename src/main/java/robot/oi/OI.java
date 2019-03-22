@@ -62,10 +62,10 @@ public class OI extends TOi {
      *****************************************************************************************/
     public void setOperatorRumble(boolean on) {
     	if (on) {
-    		operatorController.setRumble(1.0);
+    		operatorRumble.rumbleOn();
     	}
     	else {
-    		operatorController.setRumble(0);
+    		operatorRumble.rumbleOff();
     	}
     }
     

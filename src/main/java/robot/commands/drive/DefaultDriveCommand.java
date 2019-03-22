@@ -83,9 +83,10 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
         	}
         	// Reset the gate height and flap if the driver has been
         	// controlling for more than 2 seconds.
-        	if (timeSinceInitialized() - driverControllingStartTime > 2.0) {
+        	if (timeSinceInitialized() - driverControllingStartTime > .75) {
         		Robot.oi.setGateState(false);
         		Robot.oi.setHeightState(false);
+        		Robot.oi.setDeployerState(false);
         	}
         }
         else {

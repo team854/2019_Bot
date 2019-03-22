@@ -37,7 +37,8 @@ public class RobotConst {
 
     // The margin of error for vision alignment, what constitutes the center
     // XXX: Needs to be set
-    public static final double  VISION_AVG_X_ERROR_MARGIN = 0;
+    public static final double  VISION_AVG_X_ERROR_MARGIN = 1.5;
+    public static final double  VISION_CENTER_X = 295;
     
     public static final double  CAMERA_FIELD_OF_VIEW_ANGLE = 51;
 
@@ -64,8 +65,8 @@ public class RobotConst {
             // proportional gain.  The gain can often be increased
             // above this value, but typically gives good 
             // stability and acceptable performance
-            DRIVE_GYRO_PID_KP = .03;
-            DRIVE_GYRO_PID_KI = DRIVE_GYRO_PID_KP / 20.0;
+            DRIVE_GYRO_PID_KP = .05;
+            DRIVE_GYRO_PID_KI = .004;
 
             DRIVE_SPEED_PID_KP = 0.5;
             //DRIVE_SPEED_PID_KI = DRIVE_SPEED_PID_KP / 20.0;
