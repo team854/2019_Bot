@@ -67,7 +67,7 @@ public class AutonomousCommand extends CommandGroup {
                 Robot.oi, Robot.driveSubsystem) );
                 addSequential(new TDriveOnHeadingDistanceCommand(50, 355, .5, 5, true, 
                 Robot.oi, Robot.driveSubsystem) );
-                addSequential(new WaitForVisionTarget(deliver));
+                //addSequential(new WaitForVisionTarget(deliver));
 
                 break;
                 
@@ -80,7 +80,7 @@ public class AutonomousCommand extends CommandGroup {
                 Robot.oi, Robot.driveSubsystem) );
                 addSequential(new TDriveOnHeadingDistanceCommand(50, 5, .5, 5, true, 
                 Robot.oi, Robot.driveSubsystem) );
-                addSequential(new WaitForVisionTarget(deliver));
+                //addSequential(new WaitForVisionTarget(deliver));
             
         		break;
         		

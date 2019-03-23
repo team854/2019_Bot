@@ -86,7 +86,7 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
         	if (timeSinceInitialized() - driverControllingStartTime > .75) {
         		Robot.oi.setGateState(false);
         		Robot.oi.setHeightState(false);
-        		Robot.oi.setDeployerState(false);
+        		//Robot.oi.setDeployerState(false);
         	}
         }
         else {

@@ -64,6 +64,10 @@ public class CanDriveSubsystem extends TGyroDriveSubsystem {
 
 	@Override
 	public void init() {
+    	distanceSensor.calibrate(
+    			RobotConst.ULTRASONIC_VOLTAGE_20IN, 
+    			RobotConst.ULTRASONIC_VOLTAGE_40IN, 
+    			RobotConst.ULTRASONIC_VOLTAGE_80IN);
 	}
 
 	// Initialize the default command for the Chassis subsystem.

@@ -228,6 +228,11 @@ public class CameraSubsystem extends TSubsystem {
     		return;
     	}
     	
+    	if (centerXArray.length != centerYArray.length) {
+    		centerXArray = null;
+    		return;
+    	}
+    	
     	// Filter the array to only use the values that are closest to the middle
     	List<Double> xValues = new ArrayList<>();
     	for (int i=0; i<centerXArray.length; i++) {
@@ -244,7 +249,7 @@ public class CameraSubsystem extends TSubsystem {
     	Collections.sort(xValues);
 
     	// Get the closest index to center
-    	double minDistance = 300;
+    	double minDistance = 100000;
     	int minIndex = -1;
     	
     	for (int i=0; i<xValues.size(); i++) {
@@ -257,10 +262,17 @@ public class CameraSubsystem extends TSubsystem {
     		}
     	}
     	
+    	// If the XArray contains bizarre values, make sure that the 
+    	// system does not throw an exception for index out of bounds.
+    	if (minIndex == -1) {
+    		centerXArray = null;
+    		return;
+    	}
+    	
     	// Once the minimum is found, find the minimum distance of the index
     	// over the min distance index, or the index under the min distance index.
     	
-    	int nextClosestIndex = -1;
+    	int nextClosestIndex = minIndex;
     	
     	if (minIndex == 0) {
     		nextClosestIndex = 1;

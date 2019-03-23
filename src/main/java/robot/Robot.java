@@ -65,6 +65,7 @@ public class Robot extends IterativeRobot {
         }
         
         AutoSelector.init();
+        Robot.oi.setAutoAlign(true);
     }
 
     /**

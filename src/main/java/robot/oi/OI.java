@@ -188,6 +188,10 @@ public class OI extends TOi {
     	return autoAlignToggle.get();
     }
 
+    public void setAutoAlign(boolean align) {
+    	autoAlignToggle.set(align);
+    }
+
     public void disableAutoAlign() {
         autoAlignToggle.set(false);
     }
