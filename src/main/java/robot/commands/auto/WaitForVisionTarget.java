@@ -1,10 +1,9 @@
-package robot.commands.camera;
+package robot.commands.auto;
 
 import com.torontocodingcollective.commands.TSafeCommand;
 
 import edu.wpi.first.wpilibj.command.Scheduler;
 import robot.Robot;
-import robot.commands.AutoAlignAndDeliver;
 import robot.commands.drive.AutoAlignCommand;
 import robot.subsystems.CanDriveSubsystem;
 import robot.subsystems.PwmDriveSubsystem;
@@ -58,6 +57,7 @@ public class WaitForVisionTarget extends TSafeCommand {
     	// This command is finished if a vision target is found
     	if (Robot.cameraSubsystem.targetsFound()) {
     	    if (deliver) {
+    	    	
     	        // Calculate required rotate heading and make use it's >=0 and < 360
                 double heading = Robot.driveSubsystem.getGyroAngle() + 
                         Robot.cameraSubsystem.getDegreesOff();
@@ -66,6 +66,7 @@ public class WaitForVisionTarget extends TSafeCommand {
                     heading += 360;
                 }
                 
+                // Get the distance from the ultrasonic sensor
                 double distanceInches = 0;
                 
                 if (Robot.driveSubsystem instanceof CanDriveSubsystem) {
@@ -75,13 +76,20 @@ public class WaitForVisionTarget extends TSafeCommand {
                     distanceInches = ((PwmDriveSubsystem) Robot.driveSubsystem).getDistanceInches();
                 }
                 
+                if (distanceInches < 0) {
+                	logMessage("Invalid distance " + distanceInches + " - overriding to zero");
+                	distanceInches = 0;
+                }
+                
                 // XXX: Has a default timeout of 5 secs, we'll see if we need to change it
                 // Use the following to start a command through the scheduler
-                System.out.println("*** Auto Align "+heading+" ***");
+                logMessage("Schedule auto align to heading " + heading
+                		+ " and drive distance " + distanceInches);
+
                 Scheduler.getInstance().add(new AutoAlignCommand(heading));
 
     	        Scheduler.getInstance().add(new AutoAlignAndDeliver(
-    	                heading, distanceInches, 0.2));
+    	                heading, distanceInches, 0.25));
     	    }
     	    return true;
     	}

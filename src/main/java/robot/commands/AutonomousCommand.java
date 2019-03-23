@@ -4,7 +4,8 @@ import com.torontocodingcollective.commands.gyroDrive.TDriveOnHeadingDistanceCom
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import robot.Robot;
-import robot.commands.camera.WaitForVisionTarget;
+import robot.commands.auto.AutoDelay;
+import robot.commands.auto.DriveToUltrasonicDistance;
 import robot.commands.hatch.DropHatchCommand;
 import robot.oi.AutoSelector;
 
@@ -45,16 +46,26 @@ public class AutonomousCommand extends CommandGroup {
         // getting info
         String robotStartPosition = AutoSelector.getRobotStartPosition();
         String pattern            = AutoSelector.getPattern();
+        double delayTime          = AutoSelector.getDelayTime();
 
         // Print out the user selection and Game config for debug later
         System.out.println("Auto Command Configuration");
         System.out.println("--------------------------");
         System.out.println("Robot Position : " + robotStartPosition);
         System.out.println("Pattern        : " + pattern);
+        System.out.println("Delay Time     : " + delayTime);
+
+        
+        // Delay before pattern
+		if (delayTime > 0) {
+			addSequential(new AutoDelay(delayTime));
+		}
 
         switch (pattern) {
         
         case AutoSelector.PATTERN_CARGO_HATCH: 
+        case AutoSelector.PATTERN_CARGO_DRIVE_UP:
+        case AutoSelector.PATTERN_CARGO_DELIVER_AND_GO:
         		
         	switch (robotStartPosition) {
         	
@@ -85,8 +96,10 @@ public class AutonomousCommand extends CommandGroup {
         		break;
         		
         	case AutoSelector.ROBOT_CENTER:
-        		
-        		// TODO: Add auto code
+
+        		addSequential(new DriveToUltrasonicDistance());
+//                addSequential(new TDriveOnHeadingDistanceCommand(60, 0, .2, 5, true, 
+//                Robot.oi, Robot.driveSubsystem) );
 
         		break;
         	}

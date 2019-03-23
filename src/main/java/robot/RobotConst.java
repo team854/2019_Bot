@@ -77,7 +77,7 @@ public class RobotConst {
             ULTRASONIC_VOLTAGE_20IN       = 0.18;
             ULTRASONIC_VOLTAGE_40IN       = 0.38;
             ULTRASONIC_VOLTAGE_80IN       = 0.76;
-            ULTRASONIC_RECESS             = 4.0;
+            ULTRASONIC_RECESS             = 10.0;
             
             break;
             
