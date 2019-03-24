@@ -8,17 +8,15 @@ public class AutoSelector {
     public static SendableChooser<String> robotStartPosition;
 
     public static final String            ROBOT_LEFT   = "Robot Left";
-    public static final String            ROBOT_CENTER = "Robot Center";
     public static final String            ROBOT_RIGHT  = "Robot Right";
-    public static final String            TEMP_AUTO    = "Temporary Auto";
     
     public static SendableChooser<String> pattern;
     
     public static final String            PATTERN_CARGO_HATCH    = "Cargo Hatch";
-    public static final String            PATTERN_CARGO_DRIVE_UP = "Cargo Drive Up";
+    /*public static final String            PATTERN_CARGO_DRIVE_UP = "Cargo Drive Up";
     public static final String            PATTERN_CARGO_DELIVER_AND_GO 
     = "Cargo Deliver and Go";
-    public static final String            PATTERN_NONE           = "None";
+    public static final String            PATTERN_NONE           = "None";*/
 
     public static SendableChooser<String> delayTime;
     
@@ -32,18 +30,16 @@ public class AutoSelector {
         // Robot Position Options
         robotStartPosition = new SendableChooser<String>();
         robotStartPosition.addOption(ROBOT_LEFT, ROBOT_LEFT);
-        robotStartPosition.setDefaultOption(ROBOT_CENTER, ROBOT_CENTER);
         robotStartPosition.addOption(ROBOT_RIGHT, ROBOT_RIGHT);
-        robotStartPosition.addOption(TEMP_AUTO, TEMP_AUTO);
 
         SmartDashboard.putData("Robot Start", robotStartPosition);
 
         // Robot Pattern Options
         pattern = new SendableChooser<String>();
         pattern.setDefaultOption(PATTERN_CARGO_HATCH, PATTERN_CARGO_HATCH);
-        pattern.addOption(PATTERN_CARGO_DRIVE_UP, PATTERN_CARGO_DRIVE_UP);
+        /*pattern.addOption(PATTERN_CARGO_DRIVE_UP, PATTERN_CARGO_DRIVE_UP);
         pattern.addOption(PATTERN_CARGO_DELIVER_AND_GO, PATTERN_CARGO_DELIVER_AND_GO);
-        pattern.addOption(PATTERN_NONE, PATTERN_NONE);
+        pattern.addOption(PATTERN_NONE, PATTERN_NONE);*/
         
         SmartDashboard.putData("Auto Pattern", pattern);
 

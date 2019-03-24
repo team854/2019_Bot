@@ -66,22 +66,24 @@ public class AutonomousCommand extends CommandGroup {
         switch (pattern) {
         
         case AutoSelector.PATTERN_CARGO_HATCH: 
-        case AutoSelector.PATTERN_CARGO_DRIVE_UP:
-        case AutoSelector.PATTERN_CARGO_DELIVER_AND_GO:
+        /*case AutoSelector.PATTERN_CARGO_DRIVE_UP:
+        case AutoSelector.PATTERN_CARGO_DELIVER_AND_GO:*/
         		
         	switch (robotStartPosition) {
         	
         	case AutoSelector.ROBOT_RIGHT:
         		
-            	addParallel(new DropHatchCommand());
+                addParallel(new DropHatchCommand());
                 addSequential(new TDriveOnHeadingDistanceCommand(40, 0, .5, 5, true, 
                 Robot.oi, Robot.driveSubsystem) );
-                addSequential(new TDriveOnHeadingDistanceCommand(60, 340, .5, 5, true, 
+                addSequential(new AutoDelay(0.1));
+                addSequential(new TRotateToHeadingCommand(330, 3, Robot.oi, Robot.driveSubsystem) );
+                addSequential(new AutoDelay(0.1));
+                addSequential(new TDriveOnHeadingDistanceCommand(35, 330, .5, 5, true, 
                 Robot.oi, Robot.driveSubsystem) );
-                //addSequential(new TDriveOnHeadingDistanceCommand(30, 5, .5, 5, true, 
-                //Robot.oi, Robot.driveSubsystem) );
+                addSequential(new AutoDelay(0.1));
                 addSequential(new TRotateToHeadingCommand(0, 3, Robot.oi, Robot.driveSubsystem) );
-                addSequential(new AutoDelay(1));
+                addSequential(new AutoDelay(0.5));
                 addSequential(new WaitForVisionTarget(deliver));
 
                 break;
@@ -89,50 +91,36 @@ public class AutonomousCommand extends CommandGroup {
             case AutoSelector.ROBOT_LEFT:
             
                 addParallel(new DropHatchCommand());
-                addSequential(new TDriveOnHeadingDistanceCommand(40, 0, .3, 5, true, 
+                addSequential(new TDriveOnHeadingDistanceCommand(40, 0, .5, 5, true, 
                 Robot.oi, Robot.driveSubsystem) );
-                addSequential(new TDriveOnHeadingDistanceCommand(60, 40, .5, 5, true, 
+                addSequential(new AutoDelay(0.1));
+                addSequential(new TRotateToHeadingCommand(30, 3, Robot.oi, Robot.driveSubsystem) );
+                addSequential(new AutoDelay(0.1));
+                addSequential(new TDriveOnHeadingDistanceCommand(35, 30, .5, 5, true, 
                 Robot.oi, Robot.driveSubsystem) );
+                addSequential(new AutoDelay(0.1));
                 addSequential(new TRotateToHeadingCommand(0, 3, Robot.oi, Robot.driveSubsystem) );
-                addSequential(new AutoDelay(1));
+                addSequential(new AutoDelay(0.5));
                 addSequential(new WaitForVisionTarget(deliver));
             
         		break;
-        		
-        	case AutoSelector.ROBOT_CENTER:
+            
+            // Robot center is not used    
+        	/*case AutoSelector.ROBOT_CENTER:
 
         		addSequential(new DriveToUltrasonicDistance());
 //                addSequential(new TDriveOnHeadingDistanceCommand(60, 0, .2, 5, true, 
 //                Robot.oi, Robot.driveSubsystem) );
 
-                break;
-
-            case AutoSelector.TEMP_AUTO:
-
-                addParallel(new DropHatchCommand());
-                addSequential(new TDriveOnHeadingDistanceCommand(40, 0, .5, 5, true, 
-                Robot.oi, Robot.driveSubsystem) );
-                addSequential(new AutoDelay(1));
-                addSequential(new TRotateToHeadingCommand(340, 3, Robot.oi, Robot.driveSubsystem) );
-                addSequential(new AutoDelay(1));
-                addSequential(new TDriveOnHeadingDistanceCommand(60, 340, .5, 5, true, 
-                Robot.oi, Robot.driveSubsystem) );
-                addSequential(new AutoDelay(1));
-                addSequential(new TRotateToHeadingCommand(0, 3, Robot.oi, Robot.driveSubsystem) );
-                addSequential(new AutoDelay(1));
-                addSequential(new TDriveOnHeadingDistanceCommand(10, 0, .5, 5, true, 
-                Robot.oi, Robot.driveSubsystem) );
-                addSequential(new AutoDelay(1));
-                addSequential(new WaitForVisionTarget(deliver));
-
-                break;
+                break;*/
         	}
         		
         	break;
                 
             
-        case AutoSelector.PATTERN_NONE:
-        	break;
+        /*case AutoSelector.PATTERN_NONE:
+        	break;*/
         }
     }
 }
+

@@ -101,9 +101,9 @@ public class Robot extends IterativeRobot {
     @Override
     public void autonomousInit() {
 
-        // Turn on the drive pids for auto
-        Robot.oi.setSpeedPidEnabled(true);
-        driveSubsystem.enableSpeedPids();
+        // Turn off the drive pids for auto
+        Robot.oi.setSpeedPidEnabled(false);
+        driveSubsystem.disableSpeedPids();
 
         // Reset the gyro and the encoders
         Robot.driveSubsystem.setGyroAngle(0);

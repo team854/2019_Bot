@@ -71,10 +71,10 @@ public class WaitForVisionTarget extends TSafeCommand {
                 double distanceInches = 0;
                 
                 if (Robot.driveSubsystem instanceof CanDriveSubsystem) {
-                    distanceInches = ((CanDriveSubsystem) Robot.driveSubsystem).getDistanceInches();
+                    distanceInches = ((CanDriveSubsystem) Robot.driveSubsystem).getUltrasonicDistance();
                 }
                 if (Robot.driveSubsystem instanceof PwmDriveSubsystem) {
-                    distanceInches = ((PwmDriveSubsystem) Robot.driveSubsystem).getDistanceInches();
+                    distanceInches = ((PwmDriveSubsystem) Robot.driveSubsystem).getUltrasonicDistance();
                 }
                 
                 if (distanceInches < 0) {
@@ -88,7 +88,7 @@ public class WaitForVisionTarget extends TSafeCommand {
                 		+ " and drive distance " + distanceInches);
 
     	        Scheduler.getInstance().add(new AutoAlignAndDeliver(
-    	                heading, distanceInches, 0.15));
+    	                heading, distanceInches, 0.25));
     	    }
     	    return true;
     	}
