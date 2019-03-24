@@ -40,7 +40,7 @@ public class DefaultWedgeCommand extends TSafeCommand {
         }
         // XXX: Delay needs to be tested
         // Deploying is happening, and 0.5 secs have passed
-        else if (Robot.wedgeSubsystem.getWedgeSpeed() == 1 && timeSinceInitialized()-startTime >= 1.0) {
+        else if (Robot.wedgeSubsystem.getWedgeSpeed() == 1 && timeSinceInitialized()-startTime >= 1.5) {
             Robot.wedgeSubsystem.setWedgeSpeed(0);
             // Bring the cargo back down
             Robot.oi.setHeightState(false);

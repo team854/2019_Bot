@@ -402,7 +402,7 @@ public abstract class TDriveSubsystem extends TSubsystem {
 
             // If the speed PIDs are disabled, then drive the motors
             // with the setpoint.
-            leftSpeedController.set(leftSpeedSetpoint);
+            leftSpeedController.set(leftSpeedSetpoint *1.2);
             rightSpeedController.set(rightSpeedSetpoint);
 
         }
@@ -469,7 +469,7 @@ public abstract class TDriveSubsystem extends TSubsystem {
                 leftSpeedPid.calculate(leftEncoder.getRate() / maxEncoderSpeed);
                 rightSpeedPid.calculate(rightEncoder.getRate() / maxEncoderSpeed);
 
-                leftSpeedController.set(leftSpeedPid.get());
+                leftSpeedController.set(leftSpeedPid.get() *1.2);
                 rightSpeedController.set(rightSpeedPid.get());
 
             }

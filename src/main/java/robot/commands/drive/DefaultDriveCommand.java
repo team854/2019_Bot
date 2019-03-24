@@ -8,6 +8,7 @@ import com.torontocodingcollective.oi.TStickPosition;
 import com.torontocodingcollective.speedcontroller.TSpeeds;
 import com.torontocodingcollective.subsystem.TGyroDriveSubsystem;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import robot.Robot;
 import robot.RobotConst;
@@ -75,6 +76,17 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             operatorControlling = false;
         }
 
+        if (operatorControlling && DriverStation.getInstance().isAutonomous()) {
+            leftStickPosition.y = leftStickPosition.y / 2; 
+        }
+
+        // Turn PIDs on/off
+        /*if (operatorControlling) {
+            oi.setSpeedPidEnabled(true);
+        } else {
+            oi.setSpeedPidEnabled(false);
+        }*/
+
         // If the driver is controlling, reset the cargo state after one second
         if (!operatorControlling) {
         	
@@ -82,7 +94,7 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
         		driverControllingStartTime = timeSinceInitialized();
         	}
         	// Reset the gate height and flap if the driver has been
-        	// controlling for more than 2 seconds.
+            // controlling for more than 2 seconds.
         	if (timeSinceInitialized() - driverControllingStartTime > .75) {
         		Robot.oi.setGateState(false);
         		Robot.oi.setHeightState(false);
@@ -125,13 +137,13 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             motorSpeeds.left /= RobotConst.OPERATOR_SPEED_DIVISOR;
             motorSpeeds.right /= RobotConst.OPERATOR_SPEED_DIVISOR;
 
-            if (Robot.cameraSubsystem.getCurrentCamera() == Camera.REAR) {
-                double temp = motorSpeeds.right;
-                motorSpeeds.right = -motorSpeeds.left;
-                motorSpeeds.left = -temp;
-            }
         }
         
+        if (operatorControlling && Robot.cameraSubsystem.getCurrentCamera() == Camera.REAR) {
+            double temp = motorSpeeds.right;
+            motorSpeeds.right = -motorSpeeds.left;
+            motorSpeeds.left = -temp;
+        }
         // Check if aligning needs to happen instead, and that two pieces of tape can be seen
         // It also makes sure that no one is driving at the time
         // XXX: Only check operator left stick because the right one might be moving from pressing in

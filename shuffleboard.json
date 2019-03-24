@@ -153,7 +153,7 @@
               "_title": "Gyro Steering"
             }
           },
-          "9,0": {
+          "5,3": {
             "size": [
               1,
               2
@@ -186,7 +186,7 @@
               "_title": "Camera View"
             }
           },
-          "12,0": {
+          "6,3": {
             "size": [
               1,
               2
@@ -197,7 +197,7 @@
               "_title": "RightPid"
             }
           },
-          "13,0": {
+          "9,0": {
             "size": [
               1,
               1
@@ -353,7 +353,7 @@
               "_title": "cargoGate"
             }
           },
-          "13,1": {
+          "9,1": {
             "size": [
               1,
               1
@@ -491,6 +491,50 @@
               "_title": "AutoAlignToggle",
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "8,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Target Center",
+              "_title": "Target Center"
+            }
+          },
+          "12,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "ComboBox Chooser",
+              "_source0": "network_table:///SmartDashboard/Delay Time",
+              "_title": "Delay Time"
+            }
+          },
+          "9,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/L Enc Speed",
+              "_title": "SmartDashboard/L Enc Speed"
+            }
+          },
+          "7,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Dist Inches",
+              "_title": "SmartDashboard/Dist Inches"
             }
           }
         }
@@ -641,6 +685,16 @@
                   "_type": "Voltage View",
                   "_source0": "network_table:///LiveWindow/Ungrouped/AnalogInput[1]",
                   "_title": "LiveWindow/Ungrouped/AnalogInput[1]",
+                  "Range/Min": 0.0,
+                  "Range/Max": 5.0,
+                  "Range/Center": 0.0,
+                  "Visuals/Orientation": "HORIZONTAL",
+                  "Visuals/Number of tick marks": 5
+                },
+                {
+                  "_type": "Voltage View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/AnalogInput[0]",
+                  "_title": "AnalogInput[0]",
                   "Range/Min": 0.0,
                   "Range/Max": 5.0,
                   "Range/Center": 0.0,
@@ -1024,7 +1078,7 @@
               "_title": "SmartDashboard/Robot Start"
             }
           },
-          "0,5": {
+          "2,1": {
             "size": [
               2,
               1
@@ -1050,7 +1104,7 @@
               "Colors/Color when false": "#8B0000FF"
             }
           },
-          "0,4": {
+          "2,2": {
             "size": [
               2,
               1
@@ -1062,15 +1116,48 @@
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
             }
+          },
+          "0,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "ComboBox Chooser",
+              "_source0": "network_table:///SmartDashboard/Delay Time",
+              "_title": "/SmartDashboard/Delay Time"
+            }
+          },
+          "2,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Ultrasonic Distance",
+              "_title": "SmartDashboard/Ultrasonic Distance"
+            }
+          },
+          "3,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Dist Inches",
+              "_title": "SmartDashboard/Dist Inches"
+            }
           }
         }
       }
     }
   ],
   "windowGeometry": {
-    "x": -8.0,
-    "y": -8.0,
-    "width": 1936.0,
-    "height": 1056.0
+    "x": -4.0,
+    "y": 0.0,
+    "width": 1932.0,
+    "height": 855.0
   }
 }

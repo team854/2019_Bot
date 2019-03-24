@@ -65,7 +65,7 @@ public class Robot extends IterativeRobot {
         }
         
         AutoSelector.init();
-        Robot.oi.setAutoAlign(true);
+        Robot.oi.setAutoAlign(false);
     }
 
     /**
@@ -115,6 +115,8 @@ public class Robot extends IterativeRobot {
         Robot.cargoSubsystem.setGateState(false);
         Robot.cargoSubsystem.setHeightState(false);
 
+        Robot.oi.setAutoAlign(false);
+
         // Initialize the robot command after initializing the game data
         // because the game data will be used in the auto command.
         autoCommand = new AutonomousCommand();
@@ -145,7 +147,7 @@ public class Robot extends IterativeRobot {
 
         Robot.oi.setSpeedPidEnabled(false);
         driveSubsystem.disableSpeedPids();
-        oi.disableAutoAlign();
+        Robot.oi.setAutoAlign(true);
     }
 
     /**

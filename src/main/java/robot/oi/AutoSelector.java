@@ -10,13 +10,14 @@ public class AutoSelector {
     public static final String            ROBOT_LEFT   = "Robot Left";
     public static final String            ROBOT_CENTER = "Robot Center";
     public static final String            ROBOT_RIGHT  = "Robot Right";
-
+    public static final String            TEMP_AUTO    = "Temporary Auto";
+    
     public static SendableChooser<String> pattern;
-
+    
     public static final String            PATTERN_CARGO_HATCH    = "Cargo Hatch";
     public static final String            PATTERN_CARGO_DRIVE_UP = "Cargo Drive Up";
     public static final String            PATTERN_CARGO_DELIVER_AND_GO 
-    															 = "Cargo Deliver and Go";
+    = "Cargo Deliver and Go";
     public static final String            PATTERN_NONE           = "None";
 
     public static SendableChooser<String> delayTime;
@@ -33,6 +34,7 @@ public class AutoSelector {
         robotStartPosition.addOption(ROBOT_LEFT, ROBOT_LEFT);
         robotStartPosition.setDefaultOption(ROBOT_CENTER, ROBOT_CENTER);
         robotStartPosition.addOption(ROBOT_RIGHT, ROBOT_RIGHT);
+        robotStartPosition.addOption(TEMP_AUTO, TEMP_AUTO);
 
         SmartDashboard.putData("Robot Start", robotStartPosition);
 

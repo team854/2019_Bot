@@ -9,9 +9,9 @@ package com.torontocodingcollective.oi;
 public class TStickPosition {
 
     /** X coordinate of this stick position */
-    public final double x;
+    public double x;
     /** Y coordinate of this stick position */
-    public final double y;
+    public double y;
 
     /**
      * Construct a stick position based on the passed in x and y

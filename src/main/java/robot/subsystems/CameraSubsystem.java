@@ -123,7 +123,7 @@ public class CameraSubsystem extends TSubsystem {
         //
         //       The robot must be still for about 200ms to guarantee
         //       the targets.
-        if (Robot.driveSubsystem.getStoppedTime() < 0.15) {
+        if (Robot.driveSubsystem.getStoppedTime() < 0.2) {
             return false;
         }
         
@@ -160,7 +160,6 @@ public class CameraSubsystem extends TSubsystem {
 		Microsoft Skype LifeCam HD 3000
 		*/
 
-		// Last multiplication part is a hack
 		return Math.toDegrees(Math.atan((((getTargetAveragesX()-RobotConst.VISION_CENTER_X)/320) * 146.25) / 307));
 	}
 
@@ -172,13 +171,19 @@ public class CameraSubsystem extends TSubsystem {
 		// Users should use alignmentNeeded before using - this is just in case
 		if (!targetsFound()) {
 			return 0;
-		}
-
+        }
+        
 		return getRawDegreesOff();
 	}
 
 	public boolean alignmentNeeded() {
 		// Includes error margin correction
+
+        // Make sure there's no hatch reflection going on
+        // If hatch is up and we're using that camera, don't align
+        if (Robot.oi.getDeployerState() == false && curCamera == Camera.FRONT) {
+            return false;
+        }
 
 	    if (targetsFound() && Math.abs(getDegreesOff()) > RobotConst.VISION_AVG_X_ERROR_MARGIN) {
 			return true;

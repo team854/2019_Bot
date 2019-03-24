@@ -1,6 +1,7 @@
 package robot.commands;
 
 import com.torontocodingcollective.commands.gyroDrive.TDriveOnHeadingDistanceCommand;
+import com.torontocodingcollective.commands.gyroDrive.TRotateToHeadingCommand;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import robot.Robot;
@@ -8,6 +9,7 @@ import robot.commands.auto.AutoDelay;
 import robot.commands.auto.DriveToUltrasonicDistance;
 import robot.commands.hatch.DropHatchCommand;
 import robot.oi.AutoSelector;
+import robot.commands.auto.WaitForVisionTarget;
 
 /**
  * AutonomousCommand
@@ -74,24 +76,26 @@ public class AutonomousCommand extends CommandGroup {
             	addParallel(new DropHatchCommand());
                 addSequential(new TDriveOnHeadingDistanceCommand(40, 0, .5, 5, true, 
                 Robot.oi, Robot.driveSubsystem) );
-                addSequential(new TDriveOnHeadingDistanceCommand(30, 340, .5, 5, true, 
+                addSequential(new TDriveOnHeadingDistanceCommand(60, 340, .5, 5, true, 
                 Robot.oi, Robot.driveSubsystem) );
-                addSequential(new TDriveOnHeadingDistanceCommand(50, 355, .5, 5, true, 
-                Robot.oi, Robot.driveSubsystem) );
-                //addSequential(new WaitForVisionTarget(deliver));
+                //addSequential(new TDriveOnHeadingDistanceCommand(30, 5, .5, 5, true, 
+                //Robot.oi, Robot.driveSubsystem) );
+                addSequential(new TRotateToHeadingCommand(0, 3, Robot.oi, Robot.driveSubsystem) );
+                addSequential(new AutoDelay(1));
+                addSequential(new WaitForVisionTarget(deliver));
 
                 break;
                 
             case AutoSelector.ROBOT_LEFT:
             
                 addParallel(new DropHatchCommand());
-                addSequential(new TDriveOnHeadingDistanceCommand(40, 0, .5, 5, true, 
+                addSequential(new TDriveOnHeadingDistanceCommand(40, 0, .3, 5, true, 
                 Robot.oi, Robot.driveSubsystem) );
-                addSequential(new TDriveOnHeadingDistanceCommand(30, 20, .5, 5, true, 
+                addSequential(new TDriveOnHeadingDistanceCommand(60, 40, .5, 5, true, 
                 Robot.oi, Robot.driveSubsystem) );
-                addSequential(new TDriveOnHeadingDistanceCommand(50, 5, .5, 5, true, 
-                Robot.oi, Robot.driveSubsystem) );
-                //addSequential(new WaitForVisionTarget(deliver));
+                addSequential(new TRotateToHeadingCommand(0, 3, Robot.oi, Robot.driveSubsystem) );
+                addSequential(new AutoDelay(1));
+                addSequential(new WaitForVisionTarget(deliver));
             
         		break;
         		
@@ -101,11 +105,32 @@ public class AutonomousCommand extends CommandGroup {
 //                addSequential(new TDriveOnHeadingDistanceCommand(60, 0, .2, 5, true, 
 //                Robot.oi, Robot.driveSubsystem) );
 
-        		break;
+                break;
+
+            case AutoSelector.TEMP_AUTO:
+
+                addParallel(new DropHatchCommand());
+                addSequential(new TDriveOnHeadingDistanceCommand(40, 0, .5, 5, true, 
+                Robot.oi, Robot.driveSubsystem) );
+                addSequential(new AutoDelay(1));
+                addSequential(new TRotateToHeadingCommand(340, 3, Robot.oi, Robot.driveSubsystem) );
+                addSequential(new AutoDelay(1));
+                addSequential(new TDriveOnHeadingDistanceCommand(60, 340, .5, 5, true, 
+                Robot.oi, Robot.driveSubsystem) );
+                addSequential(new AutoDelay(1));
+                addSequential(new TRotateToHeadingCommand(0, 3, Robot.oi, Robot.driveSubsystem) );
+                addSequential(new AutoDelay(1));
+                addSequential(new TDriveOnHeadingDistanceCommand(10, 0, .5, 5, true, 
+                Robot.oi, Robot.driveSubsystem) );
+                addSequential(new AutoDelay(1));
+                addSequential(new WaitForVisionTarget(deliver));
+
+                break;
         	}
         		
         	break;
-        		
+                
+            
         case AutoSelector.PATTERN_NONE:
         	break;
         }

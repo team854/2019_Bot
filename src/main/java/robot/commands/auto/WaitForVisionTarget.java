@@ -61,6 +61,7 @@ public class WaitForVisionTarget extends TSafeCommand {
     	        // Calculate required rotate heading and make use it's >=0 and < 360
                 double heading = Robot.driveSubsystem.getGyroAngle() + 
                         Robot.cameraSubsystem.getDegreesOff();
+                System.out.println("Gyro Angle: "+Robot.driveSubsystem.getGyroAngle()+" Degrees Off: "+Robot.cameraSubsystem.getDegreesOff());
                 heading = heading % 360;
                 if (heading < 0) {
                     heading += 360;
@@ -86,10 +87,8 @@ public class WaitForVisionTarget extends TSafeCommand {
                 logMessage("Schedule auto align to heading " + heading
                 		+ " and drive distance " + distanceInches);
 
-                Scheduler.getInstance().add(new AutoAlignCommand(heading));
-
     	        Scheduler.getInstance().add(new AutoAlignAndDeliver(
-    	                heading, distanceInches, 0.25));
+    	                heading, distanceInches, 0.15));
     	    }
     	    return true;
     	}
