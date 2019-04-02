@@ -112,7 +112,6 @@ public class Robot extends IterativeRobot {
         // Set up things to match OI init
         Robot.hatchSubsystem.setGrabberState(true);
         Robot.hatchSubsystem.setDeployerState(true);
-        Robot.cargoSubsystem.setGateState(false);
         Robot.cargoSubsystem.setHeightState(false);
 
         Robot.oi.setAutoAlign(false);

@@ -4,7 +4,6 @@ import com.torontocodingcollective.speedcontroller.TPwmSpeedController;
 import com.torontocodingcollective.speedcontroller.TPwmSpeedController.TPwmSpeedControllerType;
 import com.torontocodingcollective.subsystem.TSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.Timer;
 import robot.RobotMap;
 import robot.commands.wedge.DefaultWedgeCommand;
 

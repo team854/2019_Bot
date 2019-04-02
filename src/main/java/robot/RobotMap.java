@@ -52,6 +52,10 @@ public class RobotMap {
 	public static final int						WEDGE_MOTOR_PORT;
 	public static final boolean					WEDGE_MOTOR_ISINVERTED;
 
+	// Cargo PWM
+	public static final int						CARGO_MOTOR_PORT;
+	public static final boolean					CARGO_MOTOR_ISINVERTED;
+
 	// ******************************************
 	// Gyro Ports
 	// ******************************************
@@ -73,8 +77,9 @@ public class RobotMap {
 
 	public static final int                     CARGO_HEIGHT;
 	public static final int                     CARGO_HEIGHT_2;
-	public static final int                     CARGO_GATE;
-	public static final int                     CARGO_GATE_2;
+
+	// Limit switch port
+	public static final int						CARGO_SWITCH_PORT;
 
 	// Initializers if this code will be deployed to more than one
 	// robot with different mappings
@@ -110,13 +115,15 @@ public class RobotMap {
 			HATCH_DEPLOYER_PORT_2	= HATCH_DEPLOYER_PORT+1;
 
 			CARGO_HEIGHT            = 0;  // Putting air into this one should bring it up
-			CARGO_HEIGHT_2			= CARGO_HEIGHT+1;
-			CARGO_GATE              = 2;
-			CARGO_GATE_2			= CARGO_GATE+1;
+            CARGO_HEIGHT_2          = CARGO_HEIGHT+1;
+
 
 			// PWM
 			WEDGE_MOTOR_PORT		= 0;
 			WEDGE_MOTOR_ISINVERTED	= false;
+			// XXX: Unknown right now
+			CARGO_MOTOR_PORT = 0;
+			CARGO_MOTOR_ISINVERTED = false;
 
 			// PWM Values are Unused on Prod Robot
 			// PWM Constants
@@ -136,6 +143,9 @@ public class RobotMap {
 			RIGHT_DRIVE_DIO_ENCODER_PORT1                     = 1;
 
 			ULTRASONIC_ANALOG_PORT                            = 0;
+
+			// XXX: set this
+			CARGO_SWITCH_PORT								  = 0;
 			
 			break;
 
@@ -168,14 +178,16 @@ public class RobotMap {
 			HATCH_GRABBER_PORT_2	= HATCH_GRABBER_PORT+1;
 			HATCH_DEPLOYER_PORT     = 1;
 			HATCH_DEPLOYER_PORT_2	= HATCH_DEPLOYER_PORT+1;
-
-			CARGO_HEIGHT            = 2;
+			
+			CARGO_HEIGHT			= 2;
 			CARGO_HEIGHT_2			= CARGO_HEIGHT+1;
-			CARGO_GATE              = 3;
-			CARGO_GATE_2			= CARGO_GATE+1;
 
+			// Not used
 			WEDGE_MOTOR_PORT		= 4;
 			WEDGE_MOTOR_ISINVERTED	= false;
+			CARGO_MOTOR_PORT		= 0;
+			CARGO_MOTOR_ISINVERTED	= false;
+
 
 			// CAN Constants
 			// CAN Constants are unused
@@ -192,6 +204,9 @@ public class RobotMap {
 			RIGHT_DRIVE_CAN_MOTOR_ISINVERTED                  = TConst.INVERTED;
 
 			ULTRASONIC_ANALOG_PORT                            = 0;
+
+			// Not used
+			CARGO_SWITCH_PORT								  = 0;
 			
 			break;
 		}

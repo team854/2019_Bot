@@ -3,27 +3,20 @@ package robot.subsystems;
 import com.torontocodingcollective.subsystem.TSubsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import robot.RobotConst;
 import robot.RobotMap;
 import robot.commands.cargo.DefaultCargoCommand;
+import com.torontocodingcollective.sensors.limitSwitch.TLimitSwitch;
+import com.torontocodingcollective.speedcontroller.TPwmSpeedController;
+import com.torontocodingcollective.speedcontroller.TPwmSpeedController.TPwmSpeedControllerType;
 
 public class CargoSubsystem extends TSubsystem {
 
-	private DoubleSolenoid height;
-    private DoubleSolenoid gate;  
-
-    public CargoSubsystem() {
-        
-        // There is no pneumatics on the test robot
-        if (RobotConst.robot == RobotConst.PROD_ROBOT) {
-            height  = new DoubleSolenoid(RobotMap.CARGO_HEIGHT, RobotMap.CARGO_HEIGHT_2);
-            gate    = new DoubleSolenoid(RobotMap.CARGO_GATE_2, RobotMap.CARGO_GATE);
-        }
-        else {
-            height = null;
-            gate = null;
-        }
-    }
+	private TPwmSpeedController intake  = new TPwmSpeedController(
+                                                TPwmSpeedControllerType.SPARK,
+                                                RobotMap.CARGO_MOTOR_PORT,
+                                                RobotMap.CARGO_MOTOR_ISINVERTED);
+    private DoubleSolenoid      height  = new DoubleSolenoid(RobotMap.CARGO_HEIGHT, RobotMap.CARGO_HEIGHT_2);
+    private TLimitSwitch        limitSwitch  = new TLimitSwitch(RobotMap.CARGO_SWITCH_PORT, TLimitSwitch.DefaultState.FALSE);
     
     @Override
     public void init() {
@@ -48,17 +41,16 @@ public class CargoSubsystem extends TSubsystem {
         }
     }
 
-    public void setGateState(boolean state) {
-        if (gate == null) {
-            return;
-        }
-        
-        if (state) { // XXX: Assumes true is an open gate
-            gate.set(DoubleSolenoid.Value.kForward);
-        }
-        else {
-            gate.set(DoubleSolenoid.Value.kReverse);
-        }
+    public void setIntakeSpeed(double speed) {
+        intake.set(speed);
+    }
+    
+    public double getIntakeSpeed() {
+        return intake.get();
+    }
+
+    public boolean ballIn() {
+        return limitSwitch.atLimit();
     }
 
     // Periodically update the dashboard and any PIDs or sensors
@@ -67,11 +59,10 @@ public class CargoSubsystem extends TSubsystem {
         
         if (height != null) {
             SmartDashboard.putString("cargoHeight", height.get().name());
-            SmartDashboard.putString("cargoGate", gate.get().name());
+            SmartDashboard.putNumber("cargoIntakeSpeed", getIntakeSpeed());
         }
         else {
             SmartDashboard.putString("cargoHeight", "no pnuematics");
-            SmartDashboard.putString("cargoGate", "no pnuematics");
         }
     }
 
