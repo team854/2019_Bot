@@ -42,7 +42,7 @@ public class RobotConst {
     
     public static final double  CAMERA_FIELD_OF_VIEW_ANGLE = 51;
 
-    public static enum Direction {
+    public enum Direction {
         FORWARD, BACKWARD
     };
 
