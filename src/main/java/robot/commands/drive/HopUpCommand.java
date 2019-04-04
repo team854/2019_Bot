@@ -36,7 +36,7 @@ public class HopUpCommand extends TSafeCommand{
     @Override
     protected void initialize() {
         // Do nothing
-        
+        Robot.driveSubsystem.resetEncoders();
         
     }
 
@@ -44,9 +44,12 @@ public class HopUpCommand extends TSafeCommand{
     protected boolean isFinished() {
         if (super.isFinished()) {
     	    logMessage("command cancelled");
-    		return true;
+    		return false;
         }
-        return true;
+        if(currentState == State.FINISH){
+            return true;
+        }
+        return false;
     }
 
 
@@ -55,8 +58,23 @@ public class HopUpCommand extends TSafeCommand{
            switch(currentState){
 
             case BACK:
-            robot.subsystems.CanDriveSubsystem
+            Robot.driveSubsystem.setSpeed(-0.5, -0.5);
+            if(Robot.driveSubsystem.getEncoderDistance() <  -2){
+                currentState = State.BACK;
+            }
+            break;
 
+            case UP:
+            Robot.driveSubsystem.resetEncoders();
+            Robot.driveSubsystem.setSpeed(1.0, 1.0);
+            if(Robot.driveSubsystem.getEncoderDistance() > 25){
+                currentState = State.FINISH;
+            }
+            break;
+
+            case FINISH:
+
+            break;
 
            }
         
