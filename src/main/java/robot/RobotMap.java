@@ -185,7 +185,7 @@ public class RobotMap {
 			// Not used
 			WEDGE_MOTOR_PORT		= 4;
 			WEDGE_MOTOR_ISINVERTED	= false;
-			CARGO_MOTOR_PORT		= 0;
+			CARGO_MOTOR_PORT		= 5;
 			CARGO_MOTOR_ISINVERTED	= false;
 
 
@@ -206,7 +206,7 @@ public class RobotMap {
 			ULTRASONIC_ANALOG_PORT                            = 0;
 
 			// Not used
-			CARGO_SWITCH_PORT								  = 0;
+			CARGO_SWITCH_PORT								  = 5;
 			
 			break;
 		}
