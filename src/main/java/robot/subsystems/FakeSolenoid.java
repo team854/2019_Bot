@@ -1,18 +1,22 @@
 package robot.subsystems;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+
 public class FakeSolenoid {
 
-	boolean state = false;
+	Value value = Value.kOff;
 
 	public FakeSolenoid() {}
 	
 	public FakeSolenoid(int port) {}
 	
-	public void set(boolean state) {
-		this.state = state;
+	public FakeSolenoid(int port, int port2) {}
+
+	public Value get() {
+		return value;
 	}
-	
-	public boolean get() {
-		return state;
+
+	public void set(Value solenoidValue) {	
+		this.value = value;
 	}
 }

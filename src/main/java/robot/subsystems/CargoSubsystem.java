@@ -1,13 +1,14 @@
 package robot.subsystems;
 
+import com.torontocodingcollective.sensors.limitSwitch.TLimitSwitch;
+import com.torontocodingcollective.speedcontroller.TPwmSpeedController;
+import com.torontocodingcollective.speedcontroller.TPwmSpeedController.TPwmSpeedControllerType;
 import com.torontocodingcollective.subsystem.TSubsystem;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import robot.RobotMap;
 import robot.commands.cargo.DefaultCargoCommand;
-import com.torontocodingcollective.sensors.limitSwitch.TLimitSwitch;
-import com.torontocodingcollective.speedcontroller.TPwmSpeedController;
-import com.torontocodingcollective.speedcontroller.TPwmSpeedController.TPwmSpeedControllerType;
 
 public class CargoSubsystem extends TSubsystem {
 
@@ -15,7 +16,7 @@ public class CargoSubsystem extends TSubsystem {
                                                 TPwmSpeedControllerType.SPARK,
                                                 RobotMap.CARGO_MOTOR_PORT,
                                                 RobotMap.CARGO_MOTOR_ISINVERTED);
-    private DoubleSolenoid      height  = new DoubleSolenoid(RobotMap.CARGO_HEIGHT, RobotMap.CARGO_HEIGHT_2);
+    private FakeSolenoid        height       = new FakeSolenoid(RobotMap.CARGO_HEIGHT, RobotMap.CARGO_HEIGHT_2);
     private TLimitSwitch        limitSwitch  = new TLimitSwitch(RobotMap.CARGO_SWITCH_PORT, TLimitSwitch.DefaultState.FALSE);
     
     @Override
