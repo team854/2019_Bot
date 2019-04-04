@@ -11,14 +11,14 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 public class HatchSubsystem extends TSubsystem {
 
     // Changed to FakeSolenoids until the production robot is built
-	private DoubleSolenoid grabber;
-	private DoubleSolenoid deployer;
+	private FakeSolenoid grabber;
+	private FakeSolenoid deployer;
 
 	public HatchSubsystem() {
 	    
 	    if (RobotConst.robot == RobotConst.PROD_ROBOT) {
-    	    grabber = new DoubleSolenoid(RobotMap.HATCH_GRABBER_PORT_2, RobotMap.HATCH_GRABBER_PORT);
-    	    deployer = new DoubleSolenoid(RobotMap.HATCH_DEPLOYER_PORT_2, RobotMap.HATCH_DEPLOYER_PORT);
+    	    grabber = new FakeSolenoid(RobotMap.HATCH_GRABBER_PORT_2, RobotMap.HATCH_GRABBER_PORT);
+    	    deployer = new FakeSolenoid(RobotMap.HATCH_DEPLOYER_PORT_2, RobotMap.HATCH_DEPLOYER_PORT);
 	    }
 	    else {
 	        grabber = null;
