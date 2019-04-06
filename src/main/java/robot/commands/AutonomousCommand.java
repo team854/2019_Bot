@@ -65,7 +65,7 @@ public class AutonomousCommand extends CommandGroup {
 
         switch (pattern) {
         
-        case AutoSelector.PATTERN_CARGO_HATCH: 
+        case AutoSelector.PATTERN_FRONT_HATCH: 
         /*case AutoSelector.PATTERN_CARGO_DRIVE_UP:
         case AutoSelector.PATTERN_CARGO_DELIVER_AND_GO:*/
         		
@@ -113,7 +113,39 @@ public class AutonomousCommand extends CommandGroup {
 //                Robot.oi, Robot.driveSubsystem) );
 
                 break;*/
-        	}
+            }
+            case AutoSelector.PATTERN_SIDE_HATCH:
+                
+            switch (robotStartPosition) {
+        	
+                case AutoSelector.ROBOT_RIGHT:
+                    
+                        
+                    break;
+                    
+                case AutoSelector.ROBOT_LEFT:
+                
+                    addParallel(new DropHatchCommand());
+                    addSequential(new TDriveOnHeadingDistanceCommand(160, 0, .8, 5, false, 
+                    Robot.oi, Robot.driveSubsystem) );
+                    addSequential(new TDriveOnHeadingDistanceCommand(100, 330, .8, 5, true, 
+                    Robot.oi, Robot.driveSubsystem) );
+                    addSequential(new TRotateToHeadingCommand(90, 3, Robot.oi, Robot.driveSubsystem) );
+
+                   
+                
+                    break;
+                
+                // Robot center is not used    
+                /*case AutoSelector.ROBOT_CENTER:
+    
+                    addSequential(new DriveToUltrasonicDistance());
+    //                addSequential(new TDriveOnHeadingDistanceCommand(60, 0, .2, 5, true, 
+    //                Robot.oi, Robot.driveSubsystem) );
+    
+                    break;*/
+                }
+                
         		
         	break;
                 
