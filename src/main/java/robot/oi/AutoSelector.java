@@ -9,10 +9,13 @@ public class AutoSelector {
 
     public static final String            ROBOT_LEFT   = "Robot Left";
     public static final String            ROBOT_RIGHT  = "Robot Right";
+    public static final String            ROBOT_CENTER  = "Robot Center";
     
     public static SendableChooser<String> pattern;
     
-    public static final String            PATTERN_CARGO_HATCH    = "Cargo Hatch";
+    public static final String            PATTERN_FRONT_HATCH    = "Front Hatch";
+    public static final String            PATTERN_SIDE_HATCH    = "Side Hatch";
+    public static final String            PATTERN_STRAIGHT      = "Go Straight";
     /*public static final String            PATTERN_CARGO_DRIVE_UP = "Cargo Drive Up";
     public static final String            PATTERN_CARGO_DELIVER_AND_GO 
     = "Cargo Deliver and Go";
@@ -36,7 +39,9 @@ public class AutoSelector {
 
         // Robot Pattern Options
         pattern = new SendableChooser<String>();
-        pattern.setDefaultOption(PATTERN_CARGO_HATCH, PATTERN_CARGO_HATCH);
+        pattern.setDefaultOption(PATTERN_FRONT_HATCH, PATTERN_FRONT_HATCH);
+        pattern.addOption(PATTERN_SIDE_HATCH, PATTERN_SIDE_HATCH);
+        pattern.addOption(PATTERN_STRAIGHT, PATTERN_STRAIGHT);
         /*pattern.addOption(PATTERN_CARGO_DRIVE_UP, PATTERN_CARGO_DRIVE_UP);
         pattern.addOption(PATTERN_CARGO_DELIVER_AND_GO, PATTERN_CARGO_DELIVER_AND_GO);
         pattern.addOption(PATTERN_NONE, PATTERN_NONE);*/
@@ -61,8 +66,8 @@ public class AutoSelector {
     public static String getPattern() {
 
     	if (pattern.getSelected() == null) {
-    		System.out.println("Pattern not chosen - overriding to " + PATTERN_CARGO_HATCH);
-    		return PATTERN_CARGO_HATCH;
+    		System.out.println("Pattern not chosen - overriding to " + PATTERN_FRONT_HATCH);
+    		return PATTERN_FRONT_HATCH;
     	}
         return pattern.getSelected();
     }
@@ -75,8 +80,8 @@ public class AutoSelector {
     public static String getRobotStartPosition() {
 
     	if (robotStartPosition.getSelected() == null) {
-    		System.out.println("Start position not chosen - overriding to " + ROBOT_RIGHT);
-    		return ROBOT_RIGHT;
+    		System.out.println("Start position not chosen - overriding to " + ROBOT_LEFT);
+    		return ROBOT_LEFT;
     	}
         return robotStartPosition.getSelected();
     }
