@@ -74,6 +74,9 @@ public class PwmDriveSubsystem extends TGyroDriveSubsystem {
     			RobotConst.ULTRASONIC_VOLTAGE_20IN, 
     			RobotConst.ULTRASONIC_VOLTAGE_40IN, 
     			RobotConst.ULTRASONIC_VOLTAGE_80IN);
+    	
+    	// Left side is faster than right side on the practice bot
+    	setSpeedAdjust(0.92, 1.0);
     }
 
     // Initialize the default command for the Chassis subsystem.
