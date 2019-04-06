@@ -91,7 +91,7 @@ public class WaitForVisionTarget extends TSafeCommand {
                 double driveTimeout = 3; // Allow 3 seconds for distance timeout
                 
     	        Scheduler.getInstance().add(new AutoAlignAndDeliver(
-    	                heading, distanceInches, 0.25, visionTimeout, driveTimeout));
+    	                heading, distanceInches, 0.5, visionTimeout, driveTimeout));
     	    }
     	    return true;
     	}

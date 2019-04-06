@@ -131,19 +131,12 @@ public class AutonomousCommand extends CommandGroup {
                     addSequential(new TDriveOnHeadingDistanceCommand(100, 335, .8, 5, true, 
                     Robot.oi, Robot.driveSubsystem) );
                     addSequential(new TRotateToHeadingCommand(90, 3, Robot.oi, Robot.driveSubsystem) );
+                    addSequential(new WaitForVisionTarget(deliver));
 
                    
                 
                     break;
                 
-                // Robot center is not used    
-                /*case AutoSelector.ROBOT_CENTER:
-    
-                    addSequential(new DriveToUltrasonicDistance());
-    //                addSequential(new TDriveOnHeadingDistanceCommand(60, 0, .2, 5, true, 
-    //                Robot.oi, Robot.driveSubsystem) );
-    
-                    break;*/
                 }
                 
         		
