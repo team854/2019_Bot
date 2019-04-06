@@ -99,6 +99,11 @@ public class OI extends TOi {
         return driverController.getButton(TButton.START);
     }
 
+    
+    public boolean getHopUp(){
+        return driverController.getButton(TButton.B);
+    }
+
     @Override
     public int getRotateToHeading() {
     	
@@ -286,7 +291,7 @@ public class OI extends TOi {
         // Update dual toggles
         // ********************
         hatchDeployerToggle.updatePeriodic(getDualToggle(TButton.X_SYMBOL));
-        cameraToggle.updatePeriodic(getDualToggle(TButton.CIRCLE));
+        cameraToggle.updatePeriodic(operatorController.getButton(TButton.B));
         cargoHeightToggle.updatePeriodic(operatorController.getButton(TButton.Y));
         // Update hatch grabber toggle by looking at two buttons
         // Will not change if both buttons are pressed

@@ -10,7 +10,7 @@ import com.torontocodingcollective.subsystem.TSubsystem;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import robot.commands.AutonomousCommand;
+import robot.commands.drive.HopUpCommand;
 import robot.oi.AutoSelector;
 import robot.oi.OI;
 import robot.subsystems.CameraSubsystem;
@@ -118,7 +118,7 @@ public class Robot extends IterativeRobot {
 
         // Initialize the robot command after initializing the game data
         // because the game data will be used in the auto command.
-        autoCommand = new AutonomousCommand();
+        autoCommand = new HopUpCommand();
         autoCommand.start();
     }
 

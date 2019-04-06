@@ -66,6 +66,11 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
         // Check the driver controller buttons
         super.execute();
 
+        if(Robot.oi.getHopUp()){
+            Scheduler.getInstance().add(new HopUpCommand());
+        }
+
+        
         // Check whether Driver is moving or not, otherwise the Operator can control
         TStickPosition leftStickPosition = oi.getOperatorDriveStickPosition(TStick.LEFT);
         TStickPosition rightStickPosition = oi.getOperatorDriveStickPosition(TStick.RIGHT);
@@ -137,6 +142,7 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             motorSpeeds.right /= RobotConst.OPERATOR_SPEED_DIVISOR;
 
         }
+        
         
         if (operatorControlling && Robot.cameraSubsystem.getCurrentCamera() == Camera.REAR) {
             double temp = motorSpeeds.right;
