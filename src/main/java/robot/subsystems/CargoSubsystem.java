@@ -17,7 +17,7 @@ public class CargoSubsystem extends TSubsystem {
                                                 RobotMap.CARGO_MOTOR_PORT,
                                                 RobotMap.CARGO_MOTOR_ISINVERTED);
     private FakeSolenoid        height       = new FakeSolenoid(RobotMap.CARGO_HEIGHT, RobotMap.CARGO_HEIGHT_2);
-    private TLimitSwitch        limitSwitch  = new TLimitSwitch(RobotMap.CARGO_SWITCH_PORT, TLimitSwitch.DefaultState.FALSE);
+    private TLimitSwitch        limitSwitch  = new TLimitSwitch(RobotMap.CARGO_SWITCH_PORT, TLimitSwitch.DefaultState.TRUE);
     
     @Override
     public void init() {
@@ -30,10 +30,6 @@ public class CargoSubsystem extends TSubsystem {
     }
 
     public void setHeightState(boolean state) {
-        if (height == null) {
-            return;
-        }
-        
         if (state) {  // XXX: Assumes true is up
             height.set(DoubleSolenoid.Value.kForward);
         }
@@ -58,13 +54,9 @@ public class CargoSubsystem extends TSubsystem {
     @Override
     public void updatePeriodic() {
         
-        if (height != null) {
-            SmartDashboard.putString("cargoHeight", height.get().name());
-            SmartDashboard.putNumber("cargoIntakeSpeed", getIntakeSpeed());
-        }
-        else {
-            SmartDashboard.putString("cargoHeight", "no pnuematics");
-        }
+    	SmartDashboard.putString("Cargo Height", height.get().name());
+    	SmartDashboard.putNumber("Cargo Intake Speed", getIntakeSpeed());
+    	SmartDashboard.putBoolean("Ball Detect", ballIn());
     }
 
 }

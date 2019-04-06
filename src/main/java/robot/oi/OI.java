@@ -47,10 +47,9 @@ public class OI extends TOi {
     // The following toggles are shared between Driver and Operator
     private TToggle         hatchGrabberToggle          = new TToggle();
     private TToggle         hatchDeployerToggle         = new TToggle();
-    private boolean         cargoHeightOverride         = false;
-    private boolean         cargoHeightOverrideState    = false;
     private TToggle         cameraToggle                = new TToggle();
     private TToggle         cargoHeightToggle           = new TToggle();
+    private TToggle         cargoIntakeToggle           = new TToggle(operatorController, TButton.START);
 
     private DriveSelector   driveSelector               = new DriveSelector();
 
@@ -232,13 +231,20 @@ public class OI extends TOi {
     	cargoHeightToggle.set(state);
     }
 
-    public void releaseHeightState() {
-        // Stops overriding the height state
-        cargoHeightOverride = false;
-    }
-
     public boolean getIntakeState() {
     	return (driverController.getButton(TTrigger.LEFT) || operatorController.getButton(TButton.X));
+    }
+    
+    public void stopCargoIntake() {
+    	cargoIntakeToggle.set(false);
+    }
+
+    public boolean getCargoIntake() {
+    	return cargoIntakeToggle.get();
+    }
+    
+    public boolean getCargoEject() {
+    	return operatorController.getButton(TButton.X);
     }
 
     /* ***************************************************************************************
@@ -267,6 +273,8 @@ public class OI extends TOi {
         cargoHeightToggle.set(false);
         // Auto Align is set to false - the robot cannot move by default
         autoAlignToggle.set(false);
+        // Cargo Intake set to false - not intaking
+        cargoIntakeToggle.set(false);
     }
 
     @Override
@@ -279,6 +287,7 @@ public class OI extends TOi {
         // Update all Toggles
         compressorToggle.updatePeriodic();
         speedPidToggle.updatePeriodic();
+        cargoIntakeToggle.updatePeriodic();
 
         autoAlignToggle.updatePeriodic(operatorController.getButton(TStick.RIGHT));
 

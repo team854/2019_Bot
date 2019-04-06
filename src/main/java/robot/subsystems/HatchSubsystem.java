@@ -16,14 +16,8 @@ public class HatchSubsystem extends TSubsystem {
 
 	public HatchSubsystem() {
 	    
-	    if (RobotConst.robot == RobotConst.PROD_ROBOT) {
-    	    grabber = new FakeSolenoid(RobotMap.HATCH_GRABBER_PORT_2, RobotMap.HATCH_GRABBER_PORT);
-    	    deployer = new FakeSolenoid(RobotMap.HATCH_DEPLOYER_PORT_2, RobotMap.HATCH_DEPLOYER_PORT);
-	    }
-	    else {
-	        grabber = null;
-	        deployer = null;
-	    }
+		grabber = new FakeSolenoid(RobotMap.HATCH_GRABBER_PORT_2, RobotMap.HATCH_GRABBER_PORT);
+		deployer = new FakeSolenoid(RobotMap.HATCH_DEPLOYER_PORT_2, RobotMap.HATCH_DEPLOYER_PORT);
 	}
 	
     @Override
@@ -39,10 +33,6 @@ public class HatchSubsystem extends TSubsystem {
 
     //Depending on the state that the grabber is in, the grabber will open or close.
     public void setGrabberState(boolean state) {
-        if (grabber == null) {
-            return;
-        }
-        
         if (state) { // Assumes true means open
             grabber.set(DoubleSolenoid.Value.kForward);
         }
@@ -53,11 +43,6 @@ public class HatchSubsystem extends TSubsystem {
 
     //Depending on the state that the deployer is in, the deployer will open or close.
     public void setDeployerState(boolean state) {
-        
-        if (deployer == null) {
-            return;
-        }
-        
         if (state) { // XXX: Assumes true is down
             deployer.set(DoubleSolenoid.Value.kForward);
         }
@@ -71,14 +56,8 @@ public class HatchSubsystem extends TSubsystem {
     @Override
     public void updatePeriodic() {
         
-        if (grabber != null) {
-        	SmartDashboard.putString("Grabber", grabber.get().name());
-        	SmartDashboard.putString("Deployer", deployer.get().name());
-        }
-        else {
-            SmartDashboard.putString("Grabber", "no pneumatics");
-            SmartDashboard.putString("Deployer", "no pnuematics");
-        }
+    	SmartDashboard.putString("Grabber", grabber.get().name());
+    	SmartDashboard.putString("Deployer", deployer.get().name());
     }
 
 }

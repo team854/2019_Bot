@@ -560,6 +560,41 @@
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
             }
+          },
+          "13,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Cargo Height",
+              "_title": "Cargo Height"
+            }
+          },
+          "10,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Cargo Intake Speed",
+              "_title": "Cargo Intake Speed"
+            }
+          },
+          "11,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/Ball Detect",
+              "_title": "Ball Detect",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
           }
         }
       }
@@ -1031,6 +1066,19 @@
               "_source0": "network_table:///SmartDashboard/Ultrasonic Voltage",
               "_title": "SmartDashboard/Ultrasonic Voltage"
             }
+          },
+          "9,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/Driver Controlling",
+              "_title": "SmartDashboard/Driver Controlling",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
           }
         }
       }
@@ -1067,6 +1115,19 @@
               "_title": "SmartDashboard/Grabber"
             }
           },
+          "2,1": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/Ball Detect",
+              "_title": "SmartDashboard/Ball Detect",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
           "2,0": {
             "size": [
               2,
@@ -1074,19 +1135,19 @@
             ],
             "content": {
               "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/cargoGate",
-              "_title": "SmartDashboard/cargoGate"
+              "_source0": "network_table:///SmartDashboard/Cargo Height",
+              "_title": "SmartDashboard/Cargo Height"
             }
           },
-          "2,1": {
+          "2,2": {
             "size": [
               2,
               1
             ],
             "content": {
               "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/cargoHeight",
-              "_title": "SmartDashboard/cargoHeight"
+              "_source0": "network_table:///SmartDashboard/Cargo Intake Speed",
+              "_title": "SmartDashboard/Cargo Intake Speed"
             }
           }
         }
@@ -1191,7 +1252,7 @@
           "2,3": {
             "size": [
               2,
-              1
+              2
             ],
             "content": {
               "_type": "Boolean Box",
