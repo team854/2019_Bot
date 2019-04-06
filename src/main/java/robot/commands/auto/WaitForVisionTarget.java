@@ -87,8 +87,9 @@ public class WaitForVisionTarget extends TSafeCommand {
                 logMessage("Schedule auto align to heading " + heading
                 		+ " and drive distance " + distanceInches);
 
-                double visionTimeout = 2; // Allow 2 seconds for vision targeting
+                double visionTimeout = 1; // Allow 2 seconds for vision targeting
                 double driveTimeout = 3; // Allow 3 seconds for distance timeout
+                
                 
     	        Scheduler.getInstance().add(new AutoAlignAndDeliver(
     	                heading, distanceInches, 0.5, visionTimeout, driveTimeout));
