@@ -102,9 +102,9 @@ public class RobotConst {
 
             ENCODER_COUNTS_PER_INCH = 28.52;
 
-            ULTRASONIC_VOLTAGE_20IN       = 0.18;
-            ULTRASONIC_VOLTAGE_40IN       = 0.38;
-            ULTRASONIC_VOLTAGE_80IN       = 0.76;
+            ULTRASONIC_VOLTAGE_20IN       = 0.45;
+            ULTRASONIC_VOLTAGE_40IN       = 0.96;
+            ULTRASONIC_VOLTAGE_80IN       = 1.85;
             ULTRASONIC_RECESS             = 8.0;
             
             break;

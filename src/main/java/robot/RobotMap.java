@@ -206,7 +206,7 @@ public class RobotMap {
 			ULTRASONIC_ANALOG_PORT                            = 0;
 
 			// Not used
-			CARGO_SWITCH_PORT								  = 5;
+			CARGO_SWITCH_PORT								  = 4;
 			
 			break;
 		}
