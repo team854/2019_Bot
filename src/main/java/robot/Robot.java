@@ -10,7 +10,8 @@ import com.torontocodingcollective.subsystem.TSubsystem;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import robot.commands.drive.HopUpCommand;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import robot.commands.AutonomousCommand;
 import robot.oi.AutoSelector;
 import robot.oi.OI;
 import robot.subsystems.CameraSubsystem;
@@ -66,6 +67,8 @@ public class Robot extends IterativeRobot {
         
         AutoSelector.init();
         Robot.oi.setAutoAlign(false);
+        
+    	SmartDashboard.putBoolean("Driver Controlling", false);
     }
 
     /**

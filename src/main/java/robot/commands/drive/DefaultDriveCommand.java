@@ -10,6 +10,7 @@ import com.torontocodingcollective.subsystem.TGyroDriveSubsystem;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import robot.Robot;
 import robot.RobotConst;
 import robot.oi.OI;
@@ -80,6 +81,7 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             rightStickPosition = oi.getDriverDriveStickPosition(TStick.RIGHT);
             operatorControlling = false;
         }
+        SmartDashboard.putBoolean("Driver Controlling", !operatorControlling);
 
         if (operatorControlling && DriverStation.getInstance().isAutonomous()) {
             leftStickPosition.y = leftStickPosition.y / 2; 
@@ -182,4 +184,11 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
         // The default command does not end
         return false;
     }
+
+    @Override 
+    protected void end() {
+    	operatorControlling = true;
+    	SmartDashboard.putBoolean("Driver Controlling", false);
+    }
+    
 }

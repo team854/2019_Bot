@@ -44,7 +44,6 @@ public class DefaultWedgeCommand extends TSafeCommand {
             Robot.wedgeSubsystem.setWedgeSpeed(0);
             // Bring the cargo back down
             Robot.oi.setHeightState(false);
-            Robot.oi.releaseHeightState();
             startTime = -1;
         }
     }

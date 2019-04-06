@@ -29,6 +29,9 @@ public abstract class TDriveSubsystem extends TSubsystem {
 
     private double                   maxEncoderSpeed      = 1.0;
     private double                   encoderCountsPerInch = 0;
+    
+    private double                   leftSpeedAdjust = 1.0;
+    private double                   rightSpeedAdjust = 1.0;
 
     boolean                          speedPidsEnabled     = false;
     
@@ -402,8 +405,8 @@ public abstract class TDriveSubsystem extends TSubsystem {
 
             // If the speed PIDs are disabled, then drive the motors
             // with the setpoint.
-            leftSpeedController.set(leftSpeedSetpoint *1.2);
-            rightSpeedController.set(rightSpeedSetpoint);
+            leftSpeedController.set(leftSpeedSetpoint * leftSpeedAdjust);
+            rightSpeedController.set(rightSpeedSetpoint * rightSpeedAdjust);
 
         }
     }
@@ -418,6 +421,28 @@ public abstract class TDriveSubsystem extends TSubsystem {
      */
     public void setSpeed(TSpeeds motorSpeeds) {
         setSpeed(motorSpeeds.left, motorSpeeds.right);
+    }
+
+    /**
+     * Set the speeds adjustments on the motors.  
+     * <p>
+     * This routine can be used to adjust the motor speeds on the two sides of the 
+     * robot to balance the outputs and drive in a straight line.  The speed setpoint
+     * will be adjusted by the speed adjust before being applied to the motors using
+     * the formula motorSpeed = speedSetpoint * speedAdjust
+     * <br>
+     * Speed adjustments are a double value and set to 1.0 by default.
+     * <p>
+     * If the speed adjust is greater than 1.0, the robot may not be able to drive
+     * straight at full speed.  It is recommended to reduce the speed on one side
+     * to allow the robot to drive straight.
+     * 
+     * @param leftAdjust multiplier for the left side (default is 1.0)
+     * @param rightAdjust multiplier for the right side (default is 1.0
+     */
+    public void setSpeedAdjust(double leftAdjust, double rightAdjust) {
+    	this.leftSpeedAdjust = leftAdjust;
+    	this.rightSpeedAdjust = rightAdjust;
     }
 
     /**
@@ -469,8 +494,8 @@ public abstract class TDriveSubsystem extends TSubsystem {
                 leftSpeedPid.calculate(leftEncoder.getRate() / maxEncoderSpeed);
                 rightSpeedPid.calculate(rightEncoder.getRate() / maxEncoderSpeed);
 
-                leftSpeedController.set(leftSpeedPid.get() *1.2);
-                rightSpeedController.set(rightSpeedPid.get());
+                leftSpeedController.set(leftSpeedPid.get() * leftSpeedAdjust);
+                rightSpeedController.set(rightSpeedPid.get() * rightSpeedAdjust);
 
             }
 
