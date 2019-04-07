@@ -32,7 +32,7 @@ public class DefaultWedgeCommand extends TSafeCommand {
     @Override
     protected void execute() {
         // Button pressed, wedge is deployable, and we aren't already deploying
-        if (Robot.oi.getWedgeState() && Robot.wedgeSubsystem.isDeployable() && Robot.wedgeSubsystem.getWedgeSpeed() == 0) {
+        if (Robot.oi.getDeployWedge() && Robot.wedgeSubsystem.isDeployable() && Robot.wedgeSubsystem.getWedgeSpeed() == 0) {
             // Bring cargo up, so the wedge doesn't hit
             Robot.oi.setHeightState(true);  // XXX: Assumes up is true
             Robot.wedgeSubsystem.setWedgeSpeed(1);

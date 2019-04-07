@@ -3,7 +3,6 @@ package robot.oi;
 import com.torontocodingcollective.oi.TButton;
 import com.torontocodingcollective.oi.TGameController;
 import com.torontocodingcollective.oi.TGameController_Logitech;
-import com.torontocodingcollective.oi.TGameController_PS;
 import com.torontocodingcollective.oi.TOi;
 import com.torontocodingcollective.oi.TRumbleManager;
 import com.torontocodingcollective.oi.TStick;
@@ -46,10 +45,13 @@ public class OI extends TOi {
 
     // The following toggles are shared between Driver and Operator
     private TToggle         hatchGrabberToggle          = new TToggle();
+    private static final boolean GRABBER_OPEN           = true;
+    private static final boolean GRABBER_CLOSED         = false;
+    
     private TToggle         hatchDeployerToggle         = new TToggle();
     private TToggle         cameraToggle                = new TToggle();
     private TToggle         cargoHeightToggle           = new TToggle();
-    private TToggle         cargoIntakeToggle           = new TToggle(operatorController, TButton.START);
+    private TToggle         cargoIntakeToggle           = new TToggle();
 
     private DriveSelector   driveSelector               = new DriveSelector();
 
@@ -171,10 +173,6 @@ public class OI extends TOi {
         return operatorController.isStickActive(TStick.LEFT) || operatorController.isStickActive(TStick.RIGHT);
     }
 
-    public boolean isOperatorLeftStickActive() {
-        return operatorController.isStickActive(TStick.LEFT);
-    }
-
     public boolean isOperatorActive() {
         return operatorController.isUserActive();
     }
@@ -199,8 +197,8 @@ public class OI extends TOi {
         autoAlignToggle.set(false);
     }
 
-    public boolean getWedgeState() {
-        return driverController.getButton(TButton.TRIANGLE);
+    public boolean getDeployWedge() {
+        return driverController.getButton(TButton.Y);
     }
 
     /* ***************************************************************************************
@@ -236,9 +234,9 @@ public class OI extends TOi {
     	cargoHeightToggle.set(state);
     }
 
-    public boolean getIntakeState() {
-    	return (driverController.getButton(TTrigger.LEFT) || operatorController.getButton(TButton.X));
-    }
+//    public boolean getIntakeState() {
+//    	return (driverController.getButton(TTrigger.LEFT) || operatorController.getButton(TButton.X));
+//    }
     
     public void stopCargoIntake() {
     	cargoIntakeToggle.set(false);
@@ -269,7 +267,7 @@ public class OI extends TOi {
         compressorToggle.set(true);
         speedPidToggle.set(true);
         // Open is true
-        hatchGrabberToggle.set(true);
+        hatchGrabberToggle.set(GRABBER_OPEN);
         // Up is false
         hatchDeployerToggle.set(false);
         // True is front
@@ -292,24 +290,26 @@ public class OI extends TOi {
         // Update all Toggles
         compressorToggle.updatePeriodic();
         speedPidToggle.updatePeriodic();
-        cargoIntakeToggle.updatePeriodic();
+        cargoIntakeToggle.updatePeriodic(
+        		   operatorController.getButton(TButton.START)
+        		|| driverController.getButton(TTrigger.LEFT));
 
         autoAlignToggle.updatePeriodic(operatorController.getButton(TStick.RIGHT));
 
         // ********************
         // Update dual toggles
         // ********************
-        hatchDeployerToggle.updatePeriodic(getDualToggle(TButton.X_SYMBOL));
+        hatchDeployerToggle.updatePeriodic(getDualToggle(TButton.A));
         cameraToggle.updatePeriodic(operatorController.getButton(TButton.B));
         cargoHeightToggle.updatePeriodic(operatorController.getButton(TButton.Y));
         // Update hatch grabber toggle by looking at two buttons
         // Will not change if both buttons are pressed
-        // If only Close button pressed
-        if (getDualToggle(TButton.LEFT_BUMPER) && !getDualToggle(TButton.RIGHT_BUMPER)) {
-            hatchGrabberToggle.set(false);  // XXX: Assumes false = closed
+        // Open (Grabbed) should always be checked first
+        if (!getDualToggle(TButton.LEFT_BUMPER) && getDualToggle(TButton.RIGHT_BUMPER)) {
+            hatchGrabberToggle.set(GRABBER_OPEN);  // XXX: Assumes true = opened/grabbed
         }
-        else if (!getDualToggle(TButton.LEFT_BUMPER) && getDualToggle(TButton.RIGHT_BUMPER)) {
-            hatchGrabberToggle.set(true);  // XXX: Assumes true = opened
+        else if (getDualToggle(TButton.LEFT_BUMPER) && !getDualToggle(TButton.RIGHT_BUMPER)) {
+            hatchGrabberToggle.set(GRABBER_CLOSED);  // XXX: Assumes false = closed/released
         }
 
         // Update all SmartDashboard values
