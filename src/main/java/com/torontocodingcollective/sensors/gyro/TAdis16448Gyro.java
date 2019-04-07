@@ -1,8 +1,6 @@
 package com.torontocodingcollective.sensors.gyro;
 
-import com.analog.adis16448.frc.ADIS16448_IMU;
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard; 
+import com.analog.adis16448.frc.ADIS16448_IMU; 
 
 public class TAdis16448Gyro extends TGyro {
 
