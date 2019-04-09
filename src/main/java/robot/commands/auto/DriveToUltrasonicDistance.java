@@ -56,6 +56,14 @@ public class DriveToUltrasonicDistance extends TSafeCommand {
     	    logMessage("command cancelled");
     		return true;
     	}
+    	if (Robot.oi.isDriverDriving()) {
+    		logMessage("Driver driving");
+    		return true;
+    	}
+    	if (Robot.oi.isOperatorDriving()) {
+    		logMessage("Operator driving");
+    		return true;
+    	}
     	
     	// NOTE: This command only runs through once, and the purpose of the 
     	//       command is to read the ultrasonic sensor, and then drive

@@ -89,7 +89,7 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
         SmartDashboard.putBoolean("Driver Controlling", !operatorControlling);
 
         if (operatorControlling && DriverStation.getInstance().isAutonomous()) {
-            leftStickPosition.y = leftStickPosition.y / 2; 
+//            leftStickPosition.y = leftStickPosition.y / 2; 
         }
 
         // Turn PIDs on/off

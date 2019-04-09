@@ -32,19 +32,19 @@ public class AutonomousCommand2 extends CommandGroup {
     	// Rotate to the required heading.  Allow only visionTimeout seconds to get there.
     	// If this is used with vision targeting, it should not take more than 0.5 seconds
     	// to align.
-    	addSequential(new TRotateToHeadingCommand(200, 3,
+    	addSequential(new TRotateToHeadingCommand(195, 1,
                 Robot.oi, Robot.driveSubsystem) );
     
     	// Drive on the heading for the requested distance at the requested speed
     	// The command shoud time out in about driveTimeout seconds if the distance is not 
     	// reached.
-    	addSequential(new TDriveOnHeadingDistanceCommand(160, 200, .8, 4, true, 
+    	addSequential(new TDriveOnHeadingDistanceCommand(200, 195, .8, 4, true, 
                 Robot.oi, Robot.driveSubsystem) );
     	
     	// Rotate to the required heading.  Allow only visionTimeout seconds to get there.
     	// If this is used with vision targeting, it should not take more than 0.5 seconds
     	// to align.
-    	addSequential(new TRotateToHeadingCommand(180, 3,
+    	addSequential(new TRotateToHeadingCommand(180, 1,
                 Robot.oi, Robot.driveSubsystem) );
     
     	break;
