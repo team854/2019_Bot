@@ -55,8 +55,8 @@ public class AutoAlignCommand extends TRotateToHeadingCommand {
     	}
     	
         // Always interrupt if the driver or operator joysticks are active
-        // XXX: Only check operator left stick because the right one might be moving from pressing in
-    	if (Robot.oi.isOperatorDriving()) {
+        // XXX: Check if Driver or Operator are moving
+    	if (Robot.oi.isOperatorDriving()|| Robot.oi.isDriverDriving()) {
             System.out.println("Finished due to Driver or Operator movement");
     		return true;
     	}
