@@ -2,6 +2,8 @@ package robot.commands.wedge;
 
 import com.torontocodingcollective.commands.TSafeCommand;
 import robot.Robot;
+import robot.commands.drive.AutoAlignCommand;
+
 import com.torontocodingcollective.TConst;
 
 public class DefaultWedgeCommand extends TSafeCommand {
@@ -37,6 +39,7 @@ public class DefaultWedgeCommand extends TSafeCommand {
             Robot.oi.setHeightState(true);  // XXX: Assumes up is true
             Robot.wedgeSubsystem.setWedgeSpeed(1);
             startTime = timeSinceInitialized();  // What time did we start doing this?
+            Robot.oi.setAutoAlign(false);
         }
         // XXX: Delay needs to be tested
         // Deploying is happening, and 0.5 secs have passed
