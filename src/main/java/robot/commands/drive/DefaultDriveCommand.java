@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import robot.Robot;
 import robot.RobotConst;
+import robot.commands.AutonomousCommand2;
 import robot.oi.OI;
 import robot.subsystems.CameraSubsystem;
 import robot.subsystems.CameraSubsystem.Camera;
@@ -65,8 +66,12 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
     protected void execute() {
 
         // Check the driver controller buttons
-        super.execute();
-
+    	super.execute();
+    	
+    	if (Robot.oi.getAutoPart2()) {
+    		Scheduler.getInstance().add(new AutonomousCommand2());
+    	}
+    	
         if(Robot.oi.getHopUp()){
             Scheduler.getInstance().add(new HopUpCommand());
         }

@@ -197,6 +197,10 @@ public class OI extends TOi {
         autoAlignToggle.set(false);
     }
 
+    public boolean getAutoPart2() {
+    	return operatorController.getButton(TButton.BACK);
+    }
+    
     public boolean getDeployWedge() {
         return driverController.getButton(TButton.Y);
     }
