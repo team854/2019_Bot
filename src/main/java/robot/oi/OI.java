@@ -178,14 +178,6 @@ public class OI extends TOi {
         return operatorController.isUserActive();
     }
 
-    public boolean getSlightLeft() {
-        return operatorController.getButton(TTrigger.LEFT);
-    }
-
-    public boolean getSlightRight() {
-        return operatorController.getButton(TTrigger.RIGHT);
-    }    
-    
     public boolean getAutoAlignSelected() {
     	return autoAlignToggle.get();
     }
@@ -253,6 +245,10 @@ public class OI extends TOi {
     
     public boolean getCargoEject() {
     	return operatorController.getButton(TButton.X);
+    }
+
+    public boolean getCargoReverseEject() {
+    	return operatorController.getButton(TTrigger.RIGHT);
     }
 
     /* ***************************************************************************************

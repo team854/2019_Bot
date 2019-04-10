@@ -4,7 +4,9 @@ import com.torontocodingcollective.commands.gyroDrive.TDriveOnHeadingDistanceCom
 import com.torontocodingcollective.commands.gyroDrive.TRotateToHeadingCommand;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 import robot.Robot;
+import robot.commands.auto.WaitForVisionTarget;
 import robot.oi.AutoSelector;
 
 /**
@@ -46,6 +48,10 @@ public class AutonomousCommand2 extends CommandGroup {
     	// to align.
     	addSequential(new TRotateToHeadingCommand(180, 1,
                 Robot.oi, Robot.driveSubsystem) );
+    
+    	addSequential(new WaitCommand(0.5));
+    
+    	addSequential(new WaitForVisionTarget(true));
     
     	break;
     	}

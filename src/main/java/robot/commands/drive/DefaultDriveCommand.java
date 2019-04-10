@@ -172,15 +172,6 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             Scheduler.getInstance().add(new AutoAlignCommand(heading));
         }
 
-        // This will only run if the TRotateToHeadingCtommand isn't running
-        if (operatorControlling && oi.getSlightLeft()) {
-            motorSpeeds.left = 0;
-            motorSpeeds.right = 0.5;  // XXX: Set this value
-        }
-        else if (operatorControlling && oi.getSlightRight()) {
-            motorSpeeds.left = 0.5;  // XXX: Set this value
-            motorSpeeds.right = 0;
-        }
         driveSubsystem.setSpeed(motorSpeeds);
     }
 
