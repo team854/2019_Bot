@@ -48,7 +48,7 @@ public class RobotConst {
 
     // The TorontoCodingCollective framework was developed to run on different
     // robots through the use of multiple mappings and constants.
-    public static final String robot = TEST_ROBOT;
+    public static final String robot = PROD_ROBOT;
 
     static {
 

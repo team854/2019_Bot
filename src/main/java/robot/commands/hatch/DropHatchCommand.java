@@ -29,6 +29,7 @@ public class DropHatchCommand extends TSafeCommand {
     
     @Override
     protected void initialize() {
+    	System.out.println("Auto Drop Hatch: " + System.currentTimeMillis());
     	// Switch the state of the OI Deployer toggle.
     	// This step is wrapped in a command so that it can 
     	// be called in a command group

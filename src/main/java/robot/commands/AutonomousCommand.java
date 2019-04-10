@@ -123,9 +123,9 @@ public class AutonomousCommand extends CommandGroup {
                     addParallel(new DropHatchCommand());
                     addSequential(new TDriveOnHeadingDistanceCommand(150, 0, .8, 5, false, 
                     Robot.oi, Robot.driveSubsystem) );
-                    addSequential(new TDriveOnHeadingDistanceCommand(100, 335, .8, 5, true, 
+                    addSequential(new TDriveOnHeadingDistanceCommand(100, 25, .8, 5, true, 
                     Robot.oi, Robot.driveSubsystem) );
-                    addSequential(new TRotateToHeadingCommand(90, 1.5, Robot.oi, Robot.driveSubsystem) );
+                    addSequential(new TRotateToHeadingCommand(270, 1.5, Robot.oi, Robot.driveSubsystem) );
                     addSequential(new AutoDelay(1.0));
                     addSequential(new WaitForVisionTarget(deliver));
                         
@@ -142,8 +142,6 @@ public class AutonomousCommand extends CommandGroup {
                     addSequential(new AutoDelay(1.0));
                     addSequential(new WaitForVisionTarget(deliver));
 
-                   
-                
                     break;
                 
                 }
