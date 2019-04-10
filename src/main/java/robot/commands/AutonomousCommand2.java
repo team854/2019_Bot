@@ -26,35 +26,61 @@ import robot.oi.AutoSelector;
  */
 public class AutonomousCommand2 extends CommandGroup {
 
-    public AutonomousCommand2() {
+	public AutonomousCommand2() {
 
-    	switch(AutoSelector.getRobotStartPosition()) {
-    	case AutoSelector.ROBOT_LEFT: 
-    		
-    	// Rotate to the required heading.  Allow only visionTimeout seconds to get there.
-    	// If this is used with vision targeting, it should not take more than 0.5 seconds
-    	// to align.
-    	addSequential(new TRotateToHeadingCommand(195, 1,
-                Robot.oi, Robot.driveSubsystem) );
-    
-    	// Drive on the heading for the requested distance at the requested speed
-    	// The command shoud time out in about driveTimeout seconds if the distance is not 
-    	// reached.
-    	addSequential(new TDriveOnHeadingDistanceCommand(200, 195, .8, 4, true, 
-                Robot.oi, Robot.driveSubsystem) );
-    	
-    	// Rotate to the required heading.  Allow only visionTimeout seconds to get there.
-    	// If this is used with vision targeting, it should not take more than 0.5 seconds
-    	// to align.
-    	addSequential(new TRotateToHeadingCommand(180, 1,
-                Robot.oi, Robot.driveSubsystem) );
-    
-    	addSequential(new WaitCommand(0.5));
-    
-    	addSequential(new WaitForVisionTarget(true));
-    
-    	break;
-    	}
+		switch(AutoSelector.getRobotStartPosition()) {
+		case AutoSelector.ROBOT_LEFT: 
 
-    }
+			// Rotate to the required heading.  Allow only visionTimeout seconds to get there.
+			// If this is used with vision targeting, it should not take more than 0.5 seconds
+			// to align.
+			addSequential(new TRotateToHeadingCommand(195, 1,
+					Robot.oi, Robot.driveSubsystem) );
+
+			// Drive on the heading for the requested distance at the requested speed
+			// The command shoud time out in about driveTimeout seconds if the distance is not 
+			// reached.
+			addSequential(new TDriveOnHeadingDistanceCommand(200, 195, .8, 4, true, 
+					Robot.oi, Robot.driveSubsystem) );
+
+			// Rotate to the required heading.  Allow only visionTimeout seconds to get there.
+			// If this is used with vision targeting, it should not take more than 0.5 seconds
+			// to align.
+			addSequential(new TRotateToHeadingCommand(180, 1,
+					Robot.oi, Robot.driveSubsystem) );
+
+			addSequential(new WaitCommand(0.5));
+
+			addSequential(new WaitForVisionTarget(true));
+
+			break;
+
+		case AutoSelector.ROBOT_RIGHT: 
+
+			// Rotate to the required heading.  Allow only visionTimeout seconds to get there.
+			// If this is used with vision targeting, it should not take more than 0.5 seconds
+			// to align.
+			addSequential(new TRotateToHeadingCommand(165, 1,
+					Robot.oi, Robot.driveSubsystem) );
+
+			// Drive on the heading for the requested distance at the requested speed
+			// The command shoud time out in about driveTimeout seconds if the distance is not 
+			// reached.
+			addSequential(new TDriveOnHeadingDistanceCommand(200, 165, .8, 4, true, 
+					Robot.oi, Robot.driveSubsystem) );
+
+			// Rotate to the required heading.  Allow only visionTimeout seconds to get there.
+			// If this is used with vision targeting, it should not take more than 0.5 seconds
+			// to align.
+			addSequential(new TRotateToHeadingCommand(180, 1,
+					Robot.oi, Robot.driveSubsystem) );
+
+			addSequential(new WaitCommand(0.5));
+
+			addSequential(new WaitForVisionTarget(true));
+
+			break;
+		}
+
+	}
 }

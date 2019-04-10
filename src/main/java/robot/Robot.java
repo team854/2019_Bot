@@ -69,6 +69,11 @@ public class Robot extends IterativeRobot {
         Robot.oi.setAutoAlign(false);
         
     	SmartDashboard.putBoolean("Driver Controlling", false);
+    	// Create an auto command but do nothing with it... 
+    	// We are having a problem with the robot starting late in
+    	// auto the first time after power up.  Not sure if it 
+    	// is an issue of needing to pre-load the classes
+    	autoCommand = new AutonomousCommand();
     }
 
     /**
@@ -104,6 +109,7 @@ public class Robot extends IterativeRobot {
     @Override
     public void autonomousInit() {
 
+    	System.out.println("AutoInit: " + System.currentTimeMillis());
         // Turn off the drive pids for auto
         Robot.oi.setSpeedPidEnabled(false);
         driveSubsystem.disableSpeedPids();
@@ -123,6 +129,8 @@ public class Robot extends IterativeRobot {
         // because the game data will be used in the auto command.
         autoCommand = new AutonomousCommand();
         autoCommand.start();
+
+        System.out.println("AutoInit Complete: " + System.currentTimeMillis());
     }
 
     /**
