@@ -16,7 +16,7 @@ public class CargoSubsystem extends TSubsystem {
                                                 TPwmSpeedControllerType.SPARK,
                                                 RobotMap.CARGO_MOTOR_PORT,
                                                 RobotMap.CARGO_MOTOR_ISINVERTED);
-    private FakeSolenoid        height       = new FakeSolenoid(RobotMap.CARGO_HEIGHT, RobotMap.CARGO_HEIGHT_2);
+    private DoubleSolenoid      height       = new DoubleSolenoid(RobotMap.CARGO_HEIGHT, RobotMap.CARGO_HEIGHT_2);
     private TLimitSwitch        limitSwitch  = new TLimitSwitch(RobotMap.CARGO_SWITCH_PORT, TLimitSwitch.DefaultState.TRUE);
     
     @Override
