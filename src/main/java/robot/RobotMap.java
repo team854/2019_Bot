@@ -121,8 +121,8 @@ public class RobotMap {
 			// PWM
 			WEDGE_MOTOR_PORT		= 0;
 			WEDGE_MOTOR_ISINVERTED	= false;
-			// XXX: Unknown right now
-			CARGO_MOTOR_PORT = 0;
+			
+			CARGO_MOTOR_PORT = 1;
 			CARGO_MOTOR_ISINVERTED = false;
 
 			// PWM Values are Unused on Prod Robot
