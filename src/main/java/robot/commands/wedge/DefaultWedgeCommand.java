@@ -1,6 +1,8 @@
 package robot.commands.wedge;
 
 import com.torontocodingcollective.commands.TSafeCommand;
+
+import edu.wpi.first.wpilibj.Timer;
 import robot.Robot;
 import robot.commands.drive.AutoAlignCommand;
 
@@ -37,8 +39,9 @@ public class DefaultWedgeCommand extends TSafeCommand {
         if (Robot.oi.getDeployWedge() && Robot.wedgeSubsystem.isDeployable() && Robot.wedgeSubsystem.getWedgeSpeed() == 0) {
             // Bring cargo up, so the wedge doesn't hit
             Robot.oi.setHeightState(true);  // XXX: Assumes up is true
+            Timer.delay(0.25);  // Let the cargo come up before moving
             Robot.wedgeSubsystem.setWedgeSpeed(1);
-            startTime = timeSinceInitialized();  // What time did we start doing this?
+            startTime = timeSinceInitialized();
             Robot.oi.setAutoAlign(false);
         }
         // XXX: Delay needs to be tested
