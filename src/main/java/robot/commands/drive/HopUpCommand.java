@@ -65,14 +65,14 @@ public class HopUpCommand extends TSafeCommand{
            switch(currentState){
 
             case BACK:
-            Robot.driveSubsystem.setSpeed(-0.5, -0.5);
+            Robot.driveSubsystem.setSpeed(0.5, 0.5);
             if(Robot.driveSubsystem.getDistanceInches() < -2){
                 currentState = State.UP;
             }
             break;
 
             case UP:
-            Robot.driveSubsystem.setSpeed(1.0, 1.0);
+            Robot.driveSubsystem.setSpeed(-1.0, -1.0);
             if(Robot.driveSubsystem.getDistanceInches() > 70){
                 currentState = State.FINISH;
             }
