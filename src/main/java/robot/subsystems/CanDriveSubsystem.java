@@ -68,9 +68,10 @@ public class CanDriveSubsystem extends TGyroDriveSubsystem {
     			RobotConst.ULTRASONIC_VOLTAGE_20IN, 
     			RobotConst.ULTRASONIC_VOLTAGE_40IN, 
     			RobotConst.ULTRASONIC_VOLTAGE_80IN);
-    	
+        
+        // Removed for gearbox change
     	// Reduce the speed on the right side by 0.8 to balance with the left
-    	setSpeedAdjust(1.0, 0.8);
+    	setSpeedAdjust(1.2, 1.0);
 	}
 
 	// Initialize the default command for the Chassis subsystem.

@@ -55,7 +55,7 @@ public class DefaultCargoCommand extends TSafeCommand {
 
         } else if (Robot.oi.getCargoReverseEject()) {
             	// Operator holds the eject button to eject
-            	Robot.cargoSubsystem.setIntakeSpeed(-1.0);
+            	Robot.cargoSubsystem.setIntakeSpeed(-.6);
 
         } else {
         	// If not intaking or ejecting, then stop the motor.s

@@ -64,14 +64,14 @@ public class CameraSubsystem extends TSubsystem {
         //        as the source, and will return to port 1182 when the selection is set to 
         //        another camera.
         frontCamera = CameraServer.getInstance().startAutomaticCapture("Front Camera", 1);
-        frontCamera.setVideoMode(PixelFormat.kMJPEG, 320, 240, 30);
+        frontCamera.setVideoMode(PixelFormat.kMJPEG, 120, 90, 50);
         frontCamera.setExposureManual(40);
         
         // Start the Rear camera.
         // The URL of the front camera will be 
     	// http://roborio-team-frc.local:1183/?action=stream
         rearCamera  = CameraServer.getInstance().startAutomaticCapture("Rear Camera", 0);
-        rearCamera.setVideoMode(PixelFormat.kMJPEG, 320, 240, 30);
+        rearCamera.setVideoMode(PixelFormat.kMJPEG, 120, 90, 50);
         rearCamera.setExposureManual(40);
 
         // Set the starting feed to the front camera.
