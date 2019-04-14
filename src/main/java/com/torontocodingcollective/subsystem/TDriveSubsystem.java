@@ -212,7 +212,7 @@ public abstract class TDriveSubsystem extends TSubsystem {
             return -1;
         }
 
-        return (leftEncoder.get() + rightEncoder.get()) / 2;
+        return rightEncoder.get(); //(leftEncoder.get() + rightEncoder.get()) / 2;
     }
 
     /**

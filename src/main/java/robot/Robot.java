@@ -7,7 +7,7 @@ import java.util.List;
 import com.torontocodingcollective.subsystem.TGyroDriveSubsystem;
 import com.torontocodingcollective.subsystem.TSubsystem;
 
-import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -28,7 +28,7 @@ import robot.subsystems.WedgeSubsystem;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
-public class Robot extends IterativeRobot {
+public class Robot extends TimedRobot {
 
     public static final List<TSubsystem>    subsystemLs         = new ArrayList<TSubsystem>();
 
@@ -142,7 +142,11 @@ public class Robot extends IterativeRobot {
         // Update the OI before running the commands
         oi.updatePeriodic();
 
+        if (oi.isOperatorDriving() || oi.isDriverDriving()) {
+            autoCommand.cancel();
+        }
         Scheduler.getInstance().run();
+
 
         // Update all subsystems after running commands
         updatePeriodic();

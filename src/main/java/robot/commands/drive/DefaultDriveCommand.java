@@ -149,7 +149,12 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             motorSpeeds.right /= RobotConst.OPERATOR_SPEED_DIVISOR;
 
         }
-        
+
+        // Speed adjust for errors if 
+        /*if (Math.abs(leftStickPosition.y) > 0.3) {
+            motorSpeeds.left *= 1.2;
+            motorSpeeds.right *= 1.0;
+        }*/
         
         if (operatorControlling && Robot.cameraSubsystem.getCurrentCamera() == Camera.REAR) {
             double temp = motorSpeeds.right;

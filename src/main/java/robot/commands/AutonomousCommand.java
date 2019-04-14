@@ -121,11 +121,11 @@ public class AutonomousCommand extends CommandGroup {
                 case AutoSelector.ROBOT_RIGHT:
                     
                     addParallel(new DropHatchCommand());
-                    addSequential(new TDriveOnHeadingDistanceCommand(150, 0, .8, 5, false, 
+                    addSequential(new TDriveOnHeadingDistanceCommand(100, 0, .6, 5, false, 
                     Robot.oi, Robot.driveSubsystem) );
-                    addSequential(new TDriveOnHeadingDistanceCommand(75, 25, .8, 5, true, 
+                    addSequential(new TDriveOnHeadingDistanceCommand(60, 25, .6, 5, true, 
                     Robot.oi, Robot.driveSubsystem) );
-                    addSequential(new TRotateToHeadingCommand(270, 1.5, Robot.oi, Robot.driveSubsystem) );
+                    addSequential(new TRotateToHeadingCommand(270, 2.0, Robot.oi, Robot.driveSubsystem) );
                     addSequential(new AutoDelay(1.0));
                     addSequential(new WaitForVisionTarget(deliver));
                         
@@ -134,11 +134,11 @@ public class AutonomousCommand extends CommandGroup {
                 case AutoSelector.ROBOT_LEFT:
                 
                     addParallel(new DropHatchCommand());
-                    addSequential(new TDriveOnHeadingDistanceCommand(150, 0, .8, 5, false, 
+                    addSequential(new TDriveOnHeadingDistanceCommand(100, 0, .6, 5, false, 
                     Robot.oi, Robot.driveSubsystem) );
-                    addSequential(new TDriveOnHeadingDistanceCommand(75, 335, .8, 5, true, 
+                    addSequential(new TDriveOnHeadingDistanceCommand(60, 335, .6, 5, true, 
                     Robot.oi, Robot.driveSubsystem) );
-                    addSequential(new TRotateToHeadingCommand(90, 1.5, Robot.oi, Robot.driveSubsystem) );
+                    addSequential(new TRotateToHeadingCommand(90, 2.0, Robot.oi, Robot.driveSubsystem) );
                     addSequential(new AutoDelay(1.0));
                     addSequential(new WaitForVisionTarget(deliver));
 
